@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Law Firm AI Skill Platform
 
-## Getting Started
+一个面向律所内部的 AI Skill 浏览、推荐、编辑、试跑和知识源管理原型。
 
-First, run the development server:
+## 功能概览
+
+- Skill 库：浏览外部开源 Skill、示例内部 Skill、收藏 Skill，并查看完整 Markdown 内容。
+- 任务匹配：粘贴待处理文本或预留上传文件入口，生成匹配 Skill 推荐。
+- 效果测试：对比同一任务在使用 Skill / 不使用 Skill 时的大模型输出。
+- 我的 Skill 编辑器：基于现有 Skill 另存编辑，或新建内部 Skill。
+- 知识库：预留律所内部模板、法规、案例和审查清单的引用入口。
+- 后台管理：预留管理员维护 Skill 源、知识源和发布流程。
+
+## 本地运行
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打开：
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000/skills-platform
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 环境变量
 
-## Learn More
+复制 `.env.example` 为 `.env.local`，填入自己的模型中转站或 OpenAI 兼容接口配置。
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp .env.example .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`.env.local` 会被 Git 忽略，不要提交真实 API Key。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 常用脚本
 
-## Deploy on Vercel
+```bash
+npm run lint
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 数据说明
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+外部 Skill 数据来自公开 Skill 页面和本地导出的 Markdown 文件；内部 Skill 当前为产品原型中的示例数据。实际上线时建议将 Skill、知识源、试跑记录和权限策略放入后端数据库统一维护。

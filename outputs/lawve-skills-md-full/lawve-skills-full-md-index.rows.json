@@ -1,0 +1,2042 @@
+{
+  "rows": [
+    {
+      "no": 1,
+      "title": "isds-research",
+      "titleCn": "信息安全发展研究",
+      "category": "litigation",
+      "author": "Cameron Russell",
+      "url": "https://lawve.ai/@cameron-russell/skill/isds-research",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/001-cameron-russell-isds-research.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/001-cameron-russell-isds-research.md"
+    },
+    {
+      "no": 2,
+      "title": "legal-ai-model-router",
+      "titleCn": "法律人工智能模型路由器",
+      "category": "legal-research",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/legal-ai-model-router",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/002-stephane-boghossian-legal-ai-model-router.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/002-stephane-boghossian-legal-ai-model-router.md"
+    },
+    {
+      "no": 3,
+      "title": "eu-pl-law-tracker",
+      "titleCn": "欧盟法律追踪器",
+      "category": "compliance",
+      "author": "Grzegorz Skuza",
+      "url": "https://lawve.ai/@grzegorz-skuza/skill/eu-pl-law-tracker",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/003-grzegorz-skuza-eu-pl-law-tracker.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/003-grzegorz-skuza-eu-pl-law-tracker.md"
+    },
+    {
+      "no": 4,
+      "title": "eu-legislation",
+      "titleCn": "欧盟立法",
+      "category": "legal-research",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/eu-legislation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/004-malik-taiar-eu-legislation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/004-malik-taiar-eu-legislation.md"
+    },
+    {
+      "no": 5,
+      "title": "Gibraltar Legal, Regulatory & Compliance OSINT",
+      "titleCn": "直布罗陀法律、监管与合规开源情报",
+      "category": "legal-research",
+      "author": "Philip Vasquez",
+      "url": "https://lawve.ai/@philip-vasquez/skill/gibraltar-legal-regulatory-compliance-osint",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/005-philip-vasquez-gibraltar-legal-regulatory-compliance-osint.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/005-philip-vasquez-gibraltar-legal-regulatory-compliance-osint.md"
+    },
+    {
+      "no": 6,
+      "title": "enforcement-action-analysis",
+      "titleCn": "执行-行动-分析",
+      "category": "compliance",
+      "author": "Amir Fadavi",
+      "url": "https://lawve.ai/@amir-fadavi/skill/enforcement-action-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/006-amir-fadavi-enforcement-action-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/006-amir-fadavi-enforcement-action-analysis.md"
+    },
+    {
+      "no": 7,
+      "title": "Founder Agreement Drafting",
+      "titleCn": "起草创始人协议",
+      "category": "legal-drafting",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/founder-agreement-drafting",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/007-stephane-boghossian-founder-agreement-drafting.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/007-stephane-boghossian-founder-agreement-drafting.md"
+    },
+    {
+      "no": 8,
+      "title": "EU AI Act Transparency Assessor",
+      "titleCn": "欧盟人工智能法案透明度评估员",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-transparency-assessor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/008-oliver-schmidt-prietz-eu-ai-act-transparency-assessor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/008-oliver-schmidt-prietz-eu-ai-act-transparency-assessor.md"
+    },
+    {
+      "no": 9,
+      "title": "special-jurisdiction-for-peace",
+      "titleCn": "和平特别管辖权",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/special-jurisdiction-for-peace",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/009-jeanne-sulzer-special-jurisdiction-for-peace.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/009-jeanne-sulzer-special-jurisdiction-for-peace.md"
+    },
+    {
+      "no": 10,
+      "title": "kosovo-specialist-chambers",
+      "titleCn": "科索沃专家分会",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/kosovo-specialist-chambers",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/010-jeanne-sulzer-kosovo-specialist-chambers.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/010-jeanne-sulzer-kosovo-specialist-chambers.md"
+    },
+    {
+      "no": 11,
+      "title": "special-court-for-sierra-leone",
+      "titleCn": "塞拉利昂特别法庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/special-court-for-sierra-leone",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/011-jeanne-sulzer-special-court-for-sierra-leone.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/011-jeanne-sulzer-special-court-for-sierra-leone.md"
+    },
+    {
+      "no": 12,
+      "title": "special-tribunal-for-lebanon",
+      "titleCn": "黎巴嫩问题特别法庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/special-tribunal-for-lebanon",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/012-jeanne-sulzer-special-tribunal-for-lebanon.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/012-jeanne-sulzer-special-tribunal-for-lebanon.md"
+    },
+    {
+      "no": 13,
+      "title": "central-african-special-criminal-court",
+      "titleCn": "中非特别刑事法院",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/central-african-special-criminal-court",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/013-jeanne-sulzer-central-african-special-criminal-court.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/013-jeanne-sulzer-central-african-special-criminal-court.md"
+    },
+    {
+      "no": 14,
+      "title": "court-of-bih-war-crimes-chamber",
+      "titleCn": "波黑法院战争罪分庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/court-of-bih-war-crimes-chamber",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/014-jeanne-sulzer-court-of-bih-war-crimes-chamber.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/014-jeanne-sulzer-court-of-bih-war-crimes-chamber.md"
+    },
+    {
+      "no": 15,
+      "title": "extraordinary-african-chambers",
+      "titleCn": "非洲特别商会",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/extraordinary-african-chambers",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/015-jeanne-sulzer-extraordinary-african-chambers.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/015-jeanne-sulzer-extraordinary-african-chambers.md"
+    },
+    {
+      "no": 16,
+      "title": "Divorce Practice",
+      "titleCn": "离婚实践",
+      "category": "legal-drafting",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/divorce-practice",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/016-stephane-boghossian-divorce-practice.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/016-stephane-boghossian-divorce-practice.md"
+    },
+    {
+      "no": 17,
+      "title": "Privacy Policy",
+      "titleCn": "隐私政策",
+      "category": "compliance",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/privacy-policy",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/017-stephane-boghossian-privacy-policy.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/017-stephane-boghossian-privacy-policy.md"
+    },
+    {
+      "no": 18,
+      "title": "runtime-admissibility-review",
+      "titleCn": "运行时准入审查",
+      "category": "banking-finance",
+      "author": "Arkadiy Miteiko",
+      "url": "https://lawve.ai/@arkadiy-miteiko/skill/runtime-admissibility-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/018-arkadiy-miteiko-runtime-admissibility-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/018-arkadiy-miteiko-runtime-admissibility-review.md"
+    },
+    {
+      "no": 19,
+      "title": "sujet-crfpa",
+      "titleCn": "crfpa主题",
+      "category": "legal-education",
+      "author": "Allison Fiorentino",
+      "url": "https://lawve.ai/@allison-fiorentino/skill/sujet-crfpa",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/019-allison-fiorentino-sujet-crfpa.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/019-allison-fiorentino-sujet-crfpa.md"
+    },
+    {
+      "no": 20,
+      "title": "recherche-theses",
+      "titleCn": "研究论文",
+      "category": "legal-research",
+      "author": "Allison Fiorentino",
+      "url": "https://lawve.ai/@allison-fiorentino/skill/recherche-theses",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/020-allison-fiorentino-recherche-theses.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/020-allison-fiorentino-recherche-theses.md"
+    },
+    {
+      "no": 21,
+      "title": "recherche-jurisprudence",
+      "titleCn": "法理学研究",
+      "category": "legal-research",
+      "author": "Allison Fiorentino",
+      "url": "https://lawve.ai/@allison-fiorentino/skill/recherche-jurisprudence",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/021-allison-fiorentino-recherche-jurisprudence.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/021-allison-fiorentino-recherche-jurisprudence.md"
+    },
+    {
+      "no": 22,
+      "title": "agent-authority-charter-builder",
+      "titleCn": "代理机构章程制定者",
+      "category": "banking-finance",
+      "author": "Arkadiy Miteiko",
+      "url": "https://lawve.ai/@arkadiy-miteiko/skill/agent-authority-charter-builder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/022-arkadiy-miteiko-agent-authority-charter-builder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/022-arkadiy-miteiko-agent-authority-charter-builder.md"
+    },
+    {
+      "no": 23,
+      "title": "eccc-khmer-rouge-tribunal",
+      "titleCn": "红色高棉法庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/eccc-khmer-rouge-tribunal",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/023-jeanne-sulzer-eccc-khmer-rouge-tribunal.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/023-jeanne-sulzer-eccc-khmer-rouge-tribunal.md"
+    },
+    {
+      "no": 24,
+      "title": "icty-ictr-irmct",
+      "titleCn": "前南问题国际法庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/icty-ictr-irmct",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/024-jeanne-sulzer-icty-ictr-irmct.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/024-jeanne-sulzer-icty-ictr-irmct.md"
+    },
+    {
+      "no": 25,
+      "title": "nuremberg-tokyo-tribunals",
+      "titleCn": "纽伦堡东京法庭",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/nuremberg-tokyo-tribunals",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/025-jeanne-sulzer-nuremberg-tokyo-tribunals.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/025-jeanne-sulzer-nuremberg-tokyo-tribunals.md"
+    },
+    {
+      "no": 26,
+      "title": "unmik-regulation-64-panels",
+      "titleCn": "科索沃特派团-regulation-64-panels",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/unmik-regulation-64-panels",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/026-jeanne-sulzer-unmik-regulation-64-panels.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/026-jeanne-sulzer-unmik-regulation-64-panels.md"
+    },
+    {
+      "no": 27,
+      "title": "special-panels-timor-leste",
+      "titleCn": "东帝汶特别小组",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/special-panels-timor-leste",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/027-jeanne-sulzer-special-panels-timor-leste.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/027-jeanne-sulzer-special-panels-timor-leste.md"
+    },
+    {
+      "no": 28,
+      "title": "Indian DPDP Act Consent Notice",
+      "titleCn": "印度 DPDP 法案同意通知",
+      "category": "data-protection",
+      "author": "Siddhi Kudalkar",
+      "url": "https://lawve.ai/@siddhi-kudalkar/skill/indian-dpdp-act-consent-notice",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/028-siddhi-kudalkar-indian-dpdp-act-consent-notice.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/028-siddhi-kudalkar-indian-dpdp-act-consent-notice.md"
+    },
+    {
+      "no": 29,
+      "title": "DPDPA & GDPR Compliance Review",
+      "titleCn": "DPDPA 和 GDPR 合规审查",
+      "category": "data-protection",
+      "author": "Parth Desai",
+      "url": "https://lawve.ai/@parth-desai/skill/dpdpa-gdpr-compliance-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/029-parth-desai-dpdpa-gdpr-compliance-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/029-parth-desai-dpdpa-gdpr-compliance-review.md"
+    },
+    {
+      "no": 30,
+      "title": "Indian Foreign Investment Approval Assessment",
+      "titleCn": "印度外国投资审批评估",
+      "category": "corporate-law",
+      "author": "Siddhi Kudalkar",
+      "url": "https://lawve.ai/@siddhi-kudalkar/skill/indian-foreign-investment-approval-assessment",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/030-siddhi-kudalkar-indian-foreign-investment-approval-assessment.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/030-siddhi-kudalkar-indian-foreign-investment-approval-assessment.md"
+    },
+    {
+      "no": 31,
+      "title": "contract-intelligence-workflow-reviewer",
+      "titleCn": "合同情报工作流程审核员",
+      "category": "commercial-law",
+      "author": "Carl Ditzler",
+      "url": "https://lawve.ai/@carl-ditzler/skill/contract-intelligence-workflow-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/031-carl-ditzler-contract-intelligence-workflow-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/031-carl-ditzler-contract-intelligence-workflow-reviewer.md"
+    },
+    {
+      "no": 32,
+      "title": "gouvernance-societes-cotees",
+      "titleCn": "治理协会",
+      "category": "corporate-law",
+      "author": "Gillan Saleh",
+      "url": "https://lawve.ai/@gillan-saleh/skill/gouvernance-societes-cotees",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/032-gillan-saleh-gouvernance-societes-cotees.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/032-gillan-saleh-gouvernance-societes-cotees.md"
+    },
+    {
+      "no": 33,
+      "title": "Litigación Latam",
+      "titleCn": "拉丁美洲诉讼",
+      "category": "litigation",
+      "author": "Joselyne García Montesdeoca",
+      "url": "https://lawve.ai/@joselyne-garcia-montesdeoca/skill/litigacion-latam",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/033-joselyne-garcia-montesdeoca-litigacion-latam.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/033-joselyne-garcia-montesdeoca-litigacion-latam.md"
+    },
+    {
+      "no": 34,
+      "title": "normalisation-juridique",
+      "titleCn": "司法正常化",
+      "category": "microsoft-office",
+      "author": "Christophe Quézel-Ambrunaz",
+      "url": "https://lawve.ai/@christophe-quezel-ambrunaz/skill/normalisation-juridique",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/034-christophe-quezel-ambrunaz-normalisation-juridique.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/034-christophe-quezel-ambrunaz-normalisation-juridique.md"
+    },
+    {
+      "no": 35,
+      "title": "EU Data Act",
+      "titleCn": "欧盟数据法",
+      "category": "technology-law",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-data-act",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/035-oliver-schmidt-prietz-eu-data-act.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/035-oliver-schmidt-prietz-eu-data-act.md"
+    },
+    {
+      "no": 36,
+      "title": "settlement-agreement-review",
+      "titleCn": "和解协议审查",
+      "category": "employment-law",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/settlement-agreement-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/036-andrew-bird-settlement-agreement-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/036-andrew-bird-settlement-agreement-review.md"
+    },
+    {
+      "no": 37,
+      "title": "chronology-builder",
+      "titleCn": "年表构建器",
+      "category": "litigation",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/chronology-builder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/037-andrew-bird-chronology-builder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/037-andrew-bird-chronology-builder.md"
+    },
+    {
+      "no": 38,
+      "title": "unfair-dismissal-screener",
+      "titleCn": "不公平解雇筛选器",
+      "category": "employment-law",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/unfair-dismissal-screener",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/038-andrew-bird-unfair-dismissal-screener.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/038-andrew-bird-unfair-dismissal-screener.md"
+    },
+    {
+      "no": 39,
+      "title": "financial-comparison-glossary",
+      "titleCn": "财务比较术语表",
+      "category": "banking-finance",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/financial-comparison-glossary",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/039-adrian-lerer-financial-comparison-glossary.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/039-adrian-lerer-financial-comparison-glossary.md"
+    },
+    {
+      "no": 40,
+      "title": "due-diligence-gate",
+      "titleCn": "尽职调查门",
+      "category": "banking-finance",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/due-diligence-gate",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/040-adrian-lerer-due-diligence-gate.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/040-adrian-lerer-due-diligence-gate.md"
+    },
+    {
+      "no": 41,
+      "title": "Legal Diagram",
+      "titleCn": "法律图解",
+      "category": "legal-operations",
+      "author": "Sam Zhai - 翟禹森",
+      "url": "https://lawve.ai/@sam-zhai/skill/legal-diagram",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/041-sam-zhai-legal-diagram.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/041-sam-zhai-legal-diagram.md"
+    },
+    {
+      "no": 42,
+      "title": "Data Processing Agreement Art. 28 GDPR",
+      "titleCn": "数据处理协议艺术。 28 通用数据保护条例",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/data-processing-agreement-art-28-gdpr",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/042-oliver-schmidt-prietz-data-processing-agreement-art-28-gdpr.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/042-oliver-schmidt-prietz-data-processing-agreement-art-28-gdpr.md"
+    },
+    {
+      "no": 43,
+      "title": "Fintech Agreement Drafting",
+      "titleCn": "金融科技协议起草",
+      "category": "legal-drafting",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/fintech-agreement-drafting",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/043-stephane-boghossian-fintech-agreement-drafting.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/043-stephane-boghossian-fintech-agreement-drafting.md"
+    },
+    {
+      "no": 44,
+      "title": "GDPR Breach Sentinel",
+      "titleCn": "GDPR 违规哨兵",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/gdpr-breach-sentinel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/044-oliver-schmidt-prietz-gdpr-breach-sentinel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/044-oliver-schmidt-prietz-gdpr-breach-sentinel.md"
+    },
+    {
+      "no": 45,
+      "title": "cpr-letter-drafter",
+      "titleCn": "CPR 信件起草人",
+      "category": "litigation",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/cpr-letter-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/045-andrew-bird-cpr-letter-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/045-andrew-bird-cpr-letter-drafter.md"
+    },
+    {
+      "no": 46,
+      "title": "without-prejudice-drafter",
+      "titleCn": "不妨碍起草者",
+      "category": "litigation",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/without-prejudice-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/046-andrew-bird-without-prejudice-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/046-andrew-bird-without-prejudice-drafter.md"
+    },
+    {
+      "no": 47,
+      "title": "disclosure-list",
+      "titleCn": "披露清单",
+      "category": "litigation",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/disclosure-list",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/047-andrew-bird-disclosure-list.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/047-andrew-bird-disclosure-list.md"
+    },
+    {
+      "no": 48,
+      "title": "Settlement Pressure Tester",
+      "titleCn": "沉降压力测试仪",
+      "category": "litigation",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/settlement-pressure-tester",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/048-larissa-meredith-flister-settlement-pressure-tester.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/048-larissa-meredith-flister-settlement-pressure-tester.md"
+    },
+    {
+      "no": 49,
+      "title": "Disclosure Strategy Mapper",
+      "titleCn": "披露策略图",
+      "category": "litigation",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/disclosure-strategy-mapper",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/049-larissa-meredith-flister-disclosure-strategy-mapper.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/049-larissa-meredith-flister-disclosure-strategy-mapper.md"
+    },
+    {
+      "no": 50,
+      "title": "AI Audit Trail",
+      "titleCn": "人工智能审计追踪",
+      "category": "compliance",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/ai-audit-trail",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/050-larissa-meredith-flister-ai-audit-trail.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/050-larissa-meredith-flister-ai-audit-trail.md"
+    },
+    {
+      "no": 51,
+      "title": "Client Explanation Translator",
+      "titleCn": "客户解释翻译",
+      "category": "legal-drafting",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/client-explanation-translator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/051-larissa-meredith-flister-client-explanation-translator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/051-larissa-meredith-flister-client-explanation-translator.md"
+    },
+    {
+      "no": 52,
+      "title": "international-criminal-court",
+      "titleCn": "国际刑事法院",
+      "category": "human-rights",
+      "author": "Jeanne Sulzer",
+      "url": "https://lawve.ai/@jeanne-sulzer/skill/international-criminal-court",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/052-jeanne-sulzer-international-criminal-court.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/052-jeanne-sulzer-international-criminal-court.md"
+    },
+    {
+      "no": 53,
+      "title": "EU AI Act Knowledge Base",
+      "titleCn": "欧盟人工智能法案知识库",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-knowledge-base",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/053-oliver-schmidt-prietz-eu-ai-act-knowledge-base.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/053-oliver-schmidt-prietz-eu-ai-act-knowledge-base.md"
+    },
+    {
+      "no": 54,
+      "title": "EU AI Act High-Risk Classifier",
+      "titleCn": "欧盟人工智能法案高风险分类器",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-high-risk-classifier",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/054-oliver-schmidt-prietz-eu-ai-act-high-risk-classifier.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/054-oliver-schmidt-prietz-eu-ai-act-high-risk-classifier.md"
+    },
+    {
+      "no": 55,
+      "title": "Legal Analysis Forge",
+      "titleCn": "法律分析锻造",
+      "category": "legal-research",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/legal-analysis-forge",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/055-oliver-schmidt-prietz-legal-analysis-forge.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/055-oliver-schmidt-prietz-legal-analysis-forge.md"
+    },
+    {
+      "no": 56,
+      "title": "Transfer Impact Assessment (TIA)",
+      "titleCn": "转移影响评估（TIA）",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/transfer-impact-assessment-tia",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/056-oliver-schmidt-prietz-transfer-impact-assessment-tia.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/056-oliver-schmidt-prietz-transfer-impact-assessment-tia.md"
+    },
+    {
+      "no": 57,
+      "title": "chilean-law-research",
+      "titleCn": "智利法律研究",
+      "category": "legal-research",
+      "author": "Matias GV Rojas Faundez",
+      "url": "https://lawve.ai/@matias-gv-rojas-faundez/skill/chilean-law-research",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/057-matias-gv-rojas-faundez-chilean-law-research.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/057-matias-gv-rojas-faundez-chilean-law-research.md"
+    },
+    {
+      "no": 58,
+      "title": "pre-motion",
+      "titleCn": "预动",
+      "category": "litigation",
+      "author": "Andrew Bird",
+      "url": "https://lawve.ai/@andrew-bird/skill/pre-motion",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/058-andrew-bird-pre-motion.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/058-andrew-bird-pre-motion.md"
+    },
+    {
+      "no": 59,
+      "title": "IRAC Prompt Builder",
+      "titleCn": "IRAC 提示生成器",
+      "category": "legal-drafting",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/irac-prompt-builder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/059-stephane-boghossian-irac-prompt-builder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/059-stephane-boghossian-irac-prompt-builder.md"
+    },
+    {
+      "no": 60,
+      "title": "agentic-delegation-audit",
+      "titleCn": "代理委托审计",
+      "category": "legal-operations",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/agentic-delegation-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/060-adrian-lerer-agentic-delegation-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/060-adrian-lerer-agentic-delegation-audit.md"
+    },
+    {
+      "no": 61,
+      "title": "legal-transition-audit",
+      "titleCn": "法律过渡审计",
+      "category": "legal-operations",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/legal-transition-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/061-adrian-lerer-legal-transition-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/061-adrian-lerer-legal-transition-audit.md"
+    },
+    {
+      "no": 62,
+      "title": "decision-ownership-audit",
+      "titleCn": "决策-所有权-审计",
+      "category": "legal-operations",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/decision-ownership-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/062-adrian-lerer-decision-ownership-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/062-adrian-lerer-decision-ownership-audit.md"
+    },
+    {
+      "no": 63,
+      "title": "Trademark Search",
+      "titleCn": "商标检索",
+      "category": "intellectual-property",
+      "author": "Robb Miller",
+      "url": "https://lawve.ai/@robb-miller/skill/trademark-search",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/063-robb-miller-trademark-search.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/063-robb-miller-trademark-search.md"
+    },
+    {
+      "no": 64,
+      "title": "arbitration-clause-design-and-review",
+      "titleCn": "仲裁条款设计和审查",
+      "category": "commercial-law",
+      "author": "Hafez Virjee",
+      "url": "https://lawve.ai/@hafez-virjee/skill/arbitration-clause-design-and-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/064-hafez-virjee-arbitration-clause-design-and-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/064-hafez-virjee-arbitration-clause-design-and-review.md"
+    },
+    {
+      "no": 65,
+      "title": "law-expertise-to-skill",
+      "titleCn": "法律专业知识到技能",
+      "category": "skill-authoring",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/law-expertise-to-skill",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/065-adrian-lerer-law-expertise-to-skill.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/065-adrian-lerer-law-expertise-to-skill.md"
+    },
+    {
+      "no": 66,
+      "title": "proposition-audit",
+      "titleCn": "提案审核",
+      "category": "legal-research",
+      "author": "Anthony Searle",
+      "url": "https://lawve.ai/@anthony-searle/skill/proposition-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/066-anthony-searle-proposition-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/066-anthony-searle-proposition-audit.md"
+    },
+    {
+      "no": 67,
+      "title": "epistemic-fault-line-audit",
+      "titleCn": "认知断层线审核",
+      "category": "legal-operations",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/epistemic-fault-line-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/067-adrian-lerer-epistemic-fault-line-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/067-adrian-lerer-epistemic-fault-line-audit.md"
+    },
+    {
+      "no": 68,
+      "title": "legal-mdl-audit",
+      "titleCn": "法律 MDL 审计",
+      "category": "legal-operations",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/legal-mdl-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/068-adrian-lerer-legal-mdl-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/068-adrian-lerer-legal-mdl-audit.md"
+    },
+    {
+      "no": 69,
+      "title": "Tech Contract Review",
+      "titleCn": "技术合同审查",
+      "category": "commercial-law",
+      "author": "Parth Desai",
+      "url": "https://lawve.ai/@parth-desai/skill/tech-contract-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/069-parth-desai-tech-contract-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/069-parth-desai-tech-contract-review.md"
+    },
+    {
+      "no": 70,
+      "title": "legal-document-drafting",
+      "titleCn": "法律文件起草",
+      "category": "legal-drafting",
+      "author": "Alessandro Dardano",
+      "url": "https://lawve.ai/@alessandro-dardano/skill/legal-document-drafting",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/070-alessandro-dardano-legal-document-drafting.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/070-alessandro-dardano-legal-document-drafting.md"
+    },
+    {
+      "no": 71,
+      "title": "climate-aligned-contracts",
+      "titleCn": "气候相关合同",
+      "category": "commercial-law",
+      "author": "The Chancery Lane Project",
+      "url": "https://lawve.ai/@tclp/skill/climate-aligned-contracts",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/071-tclp-climate-aligned-contracts.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/071-tclp-climate-aligned-contracts.md"
+    },
+    {
+      "no": 72,
+      "title": "skill-injection-defense",
+      "titleCn": "技能-注入-防御",
+      "category": "skill-authoring",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/skill-injection-defense",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/072-adrian-lerer-skill-injection-defense.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/072-adrian-lerer-skill-injection-defense.md"
+    },
+    {
+      "no": 73,
+      "title": "sanctions-and-export-analysis",
+      "titleCn": "制裁和出口分析",
+      "category": "compliance",
+      "author": "Gillan Saleh",
+      "url": "https://lawve.ai/@gillan-saleh/skill/sanctions-and-export-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/073-gillan-saleh-sanctions-and-export-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/073-gillan-saleh-sanctions-and-export-analysis.md"
+    },
+    {
+      "no": 74,
+      "title": "analyse-sanctions-et-exportations",
+      "titleCn": "分析制裁和出口",
+      "category": "compliance",
+      "author": "Gillan Saleh",
+      "url": "https://lawve.ai/@gillan-saleh/skill/analyse-sanctions-et-exportations",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/074-gillan-saleh-analyse-sanctions-et-exportations.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/074-gillan-saleh-analyse-sanctions-et-exportations.md"
+    },
+    {
+      "no": 75,
+      "title": "EN-US Legal Translation",
+      "titleCn": "英美法律翻译",
+      "category": "legal-drafting",
+      "author": "Wouter van den Berg",
+      "url": "https://lawve.ai/@wouter-van-den-berg/skill/en-us-legal-translation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/075-wouter-van-den-berg-en-us-legal-translation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/075-wouter-van-den-berg-en-us-legal-translation.md"
+    },
+    {
+      "no": 76,
+      "title": "EN-UK Legal Translation",
+      "titleCn": "EN-UK 法律翻译",
+      "category": "legal-drafting",
+      "author": "Wouter van den Berg",
+      "url": "https://lawve.ai/@wouter-van-den-berg/skill/en-uk-legal-translation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/076-wouter-van-den-berg-en-uk-legal-translation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/076-wouter-van-den-berg-en-uk-legal-translation.md"
+    },
+    {
+      "no": 77,
+      "title": "BACEN Compliance Sentinel",
+      "titleCn": "BACEN 合规哨兵",
+      "category": "compliance",
+      "author": "Rafael Mastronardi",
+      "url": "https://lawve.ai/@rafael-mastronardi/skill/bacen-compliance-sentinel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/077-rafael-mastronardi-bacen-compliance-sentinel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/077-rafael-mastronardi-bacen-compliance-sentinel.md"
+    },
+    {
+      "no": 78,
+      "title": "LGPD Sentinel",
+      "titleCn": "LGPD哨兵",
+      "category": "data-protection",
+      "author": "Rafael Mastronardi",
+      "url": "https://lawve.ai/@rafael-mastronardi/skill/lgpd-sentinel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/078-rafael-mastronardi-lgpd-sentinel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/078-rafael-mastronardi-lgpd-sentinel.md"
+    },
+    {
+      "no": 79,
+      "title": "screening-alert-adjudication",
+      "titleCn": "筛查-警报-裁决",
+      "category": "compliance",
+      "author": "Amir Fadavi",
+      "url": "https://lawve.ai/@amir-fadavi/skill/screening-alert-adjudication",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/079-amir-fadavi-screening-alert-adjudication.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/079-amir-fadavi-screening-alert-adjudication.md"
+    },
+    {
+      "no": 80,
+      "title": "NIST AI RMF",
+      "titleCn": "NIST AI RMF",
+      "category": "compliance",
+      "author": "Rafal Fryc",
+      "url": "https://lawve.ai/@rafal-fryc/skill/nist-ai-rmf",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/080-rafal-fryc-nist-ai-rmf.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/080-rafal-fryc-nist-ai-rmf.md"
+    },
+    {
+      "no": 81,
+      "title": "Originality In European Copyright",
+      "titleCn": "欧洲版权独创性",
+      "category": "intellectual-property",
+      "author": "Joris Deene",
+      "url": "https://lawve.ai/@joris-deene/skill/originality-in-european-copyright",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/081-joris-deene-originality-in-european-copyright.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/081-joris-deene-originality-in-european-copyright.md"
+    },
+    {
+      "no": 82,
+      "title": "Billable Time",
+      "titleCn": "计费时间",
+      "category": "legal-operations",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/billable-time",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/082-stephane-boghossian-billable-time.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/082-stephane-boghossian-billable-time.md"
+    },
+    {
+      "no": 83,
+      "title": "Employment Law Research",
+      "titleCn": "劳动法研究",
+      "category": "legal-research",
+      "author": "Yue Deng-Wu",
+      "url": "https://lawve.ai/@yue-deng-wu-iwmqplig/skill/employment-law-research",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/083-yue-deng-wu-iwmqplig-employment-law-research.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/083-yue-deng-wu-iwmqplig-employment-law-research.md"
+    },
+    {
+      "no": 84,
+      "title": "Contract Risk Analyzer",
+      "titleCn": "合同风险分析器",
+      "category": "commercial-law",
+      "author": "Sneha Ganapavarapu",
+      "url": "https://lawve.ai/@sneha-ganapavarapu/skill/contract-risk-analyzer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/084-sneha-ganapavarapu-contract-risk-analyzer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/084-sneha-ganapavarapu-contract-risk-analyzer.md"
+    },
+    {
+      "no": 85,
+      "title": "swiss-legal-source-and-authority-triage",
+      "titleCn": "瑞士法律来源和权威分类",
+      "category": "legal-research",
+      "author": "Enrique G. Zbinden",
+      "url": "https://lawve.ai/@enrique-g-zbinden/skill/swiss-legal-source-and-authority-triage",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/085-enrique-g-zbinden-swiss-legal-source-and-authority-triage.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/085-enrique-g-zbinden-swiss-legal-source-and-authority-triage.md"
+    },
+    {
+      "no": 86,
+      "title": "Connecticut Divorce Planner",
+      "titleCn": "康涅狄格州离婚策划师",
+      "category": "legal-drafting",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/connecticut-divorce-planner",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/086-stephane-boghossian-connecticut-divorce-planner.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/086-stephane-boghossian-connecticut-divorce-planner.md"
+    },
+    {
+      "no": 87,
+      "title": "EU AI Act System Classifier",
+      "titleCn": "欧盟人工智能法案系统分类器",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/eu-ai-act-system-classifier",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/087-werner-plutat-eu-ai-act-system-classifier.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/087-werner-plutat-eu-ai-act-system-classifier.md"
+    },
+    {
+      "no": 88,
+      "title": "Customs Trade Law",
+      "titleCn": "海关贸易法",
+      "category": "international-law",
+      "author": "Onur Kafkas",
+      "url": "https://lawve.ai/@onur-kafkas/skill/customs-trade-law",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/088-onur-kafkas-customs-trade-law.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/088-onur-kafkas-customs-trade-law.md"
+    },
+    {
+      "no": 89,
+      "title": "litigation-deadline-calendar",
+      "titleCn": "诉讼截止日期日历",
+      "category": "litigation",
+      "author": "Dave Marcus",
+      "url": "https://lawve.ai/@dave-marcus/skill/litigation-deadline-calendar",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/089-dave-marcus-litigation-deadline-calendar.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/089-dave-marcus-litigation-deadline-calendar.md"
+    },
+    {
+      "no": 90,
+      "title": "Legal Design Assessment",
+      "titleCn": "法律设计评估",
+      "category": "legal-drafting",
+      "author": "Mirza Chiragov",
+      "url": "https://lawve.ai/@mirza-chiragov/skill/legal-design-assessment",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/090-mirza-chiragov-legal-design-assessment.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/090-mirza-chiragov-legal-design-assessment.md"
+    },
+    {
+      "no": 91,
+      "title": "Source Locked Verification",
+      "titleCn": "源锁定验证",
+      "category": "legal-drafting",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/source-locked-verification",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/091-larissa-meredith-flister-source-locked-verification.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/091-larissa-meredith-flister-source-locked-verification.md"
+    },
+    {
+      "no": 92,
+      "title": "argentine-supreme-court-analysis",
+      "titleCn": "阿根廷最高法院分析",
+      "category": "compliance",
+      "author": "Ignacio Adrián Lerer",
+      "url": "https://lawve.ai/@adrian-lerer/skill/argentine-supreme-court-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/092-adrian-lerer-argentine-supreme-court-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/092-adrian-lerer-argentine-supreme-court-analysis.md"
+    },
+    {
+      "no": 93,
+      "title": "Azerbaijan + EU Website Privacy Compliance Audit",
+      "titleCn": "阿塞拜疆+欧盟网站隐私合规审计",
+      "category": "technology-law",
+      "author": "Mirza Chiragov",
+      "url": "https://lawve.ai/@mirza-chiragov/skill/azerbaijan-eu-website-privacy-compliance-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/093-mirza-chiragov-azerbaijan-eu-website-privacy-compliance-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/093-mirza-chiragov-azerbaijan-eu-website-privacy-compliance-audit.md"
+    },
+    {
+      "no": 94,
+      "title": "new-sanctions-designation-screening-test",
+      "titleCn": "新制裁指定筛选测试",
+      "category": "compliance",
+      "author": "Amir Fadavi",
+      "url": "https://lawve.ai/@amir-fadavi/skill/new-sanctions-designation-screening-test",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/094-amir-fadavi-new-sanctions-designation-screening-test.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/094-amir-fadavi-new-sanctions-designation-screening-test.md"
+    },
+    {
+      "no": 95,
+      "title": "Serious Incident Reporting - EU AI Act Article 73",
+      "titleCn": "严重事件报告 - 欧盟人工智能法第 73 条",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/serious-incident-reporting-eu-ai-act-article-73",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/095-werner-plutat-serious-incident-reporting-eu-ai-act-article-73.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/095-werner-plutat-serious-incident-reporting-eu-ai-act-article-73.md"
+    },
+    {
+      "no": 96,
+      "title": "GPAI Code of Practice Compliance",
+      "titleCn": "GPAI 实践守则合规性",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/gpai-code-of-practice-compliance",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/096-werner-plutat-gpai-code-of-practice-compliance.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/096-werner-plutat-gpai-code-of-practice-compliance.md"
+    },
+    {
+      "no": 97,
+      "title": "flash-case-law-research",
+      "titleCn": "快速判例法研究",
+      "category": "legal-research",
+      "author": "Giovanna Panucci",
+      "url": "https://lawve.ai/@giovanna-panucci/skill/flash-case-law-research",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/097-giovanna-panucci-flash-case-law-research.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/097-giovanna-panucci-flash-case-law-research.md"
+    },
+    {
+      "no": 98,
+      "title": "YC SaaS Drafter",
+      "titleCn": "YC SaaS 起草者",
+      "category": "commercial-law",
+      "author": "Victor Wang",
+      "url": "https://lawve.ai/@victor-wang/skill/yc-saas-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/098-victor-wang-yc-saas-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/098-victor-wang-yc-saas-drafter.md"
+    },
+    {
+      "no": 99,
+      "title": "EU Data Act",
+      "titleCn": "欧盟数据法",
+      "category": "compliance",
+      "author": "Ryan Malek",
+      "url": "https://lawve.ai/@ryan-malek/skill/eu-data-act",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/099-ryan-malek-eu-data-act.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/099-ryan-malek-eu-data-act.md"
+    },
+    {
+      "no": 100,
+      "title": "Oral Argument",
+      "titleCn": "口头辩论",
+      "category": "legal-operations",
+      "author": "Stephane Boghossian",
+      "url": "https://lawve.ai/@stephane-boghossian/skill/oral-argument",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/100-stephane-boghossian-oral-argument.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/100-stephane-boghossian-oral-argument.md"
+    },
+    {
+      "no": 101,
+      "title": "skill-security-auditor",
+      "titleCn": "技能安全审核员",
+      "category": "skill-authoring",
+      "author": "Lawve",
+      "url": "https://lawve.ai/@lawve/skill/skill-security-auditor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/101-lawve-skill-security-auditor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/101-lawve-skill-security-auditor.md"
+    },
+    {
+      "no": 102,
+      "title": "Statute Analyzer",
+      "titleCn": "法规分析器",
+      "category": "legal-research",
+      "author": "Rafal Fryc",
+      "url": "https://lawve.ai/@rafal-fryc/skill/statute-analyzer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/102-rafal-fryc-statute-analyzer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/102-rafal-fryc-statute-analyzer.md"
+    },
+    {
+      "no": 103,
+      "title": "Whistleblower Policy Advisor",
+      "titleCn": "举报人政策顾问",
+      "category": "compliance",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/whistleblower-policy-advisor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/103-malik-taiar-whistleblower-policy-advisor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/103-malik-taiar-whistleblower-policy-advisor.md"
+    },
+    {
+      "no": 104,
+      "title": "Privacy Policy Generator",
+      "titleCn": "隐私政策生成器",
+      "category": "data-protection",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/privacy-policy-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/104-malik-taiar-privacy-policy-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/104-malik-taiar-privacy-policy-generator.md"
+    },
+    {
+      "no": 105,
+      "title": "Outlook",
+      "titleCn": "前景",
+      "category": "microsoft-office",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/outlook",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/105-malik-taiar-outlook.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/105-malik-taiar-outlook.md"
+    },
+    {
+      "no": 106,
+      "title": "Self-Improvement",
+      "titleCn": "自我提升",
+      "category": "skill-authoring",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/self-improvement",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/106-malik-taiar-self-improvement.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/106-malik-taiar-self-improvement.md"
+    },
+    {
+      "no": 107,
+      "title": "Cookie Policy Generator",
+      "titleCn": "Cookie 策略生成器",
+      "category": "data-protection",
+      "author": "Malik Taiar",
+      "url": "https://lawve.ai/@malik-taiar/skill/cookie-policy-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/107-malik-taiar-cookie-policy-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/107-malik-taiar-cookie-policy-generator.md"
+    },
+    {
+      "no": 108,
+      "title": "nda-reviewer",
+      "titleCn": "nda-审稿人",
+      "category": "commercial-law",
+      "author": "Jamie Tso",
+      "url": "https://lawve.ai/@jamie-tso/skill/nda-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/108-jamie-tso-nda-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/108-jamie-tso-nda-reviewer.md"
+    },
+    {
+      "no": 109,
+      "title": "raisonnement-juridique",
+      "titleCn": "法律理由",
+      "category": "legal-research",
+      "author": "Amaury Fouret",
+      "url": "https://lawve.ai/@amaury-fouret/skill/raisonnement-juridique",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/109-amaury-fouret-raisonnement-juridique.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/109-amaury-fouret-raisonnement-juridique.md"
+    },
+    {
+      "no": 110,
+      "title": "Multi Jurisdictional Research",
+      "titleCn": "多司法管辖区研究",
+      "category": "legal-research",
+      "author": "Zacharie Laïk",
+      "url": "https://lawve.ai/@zacharie-laik/skill/multi-jurisdictional-research",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/110-zacharie-laik-multi-jurisdictional-research.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/110-zacharie-laik-multi-jurisdictional-research.md"
+    },
+    {
+      "no": 111,
+      "title": "Legal Guidance Vault",
+      "titleCn": "法律指导库",
+      "category": "legal-operations",
+      "author": "Michael Cremata",
+      "url": "https://lawve.ai/@michael-cremata/skill/legal-guidance-vault",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/111-michael-cremata-legal-guidance-vault.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/111-michael-cremata-legal-guidance-vault.md"
+    },
+    {
+      "no": 112,
+      "title": "privilege-sentinel",
+      "titleCn": "特权哨兵",
+      "category": "compliance",
+      "author": "Emily Cabrera",
+      "url": "https://lawve.ai/@emily-cabrera/skill/privilege-sentinel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/112-emily-cabrera-privilege-sentinel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/112-emily-cabrera-privilege-sentinel.md"
+    },
+    {
+      "no": 113,
+      "title": "humaniseur-juridique",
+      "titleCn": "人道主义法",
+      "category": "legal-drafting",
+      "author": "Gary Haas",
+      "url": "https://lawve.ai/@gary-haas/skill/humaniseur-juridique",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/113-gary-haas-humaniseur-juridique.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/113-gary-haas-humaniseur-juridique.md"
+    },
+    {
+      "no": 114,
+      "title": "website-gdpr-compliance-audit",
+      "titleCn": "网站 GDPR 合规性审核",
+      "category": "data-protection",
+      "author": "Hugo Salard",
+      "url": "https://lawve.ai/@hugo-salard/skill/website-gdpr-compliance-audit",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/114-hugo-salard-website-gdpr-compliance-audit.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/114-hugo-salard-website-gdpr-compliance-audit.md"
+    },
+    {
+      "no": 115,
+      "title": "supplier-dpa-gdpr-analysis",
+      "titleCn": "供应商-DPA-GDPR-分析",
+      "category": "data-protection",
+      "author": "Hugo Salard",
+      "url": "https://lawve.ai/@hugo-salard/skill/supplier-dpa-gdpr-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/115-hugo-salard-supplier-dpa-gdpr-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/115-hugo-salard-supplier-dpa-gdpr-analysis.md"
+    },
+    {
+      "no": 116,
+      "title": "vs-code-extension",
+      "titleCn": "vs 代码扩展",
+      "category": "vibe-coding",
+      "author": "Antoine Louis",
+      "url": "https://lawve.ai/@antoine-louis/skill/vs-code-extension",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/116-antoine-louis-vs-code-extension.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/116-antoine-louis-vs-code-extension.md"
+    },
+    {
+      "no": 117,
+      "title": "Legal Test Builder",
+      "titleCn": "法律测试生成器",
+      "category": "legal-education",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/legal-test-builder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/117-patrick-munro-legal-test-builder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/117-patrick-munro-legal-test-builder.md"
+    },
+    {
+      "no": 118,
+      "title": "Fundamental Rights Impact Assessment - EU AI Act Art. 27",
+      "titleCn": "基本权利影响评估 - 欧盟人工智能法案艺术。 27",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/fundamental-rights-impact-assessment-eu-ai-act-art-27",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/118-werner-plutat-fundamental-rights-impact-assessment-eu-ai-act-art-27.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/118-werner-plutat-fundamental-rights-impact-assessment-eu-ai-act-art-27.md"
+    },
+    {
+      "no": 119,
+      "title": "Legitimate Interest",
+      "titleCn": "合法权益",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/legitimate-interest",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/119-oliver-schmidt-prietz-legitimate-interest.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/119-oliver-schmidt-prietz-legitimate-interest.md"
+    },
+    {
+      "no": 120,
+      "title": "Mediation Dispute Analysis",
+      "titleCn": "调解纠纷分析",
+      "category": "litigation",
+      "author": "Jinzhe Tan",
+      "url": "https://lawve.ai/@jinzhe-tan/skill/mediation-dispute-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/120-jinzhe-tan-mediation-dispute-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/120-jinzhe-tan-mediation-dispute-analysis.md"
+    },
+    {
+      "no": 121,
+      "title": "assistant-juridique",
+      "titleCn": "助理司法官",
+      "category": "legal-research",
+      "author": "Christophe Quézel-Ambrunaz",
+      "url": "https://lawve.ai/@christophe-quezel-ambrunaz/skill/assistant-juridique",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/121-christophe-quezel-ambrunaz-assistant-juridique.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/121-christophe-quezel-ambrunaz-assistant-juridique.md"
+    },
+    {
+      "no": 122,
+      "title": "Persuasive Legal Writing",
+      "titleCn": "有说服力的法律写作",
+      "category": "legal-drafting",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/persuasive-legal-writing",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/122-larissa-meredith-flister-persuasive-legal-writing.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/122-larissa-meredith-flister-persuasive-legal-writing.md"
+    },
+    {
+      "no": 123,
+      "title": "Regulatory Deal Card Generator",
+      "titleCn": "监管交易卡生成器",
+      "category": "compliance",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/regulatory-deal-card-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/123-patrick-munro-regulatory-deal-card-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/123-patrick-munro-regulatory-deal-card-generator.md"
+    },
+    {
+      "no": 124,
+      "title": "Cross Regulatory Impact Analyzer",
+      "titleCn": "跨监管影响分析器",
+      "category": "compliance",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/cross-regulatory-impact-analyzer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/124-patrick-munro-cross-regulatory-impact-analyzer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/124-patrick-munro-cross-regulatory-impact-analyzer.md"
+    },
+    {
+      "no": 125,
+      "title": "Panel Review Rationalisation",
+      "titleCn": "小组审查合理化",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/panel-review-rationalisation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/125-scott-margetts-panel-review-rationalisation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/125-scott-margetts-panel-review-rationalisation.md"
+    },
+    {
+      "no": 126,
+      "title": "Matter Allocation Instruction",
+      "titleCn": "事项分配说明",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/matter-allocation-instruction",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/126-scott-margetts-matter-allocation-instruction.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/126-scott-margetts-matter-allocation-instruction.md"
+    },
+    {
+      "no": 127,
+      "title": "Panel Design Selection",
+      "titleCn": "面板设计选择",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/panel-design-selection",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/127-scott-margetts-panel-design-selection.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/127-scott-margetts-panel-design-selection.md"
+    },
+    {
+      "no": 128,
+      "title": "Invoice Review Compliance",
+      "titleCn": "发票审核合规性",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/invoice-review-compliance",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/128-scott-margetts-invoice-review-compliance.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/128-scott-margetts-invoice-review-compliance.md"
+    },
+    {
+      "no": 129,
+      "title": "Performance Scorecard",
+      "titleCn": "绩效记分卡",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/performance-scorecard",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/129-scott-margetts-performance-scorecard.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/129-scott-margetts-performance-scorecard.md"
+    },
+    {
+      "no": 130,
+      "title": "Fee Arrangement Structuring",
+      "titleCn": "费用安排结构",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/fee-arrangement-structuring",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/130-scott-margetts-fee-arrangement-structuring.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/130-scott-margetts-fee-arrangement-structuring.md"
+    },
+    {
+      "no": 131,
+      "title": "RFP Pitch Management",
+      "titleCn": "RFP 推介管理",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/rfp-pitch-management",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/131-scott-margetts-rfp-pitch-management.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/131-scott-margetts-rfp-pitch-management.md"
+    },
+    {
+      "no": 132,
+      "title": "Engagement Terms Billing Guidelines",
+      "titleCn": "参与条款 计费指南",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/engagement-terms-billing-guidelines",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/132-scott-margetts-engagement-terms-billing-guidelines.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/132-scott-margetts-engagement-terms-billing-guidelines.md"
+    },
+    {
+      "no": 133,
+      "title": "Stakeholder Comms Planner",
+      "titleCn": "利益相关者沟通规划师",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/stakeholder-comms-planner",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/133-scott-margetts-stakeholder-comms-planner.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/133-scott-margetts-stakeholder-comms-planner.md"
+    },
+    {
+      "no": 134,
+      "title": "Resource Planner",
+      "titleCn": "资源规划师",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/resource-planner",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/134-scott-margetts-resource-planner.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/134-scott-margetts-resource-planner.md"
+    },
+    {
+      "no": 135,
+      "title": "Matter Plan Builder",
+      "titleCn": "事项计划生成器",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/matter-plan-builder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/135-scott-margetts-matter-plan-builder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/135-scott-margetts-matter-plan-builder.md"
+    },
+    {
+      "no": 136,
+      "title": "Local Counsel Manager",
+      "titleCn": "当地法律顾问经理",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/local-counsel-manager",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/136-scott-margetts-local-counsel-manager.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/136-scott-margetts-local-counsel-manager.md"
+    },
+    {
+      "no": 137,
+      "title": "Scope Change Controller",
+      "titleCn": "范围变更控制器",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/scope-change-controller",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/137-scott-margetts-scope-change-controller.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/137-scott-margetts-scope-change-controller.md"
+    },
+    {
+      "no": 138,
+      "title": "Status Report Drafter",
+      "titleCn": "状态报告起草者",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/status-report-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/138-scott-margetts-status-report-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/138-scott-margetts-status-report-drafter.md"
+    },
+    {
+      "no": 139,
+      "title": "Collaboration Platform Advisor",
+      "titleCn": "协作平台顾问",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/collaboration-platform-advisor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/139-scott-margetts-collaboration-platform-advisor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/139-scott-margetts-collaboration-platform-advisor.md"
+    },
+    {
+      "no": 140,
+      "title": "Document Approval Tracker",
+      "titleCn": "文件审批追踪器",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/document-approval-tracker",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/140-scott-margetts-document-approval-tracker.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/140-scott-margetts-document-approval-tracker.md"
+    },
+    {
+      "no": 141,
+      "title": "Continuous Improvement Engine",
+      "titleCn": "持续改进引擎",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/continuous-improvement-engine",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/141-scott-margetts-continuous-improvement-engine.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/141-scott-margetts-continuous-improvement-engine.md"
+    },
+    {
+      "no": 142,
+      "title": "Risk and Issues Manager",
+      "titleCn": "风险和问题经理",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/risk-and-issues-manager",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/142-scott-margetts-risk-and-issues-manager.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/142-scott-margetts-risk-and-issues-manager.md"
+    },
+    {
+      "no": 143,
+      "title": "Timeline Generator",
+      "titleCn": "时间线生成器",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/timeline-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/143-scott-margetts-timeline-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/143-scott-margetts-timeline-generator.md"
+    },
+    {
+      "no": 144,
+      "title": "Budget and Fee Manager",
+      "titleCn": "预算和费用经理",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/budget-and-fee-manager",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/144-scott-margetts-budget-and-fee-manager.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/144-scott-margetts-budget-and-fee-manager.md"
+    },
+    {
+      "no": 145,
+      "title": "Billing Cycle Manager",
+      "titleCn": "计费周期管理器",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/billing-cycle-manager",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/145-scott-margetts-billing-cycle-manager.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/145-scott-margetts-billing-cycle-manager.md"
+    },
+    {
+      "no": 146,
+      "title": "Matter Intake Scoping",
+      "titleCn": "物质摄入范围",
+      "category": "legal-operations",
+      "author": "Scott Margetts",
+      "url": "https://lawve.ai/@scott-margetts/skill/matter-intake-scoping",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/146-scott-margetts-matter-intake-scoping.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/146-scott-margetts-matter-intake-scoping.md"
+    },
+    {
+      "no": 147,
+      "title": "mandarinat",
+      "titleCn": "普通话",
+      "category": "legal-education",
+      "author": "Christophe Quézel-Ambrunaz",
+      "url": "https://lawve.ai/@christophe-quezel-ambrunaz/skill/mandarinat",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/147-christophe-quezel-ambrunaz-mandarinat.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/147-christophe-quezel-ambrunaz-mandarinat.md"
+    },
+    {
+      "no": 148,
+      "title": "Legal Risk Assessment GoodLegal",
+      "titleCn": "法律风险评估 GoodLegal",
+      "category": "compliance",
+      "author": "Zacharie Laïk",
+      "url": "https://lawve.ai/@zacharie-laik/skill/legal-risk-assessment-goodlegal",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/148-zacharie-laik-legal-risk-assessment-goodlegal.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/148-zacharie-laik-legal-risk-assessment-goodlegal.md"
+    },
+    {
+      "no": 149,
+      "title": "Mandatory Verification",
+      "titleCn": "强制验证",
+      "category": "legal-research",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/mandatory-verification",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/149-larissa-meredith-flister-mandatory-verification.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/149-larissa-meredith-flister-mandatory-verification.md"
+    },
+    {
+      "no": 150,
+      "title": "legal-risk-assessor",
+      "titleCn": "法律风险评估员",
+      "category": "compliance",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/legal-risk-assessor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/150-anthropic-legal-risk-assessor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/150-anthropic-legal-risk-assessor.md"
+    },
+    {
+      "no": 151,
+      "title": "Red Team Verifier",
+      "titleCn": "红队验证员",
+      "category": "legal-research",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/red-team-verifier",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/151-patrick-munro-red-team-verifier.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/151-patrick-munro-red-team-verifier.md"
+    },
+    {
+      "no": 152,
+      "title": "Legal AI Simulator",
+      "titleCn": "法律人工智能模拟器",
+      "category": "legal-education",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/legal-ai-simulator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/152-patrick-munro-legal-ai-simulator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/152-patrick-munro-legal-ai-simulator.md"
+    },
+    {
+      "no": 153,
+      "title": "qcm-generateur",
+      "titleCn": "qcm-生成器",
+      "category": "legal-education",
+      "author": "Christophe Quézel-Ambrunaz",
+      "url": "https://lawve.ai/@christophe-quezel-ambrunaz/skill/qcm-generateur",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/153-christophe-quezel-ambrunaz-qcm-generateur.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/153-christophe-quezel-ambrunaz-qcm-generateur.md"
+    },
+    {
+      "no": 154,
+      "title": "relecteur",
+      "titleCn": "选举人",
+      "category": "legal-education",
+      "author": "Christophe Quézel-Ambrunaz",
+      "url": "https://lawve.ai/@christophe-quezel-ambrunaz/skill/relecteur",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/154-christophe-quezel-ambrunaz-relecteur.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/154-christophe-quezel-ambrunaz-relecteur.md"
+    },
+    {
+      "no": 155,
+      "title": "Privacy Notice Generator",
+      "titleCn": "隐私声明生成器",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/privacy-notice-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/155-oliver-schmidt-prietz-privacy-notice-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/155-oliver-schmidt-prietz-privacy-notice-generator.md"
+    },
+    {
+      "no": 156,
+      "title": "privacy-compliance-advisor",
+      "titleCn": "隐私合规顾问",
+      "category": "data-protection",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/privacy-compliance-advisor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/156-anthropic-privacy-compliance-advisor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/156-anthropic-privacy-compliance-advisor.md"
+    },
+    {
+      "no": 157,
+      "title": "DPIA Sentinel",
+      "titleCn": "DPIA 哨兵",
+      "category": "data-protection",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/dpia-sentinel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/157-oliver-schmidt-prietz-dpia-sentinel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/157-oliver-schmidt-prietz-dpia-sentinel.md"
+    },
+    {
+      "no": 158,
+      "title": "Icelandic Court Case Finder",
+      "titleCn": "冰岛法院案件查找器",
+      "category": "legal-research",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-court-case-finder",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/158-magnus-smarason-icelandic-court-case-finder.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/158-magnus-smarason-icelandic-court-case-finder.md"
+    },
+    {
+      "no": 159,
+      "title": "Icelandic Legal Terminology",
+      "titleCn": "冰岛法律术语",
+      "category": "legal-research",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-legal-terminology",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/159-magnus-smarason-icelandic-legal-terminology.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/159-magnus-smarason-icelandic-legal-terminology.md"
+    },
+    {
+      "no": 160,
+      "title": "meeting-briefing-preparator",
+      "titleCn": "会议简报准备者",
+      "category": "legal-operations",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/meeting-briefing-preparator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/160-anthropic-meeting-briefing-preparator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/160-anthropic-meeting-briefing-preparator.md"
+    },
+    {
+      "no": 161,
+      "title": "recherche-doctrine",
+      "titleCn": "研究主义",
+      "category": "legal-research",
+      "author": "Allison Fiorentino",
+      "url": "https://lawve.ai/@allison-fiorentino/skill/recherche-doctrine",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/161-allison-fiorentino-recherche-doctrine.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/161-allison-fiorentino-recherche-doctrine.md"
+    },
+    {
+      "no": 162,
+      "title": "outside-counsel-billing-and-performance-reviewer",
+      "titleCn": "外部顾问计费和绩效审核员",
+      "category": "legal-operations",
+      "author": "Carl Ditzler",
+      "url": "https://lawve.ai/@carl-ditzler/skill/outside-counsel-billing-and-performance-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/162-carl-ditzler-outside-counsel-billing-and-performance-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/162-carl-ditzler-outside-counsel-billing-and-performance-reviewer.md"
+    },
+    {
+      "no": 163,
+      "title": "Judicial First Impression",
+      "titleCn": "司法第一印象",
+      "category": "litigation",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/judicial-first-impression",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/163-larissa-meredith-flister-judicial-first-impression.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/163-larissa-meredith-flister-judicial-first-impression.md"
+    },
+    {
+      "no": 164,
+      "title": "Opposing Counsel Review",
+      "titleCn": "反对律师审查",
+      "category": "litigation",
+      "author": "Larissa Meredith-Flister",
+      "url": "https://lawve.ai/@larissa-meredith-flister/skill/opposing-counsel-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/164-larissa-meredith-flister-opposing-counsel-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/164-larissa-meredith-flister-opposing-counsel-review.md"
+    },
+    {
+      "no": 165,
+      "title": "canned-response-generator",
+      "titleCn": "预设响应生成器",
+      "category": "legal-drafting",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/canned-response-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/165-anthropic-canned-response-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/165-anthropic-canned-response-generator.md"
+    },
+    {
+      "no": 166,
+      "title": "tabular-review",
+      "titleCn": "表格审查",
+      "category": "legal-drafting",
+      "author": "Antoine Louis",
+      "url": "https://lawve.ai/@antoine-louis/skill/tabular-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/166-antoine-louis-tabular-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/166-antoine-louis-tabular-review.md"
+    },
+    {
+      "no": 167,
+      "title": "Dismissal Challenge Petition Drafter",
+      "titleCn": "解雇挑战请愿书起草者",
+      "category": "litigation",
+      "author": "Sélim Brihi",
+      "url": "https://lawve.ai/@selim-brihi/skill/dismissal-challenge-petition-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/167-selim-brihi-dismissal-challenge-petition-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/167-selim-brihi-dismissal-challenge-petition-drafter.md"
+    },
+    {
+      "no": 168,
+      "title": "Legal Data Hunter",
+      "titleCn": "法律数据猎人",
+      "category": "legal-research",
+      "author": "Zacharie Laïk",
+      "url": "https://lawve.ai/@zacharie-laik/skill/legal-data-hunter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/168-zacharie-laik-legal-data-hunter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/168-zacharie-laik-legal-data-hunter.md"
+    },
+    {
+      "no": 169,
+      "title": "Icelandic EEA Gap Analysis",
+      "titleCn": "冰岛欧洲经济区差距分析",
+      "category": "international-law",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-eea-gap-analysis",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/169-magnus-smarason-icelandic-eea-gap-analysis.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/169-magnus-smarason-icelandic-eea-gap-analysis.md"
+    },
+    {
+      "no": 170,
+      "title": "Icelandic Company Formation",
+      "titleCn": "冰岛公司成立",
+      "category": "corporate-law",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-company-formation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/170-magnus-smarason-icelandic-company-formation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/170-magnus-smarason-icelandic-company-formation.md"
+    },
+    {
+      "no": 171,
+      "title": "Icelandic Privacy Review",
+      "titleCn": "冰岛隐私审查",
+      "category": "data-protection",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-privacy-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/171-magnus-smarason-icelandic-privacy-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/171-magnus-smarason-icelandic-privacy-review.md"
+    },
+    {
+      "no": 172,
+      "title": "Summary Debt Recovery Petition Drafter",
+      "titleCn": "债务追回申请摘要起草人",
+      "category": "litigation",
+      "author": "Sélim Brihi",
+      "url": "https://lawve.ai/@selim-brihi/skill/summary-debt-recovery-petition-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/172-selim-brihi-summary-debt-recovery-petition-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/172-selim-brihi-summary-debt-recovery-petition-drafter.md"
+    },
+    {
+      "no": 173,
+      "title": "NIL Contract Reviewer",
+      "titleCn": "NIL 合同审查员",
+      "category": "media-entertainment-sports",
+      "author": "Samir Patel",
+      "url": "https://lawve.ai/@samir-patel/skill/nil-contract-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/173-samir-patel-nil-contract-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/173-samir-patel-nil-contract-reviewer.md"
+    },
+    {
+      "no": 174,
+      "title": "NIS2 Navigator",
+      "titleCn": "NIS2 导航器",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/nis2-navigator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/174-oliver-schmidt-prietz-nis2-navigator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/174-oliver-schmidt-prietz-nis2-navigator.md"
+    },
+    {
+      "no": 175,
+      "title": "Vendor Due Diligence",
+      "titleCn": "供应商尽职调查",
+      "category": "compliance",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/vendor-due-diligence",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/175-patrick-munro-vendor-due-diligence.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/175-patrick-munro-vendor-due-diligence.md"
+    },
+    {
+      "no": 176,
+      "title": "Tech Contract Negotiator",
+      "titleCn": "技术合同谈判员",
+      "category": "commercial-law",
+      "author": "Patrick Munro",
+      "url": "https://lawve.ai/@patrick-munro/skill/tech-contract-negotiator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/176-patrick-munro-tech-contract-negotiator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/176-patrick-munro-tech-contract-negotiator.md"
+    },
+    {
+      "no": 177,
+      "title": "EU AI Act High-Risk Implementation Readiness",
+      "titleCn": "欧盟人工智能法案高风险实施准备",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/eu-ai-act-high-risk-implementation-readiness",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/177-werner-plutat-eu-ai-act-high-risk-implementation-readiness.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/177-werner-plutat-eu-ai-act-high-risk-implementation-readiness.md"
+    },
+    {
+      "no": 178,
+      "title": "Icelandic Contract Review",
+      "titleCn": "冰岛合同审查",
+      "category": "commercial-law",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-contract-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/178-magnus-smarason-icelandic-contract-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/178-magnus-smarason-icelandic-contract-review.md"
+    },
+    {
+      "no": 179,
+      "title": "Icelandic Labour Law",
+      "titleCn": "冰岛劳动法",
+      "category": "employment-law",
+      "author": "Magnus Smárason",
+      "url": "https://lawve.ai/@magnus-smarason/skill/icelandic-labour-law",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/179-magnus-smarason-icelandic-labour-law.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/179-magnus-smarason-icelandic-labour-law.md"
+    },
+    {
+      "no": 180,
+      "title": "word-editor",
+      "titleCn": "文字编辑器",
+      "category": "microsoft-office",
+      "author": "Antoine Louis",
+      "url": "https://lawve.ai/@antoine-louis/skill/word-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/180-antoine-louis-word-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/180-antoine-louis-word-editor.md"
+    },
+    {
+      "no": 181,
+      "title": "EU AI Act Examination Report Generator",
+      "titleCn": "欧盟人工智能法案审查报告生成器",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-examination-report-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/181-oliver-schmidt-prietz-eu-ai-act-examination-report-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/181-oliver-schmidt-prietz-eu-ai-act-examination-report-generator.md"
+    },
+    {
+      "no": 182,
+      "title": "EU Data Act Compliance Assessment",
+      "titleCn": "欧盟数据法合规性评估",
+      "category": "compliance",
+      "author": "Werner Plutat",
+      "url": "https://lawve.ai/@werner-plutat/skill/eu-data-act-compliance-assessment",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/182-werner-plutat-eu-data-act-compliance-assessment.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/182-werner-plutat-eu-data-act-compliance-assessment.md"
+    },
+    {
+      "no": 183,
+      "title": "word-editor",
+      "titleCn": "文字编辑器",
+      "category": "microsoft-office",
+      "author": "Superdoc",
+      "url": "https://lawve.ai/@superdoc/skill/word-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/183-superdoc-word-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/183-superdoc-word-editor.md"
+    },
+    {
+      "no": 184,
+      "title": "ai-governance-reviewer",
+      "titleCn": "人工智能治理审稿人",
+      "category": "compliance",
+      "author": "Carl Ditzler",
+      "url": "https://lawve.ai/@carl-ditzler/skill/ai-governance-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/184-carl-ditzler-ai-governance-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/184-carl-ditzler-ai-governance-reviewer.md"
+    },
+    {
+      "no": 185,
+      "title": "EU AI Act Obligations Mapper",
+      "titleCn": "欧盟人工智能法案义务映射器",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-obligations-mapper",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/185-oliver-schmidt-prietz-eu-ai-act-obligations-mapper.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/185-oliver-schmidt-prietz-eu-ai-act-obligations-mapper.md"
+    },
+    {
+      "no": 186,
+      "title": "EU AI Act Quick Assessment",
+      "titleCn": "欧盟人工智能法案快速评估",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-quick-assessment",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/186-oliver-schmidt-prietz-eu-ai-act-quick-assessment.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/186-oliver-schmidt-prietz-eu-ai-act-quick-assessment.md"
+    },
+    {
+      "no": 187,
+      "title": "EU AI Act Role Determination",
+      "titleCn": "欧盟人工智能法案角色确定",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-role-determination",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/187-oliver-schmidt-prietz-eu-ai-act-role-determination.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/187-oliver-schmidt-prietz-eu-ai-act-role-determination.md"
+    },
+    {
+      "no": 188,
+      "title": "EU AI Act System Classifier",
+      "titleCn": "欧盟人工智能法案系统分类器",
+      "category": "compliance",
+      "author": "Oliver Schmidt-Prietz",
+      "url": "https://lawve.ai/@oliver-schmidt-prietz/skill/eu-ai-act-system-classifier",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/188-oliver-schmidt-prietz-eu-ai-act-system-classifier.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/188-oliver-schmidt-prietz-eu-ai-act-system-classifier.md"
+    },
+    {
+      "no": 189,
+      "title": "skill-creation",
+      "titleCn": "技能创造",
+      "category": "skill-authoring",
+      "author": "OpenAI",
+      "url": "https://lawve.ai/@openai/skill/skill-creation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/189-openai-skill-creation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/189-openai-skill-creation.md"
+    },
+    {
+      "no": 190,
+      "title": "Excel",
+      "titleCn": "Excel",
+      "category": "microsoft-office",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/excel",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/190-anthropic-excel.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/190-anthropic-excel.md"
+    },
+    {
+      "no": 191,
+      "title": "pdf-editor",
+      "titleCn": "pdf编辑器",
+      "category": "adobe-acrobat",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/pdf-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/191-anthropic-pdf-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/191-anthropic-pdf-editor.md"
+    },
+    {
+      "no": 192,
+      "title": "powerpoint-editor",
+      "titleCn": "Powerpoint编辑器",
+      "category": "microsoft-office",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/powerpoint-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/192-anthropic-powerpoint-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/192-anthropic-powerpoint-editor.md"
+    },
+    {
+      "no": 193,
+      "title": "skill-creation",
+      "titleCn": "技能创造",
+      "category": "skill-authoring",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/skill-creation",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/193-anthropic-skill-creation.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/193-anthropic-skill-creation.md"
+    },
+    {
+      "no": 194,
+      "title": "word-editor",
+      "titleCn": "文字编辑器",
+      "category": "microsoft-office",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/word-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/194-anthropic-word-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/194-anthropic-word-editor.md"
+    },
+    {
+      "no": 195,
+      "title": "code-security-review",
+      "titleCn": "代码安全审查",
+      "category": "vibe-coding",
+      "author": "OpenAI",
+      "url": "https://lawve.ai/@openai/skill/code-security-review",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/195-openai-code-security-review.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/195-openai-code-security-review.md"
+    },
+    {
+      "no": 196,
+      "title": "excel-editor",
+      "titleCn": "excel编辑器",
+      "category": "microsoft-office",
+      "author": "OpenAI",
+      "url": "https://lawve.ai/@openai/skill/excel-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/196-openai-excel-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/196-openai-excel-editor.md"
+    },
+    {
+      "no": 197,
+      "title": "NDA Reviewer",
+      "titleCn": "新药申请审核员",
+      "category": "commercial-law",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/nda-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/197-anthropic-nda-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/197-anthropic-nda-reviewer.md"
+    },
+    {
+      "no": 198,
+      "title": "pdf-editor",
+      "titleCn": "pdf编辑器",
+      "category": "adobe-acrobat",
+      "author": "OpenAI",
+      "url": "https://lawve.ai/@openai/skill/pdf-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/198-openai-pdf-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/198-openai-pdf-editor.md"
+    },
+    {
+      "no": 199,
+      "title": "Playbook Reviewer",
+      "titleCn": "剧本审阅者",
+      "category": "commercial-law",
+      "author": "Anthropic",
+      "url": "https://lawve.ai/@anthropic/skill/playbook-reviewer",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/199-anthropic-playbook-reviewer.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/199-anthropic-playbook-reviewer.md"
+    },
+    {
+      "no": 200,
+      "title": "word-editor",
+      "titleCn": "文字编辑器",
+      "category": "microsoft-office",
+      "author": "OpenAI",
+      "url": "https://lawve.ai/@openai/skill/word-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/200-openai-word-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/200-openai-word-editor.md"
+    },
+    {
+      "no": 201,
+      "title": "Shareholder Disclosure Petition Drafter",
+      "titleCn": "股东披露请愿书起草人",
+      "category": "corporate-law",
+      "author": "Sélim Brihi",
+      "url": "https://lawve.ai/@selim-brihi/skill/shareholder-disclosure-petition-drafter",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/201-selim-brihi-shareholder-disclosure-petition-drafter.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/201-selim-brihi-shareholder-disclosure-petition-drafter.md"
+    },
+    {
+      "no": 202,
+      "title": "Dismissal Notification Generator",
+      "titleCn": "解雇通知生成器",
+      "category": "employment-law",
+      "author": "Sélim Brihi",
+      "url": "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/202-selim-brihi-dismissal-notification-generator.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/202-selim-brihi-dismissal-notification-generator.md"
+    },
+    {
+      "no": 203,
+      "title": "excel-editor",
+      "titleCn": "excel编辑器",
+      "category": "microsoft-office",
+      "author": "Manus",
+      "url": "https://lawve.ai/@manus/skill/excel-editor",
+      "mdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md/203-manus-excel-editor.md",
+      "relativeMdPath": "outputs/lawve-skills-md-full/md/203-manus-excel-editor.md"
+    }
+  ],
+  "summary": {
+    "mdCount": 203,
+    "readmeCount": 202,
+    "skillCount": 202,
+    "mdDir": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/md",
+    "translatedJsonPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/lawve-skills-readme-skill-cn.json",
+    "emptySkillNames": "Excel"
+  }
+}

@@ -1,0 +1,1 @@
+Install and set up the Legal Data Hunter MCP server. Use when the user wants to connect their AI agent to legal data, install legal-data-hunter, add a legal search MCP, or search legal documents across jurisdictions.
