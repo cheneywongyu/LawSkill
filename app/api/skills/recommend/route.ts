@@ -1,8 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
+import mammoth from 'mammoth'
 import { firmSkills, originLabels, riskLabels } from '@/data/skillPlatform'
 import type { FirmSkill } from '@/data/skillPlatform'
+
+type PdfjsPage = { getTextContent: () => Promise<{ items: Array<{ str?: string }> }> }
+type PdfjsDocument = { numPages: number; getPage: (n: number) => Promise<PdfjsPage> }
+type PdfjsModule = {
+  getDocument: (opts: { data: Uint8Array; useWorkerFetch?: boolean; isEvalSupported?: boolean }) => { promise: Promise<PdfjsDocument> }
+}
 
 type RecommendRequest = {
   action?: 'recommend' | 'optimize'
@@ -10,6 +18,7 @@ type RecommendRequest = {
   taskEntrypoint?: string
   text?: string
   fileNames?: string[]
+  filePayloads?: { name: string; base64: string }[]
   skillId?: string
   redactionSummary?: string
   knowledgeSources?: {
@@ -54,11 +63,12 @@ const coreSkillRules = [
   { name: '证据目录', terms: ['证据目录', '证据', '举证', 'exhibit'], preferred: ['filing-timeline'] },
   { name: '文书起草', terms: ['起草', '文书', '申请书', '答辩状', '合同草案', 'draft'], preferred: ['contract-drafting', 'nda-one-sided'] },
   { name: '合同风险审查', terms: ['合同', '条款', '审查', '违约', '责任限制', 'contract'], preferred: ['nda-one-sided', 'lawve-nda-reviewer-108', 'lawve-nda-reviewer-197', 'lawve-contract-risk-analyzer-084'] },
-  { name: '合规审查', terms: ['合规', '监管', '备案', '安全措施', 'compliance'], preferred: ['dpa-review'] },
+  { name: '合规审查', terms: ['合规', '监管', '备案', '安全措施', 'compliance', '数据处理协议', 'dpa', '分包', '分包处理', '跨境传输', '跨境', '供应商', '隐私', '个人信息', '数据安全'], preferred: ['dpa-review'] },
   { name: '法律研究', terms: ['法律研究', '法规', '案例', '检索', '依据', 'research'], preferred: [] },
   { name: '案例检索', terms: ['案例', '判例', '裁判规则', '法院观点'], preferred: [] },
   { name: '脱敏', terms: ['脱敏', '隐私', '个人信息', '客户信息', 'redaction'], preferred: ['dpa-review'] },
   { name: 'OCR', terms: ['扫描件', '图片', 'ocr', 'pdf', '识别'], preferred: [] },
+  { name: '劳动雇佣', terms: ['员工', '解除', '劳动', '裁员', '赔偿', '仲裁', '工伤', '劳动合同', '辞退', '离职'], preferred: ['employment-termination'] },
 ]
 
 const knowledgeRules = [
@@ -556,10 +566,47 @@ export async function POST(req: NextRequest) {
     if (payload.action === 'optimize') {
       return NextResponse.json(await optimizeSkill(payload))
     }
-    const result = await callClaudeRecommend(payload)
+    const uploadedText = await resolveUploadedText(payload)
+    const mergedPayload: RecommendRequest = uploadedText
+      ? { ...payload, text: [payload.text, uploadedText].filter(Boolean).join('\n\n') }
+      : payload
+    const result = await callClaudeRecommend(mergedPayload)
     return NextResponse.json(result)
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: '推荐分析失败，请重试' }, { status: 500 })
   }
+}
+
+async function resolveUploadedText(payload: RecommendRequest): Promise<string> {
+  const payloads = payload.filePayloads ?? []
+  if (payloads.length === 0) return ''
+  const parts: string[] = []
+  for (const item of payloads) {
+    const buf = Buffer.from(item.base64, 'base64')
+    const ext = item.name.split('.').pop()?.toLowerCase() ?? ''
+    try {
+      if (ext === 'docx' || ext === 'doc') {
+        const { value } = await mammoth.extractRawText({ buffer: buf })
+        if (value) parts.push(value)
+      } else if (ext === 'pdf') {
+        const pdfjsPath = path.join(process.cwd(), 'node_modules', 'unpdf', 'dist', 'pdfjs.mjs')
+        const pdfjs = await import(pathToFileURL(pdfjsPath).href) as PdfjsModule
+        const doc = await pdfjs.getDocument({ data: new Uint8Array(buf), useWorkerFetch: false, isEvalSupported: false }).promise
+        const pageTexts: string[] = []
+        for (let i = 1; i <= doc.numPages; i++) {
+          const page = await doc.getPage(i)
+          const content = await page.getTextContent()
+          pageTexts.push(content.items.map((item) => item.str ?? '').join(' '))
+        }
+        const extracted = pageTexts.join('\n')
+        if (extracted) parts.push(extracted)
+      } else if (['txt', 'md', 'markdown', 'csv', 'tsv', 'json', 'log'].includes(ext) || ext === '') {
+        parts.push(buf.toString('utf-8'))
+      }
+    } catch {
+      // 单个文件解析失败时跳过，不阻断整次匹配
+    }
+  }
+  return parts.join('\n\n')
 }

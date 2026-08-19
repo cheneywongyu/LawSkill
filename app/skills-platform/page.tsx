@@ -270,72 +270,6 @@ function extractChineseReadmeIntro(markdown?: string) {
     .replace(/\n{3,}/g, '\n\n')
 }
 
-const coreSkillEntrypoints = [
-  '案件分析',
-  '事实抽取',
-  '证据目录',
-  '文书起草',
-  '合同风险审查',
-  '合规审查',
-  '法律研究',
-  '案例检索',
-  '脱敏',
-  'OCR',
-]
-
-const entrypointSkillRules: Record<string, { skillIds: string[]; keywords: string[]; practices: string[] }> = {
-  案件分析: {
-    skillIds: ['filing-timeline', 'lawve-mediation-dispute-analysis-120', 'lawve-pre-motion-058'],
-    keywords: ['案件', '争议焦点', '案情', '诉讼策略', 'case analysis'],
-    practices: ['争议解决'],
-  },
-  事实抽取: {
-    skillIds: ['filing-timeline'],
-    keywords: ['事实', '抽取', '时间线', '证据摘要', 'fact'],
-    practices: ['争议解决'],
-  },
-  证据目录: {
-    skillIds: ['filing-timeline'],
-    keywords: ['证据', '目录', '举证', 'exhibit'],
-    practices: ['争议解决'],
-  },
-  文书起草: {
-    skillIds: ['nda-one-sided', 'lawve-contract-risk-analyzer-084'],
-    keywords: ['起草', '文书', '合同草案', 'draft', 'complaint', 'agreement'],
-    practices: ['商业合同', '争议解决'],
-  },
-  合同风险审查: {
-    skillIds: ['nda-one-sided', 'dpa-review', 'lawve-contract-risk-analyzer-084', 'lawve-climate-aligned-contracts-071'],
-    keywords: ['合同', '条款', '审查', '违约', '责任限制', 'nda', 'contract'],
-    practices: ['商业合同', '数据保护'],
-  },
-  合规审查: {
-    skillIds: ['dpa-review', 'lawve-eu-pl-law-tracker-003'],
-    keywords: ['合规', '监管', '备案', '安全措施', 'privacy', 'compliance'],
-    practices: ['数据保护', '法律研究'],
-  },
-  法律研究: {
-    skillIds: ['lawve-isds-research-001', 'lawve-eu-pl-law-tracker-003'],
-    keywords: ['法律研究', '法规', '案例', '检索', '依据', 'research'],
-    practices: ['法律研究'],
-  },
-  案例检索: {
-    skillIds: ['lawve-mediation-dispute-analysis-120', 'lawve-litigacion-latam-033'],
-    keywords: ['案例', '判例', '裁判规则', '法院观点'],
-    practices: ['争议解决', '法律研究'],
-  },
-  脱敏: {
-    skillIds: ['dpa-review'],
-    keywords: ['脱敏', '隐私', '个人信息', '客户信息', 'redaction'],
-    practices: ['数据保护'],
-  },
-  OCR: {
-    skillIds: ['filing-timeline'],
-    keywords: ['扫描件', '图片', 'ocr', 'pdf', '识别'],
-    practices: ['争议解决'],
-  },
-}
-
 function createEditorDraft(skill: FirmSkill, task: string): EditorDraft {
   return {
     name: skill.isMySkill ? skill.name : `${skill.name}-my-skill`,
@@ -503,8 +437,9 @@ export default function SkillsPlatformPage() {
   const [selectedId, setSelectedId] = useState(firmSkills[0].id)
   const [task, setTask] = useState(recommendationScenarios[0])
   const [selectedEntrypoint, setSelectedEntrypoint] = useState('')
-  const [sourceText, setSourceText] = useState('请将待审合同、裁判文书、客户邮件或资料清单直接粘贴在这里。')
+  const [sourceText, setSourceText] = useState('')
   const [fileNames, setFileNames] = useState<string[]>([])
+  const [uploadedFilePayloads, setUploadedFilePayloads] = useState<{ name: string; base64: string }[]>([])
   const [recommendationResult, setRecommendationResult] = useState<ModelRecommendationResult | null>(null)
   const [recommendationError, setRecommendationError] = useState('')
   const [recommendCopyNotice, setRecommendCopyNotice] = useState('')
@@ -658,27 +593,6 @@ export default function SkillsPlatformPage() {
       .filter((skill): skill is FirmSkill => Boolean(skill))
   }, [favoriteSkillIds, librarySkills])
 
-  const entrypointSkills = useMemo(() => {
-    if (!selectedEntrypoint) return []
-    const rule = entrypointSkillRules[selectedEntrypoint]
-    if (!rule) return []
-    const seen = new Set<string>()
-    const byId = rule.skillIds
-      .map((id) => allSkills.find((skill) => skill.id === id))
-      .filter((skill): skill is FirmSkill => Boolean(skill))
-    const byField = allSkills.filter((skill) => {
-      const haystack = `${skill.name} ${skill.chineseName} ${skill.practice} ${skill.description} ${skill.tags.join(' ')} ${skill.suitableFor.join(' ')}`.toLowerCase()
-      return rule.practices.includes(skill.practice) || rule.keywords.some((keyword) => haystack.includes(keyword.toLowerCase()))
-    })
-    return [...byId, ...byField]
-      .filter((skill) => {
-        if (seen.has(skill.id)) return false
-        seen.add(skill.id)
-        return true
-      })
-      .slice(0, 6)
-  }, [allSkills, selectedEntrypoint])
-
   function handleCategorySelect(categoryId: string) {
     setSelectedCategoryId(categoryId)
     setPractice('全部')
@@ -787,13 +701,6 @@ export default function SkillsPlatformPage() {
         ? current.filter((id) => id !== skillId)
         : [skillId, ...current]
     ))
-  }
-
-  function selectTaskEntrypoint(entry: string) {
-    setSelectedEntrypoint(entry)
-    setRecommendationResult(null)
-    setRecommendCopyNotice('')
-    setSkillOptimization(null)
   }
 
   function getTemplateDraftPatch(templateId: SkillTemplateId, practiceName: string) {
@@ -1119,6 +1026,7 @@ export default function SkillsPlatformPage() {
   function requestModelAction(kind: PendingModelAction['kind'], text: string) {
     const inspection = inspectSensitiveText(text)
     if (inspection.hits.length > 0) {
+      if (kind === 'recommend') setRecommendationResult(null)
       setRedactionResult(inspection)
       setPendingModelAction({ kind, text })
       return
@@ -1266,10 +1174,11 @@ export default function SkillsPlatformPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'recommend',
-          purpose: task,
+          purpose: sanitizedText || (uploadedFilePayloads.length ? '根据上传材料匹配 Skill' : '未填写处理目的'),
           taskEntrypoint: selectedEntrypoint || undefined,
           text: sanitizedText,
           fileNames,
+          filePayloads: uploadedFilePayloads,
           knowledgeSources: selectedKnowledgeSources,
           redactionSummary,
         }),
@@ -1298,7 +1207,7 @@ export default function SkillsPlatformPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'optimize',
-          purpose: task,
+          purpose: sourceText || task,
           text: sourceText,
           fileNames,
           skillId,
@@ -1450,43 +1359,6 @@ export default function SkillsPlatformPage() {
         </div>
       )}
     </aside>
-  )
-
-  const knowledgePicker = (
-    <section className="rounded-lg border border-slate-200 bg-white p-4">
-      <SectionTitle title="可选参考知识源" meta={selectedKnowledgeSources.length ? '推荐时参考' : '推荐时不参考'} />
-      <p className="mt-2 text-xs leading-5 text-slate-500">
-        这里只是控制推荐和复制给 AI 时，要不要参考这个示例知识源；它不是 Skill 编辑器的主体内容。
-      </p>
-      <div className="mt-3 grid gap-2">
-        {[editableKnowledgeSource].map((source) => {
-          const checked = selectedKnowledgeIds.includes(source.id)
-          return (
-            <button
-              key={source.id}
-              type="button"
-              onClick={() => toggleKnowledgeSource(source.id)}
-              className={`rounded-lg border p-3 text-left transition-colors ${
-                checked ? 'border-slate-900 bg-slate-50' : 'border-slate-200 bg-white hover:border-slate-400'
-              }`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold text-slate-950">{source.title}</p>
-                  <p className="mt-1 text-[11px] text-slate-500">{source.type} · 示例，不是真实 RAG</p>
-                </div>
-                <span className={`grid size-5 place-items-center rounded-md text-[11px] font-semibold ${
-                  checked ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-400'
-                }`}>
-                  {checked ? '参考' : '不参考'}
-                </span>
-              </div>
-              <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-600">{source.summary}</p>
-            </button>
-          )
-        })}
-      </div>
-    </section>
   )
 
   const editorPanel = (
@@ -2910,235 +2782,189 @@ export default function SkillsPlatformPage() {
         )}
 
         {activeView === 'recommend' && (
-          <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_520px]">
-            <div className="space-y-5">
-              <section className="rounded-lg border border-slate-200 bg-white p-5">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <SectionTitle title="匹配任务和 Skill" meta="核心功能" />
-                  {recommendReturnTarget && (
-                    <button
-                      type="button"
-                      onClick={() => goToReturnTarget(recommendReturnTarget)}
-                      className="h-9 w-fit rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
-                    >
-                      {recommendReturnTarget.label}
-                    </button>
-                  )}
-                </div>
-                <label className="mt-4 block">
-                  <span className="text-xs font-semibold text-slate-600">待处理文本内容</span>
-                  <textarea
-                    aria-label="待处理文本内容"
-                    value={sourceText}
-                    onChange={(event) => setSourceText(event.target.value)}
-                    placeholder="把合同条款、裁判文书、客户邮件、尽调资料摘录直接复制到这里"
-                    className="mt-2 h-56 w-full rounded-md border border-slate-200 p-3 text-sm leading-6 outline-none focus:border-slate-500"
-                  />
-                </label>
-
-                <div className="mt-4">
-                  <p className="text-xs font-semibold text-slate-600">上传文件</p>
-                  <div className="mt-2 rounded-md border border-dashed border-slate-300 bg-slate-50 p-3">
-                    <div className="grid gap-3 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-center">
-                      <label className="flex h-24 cursor-pointer flex-col items-center justify-center rounded-md border border-slate-200 bg-white text-center hover:border-slate-400">
-                        <span className="text-sm font-semibold text-slate-800">选择文件</span>
-                        <span className="mt-1 text-xs text-slate-500">PDF / Word / Excel / 图片</span>
-                        <input
-                          multiple
-                          type="file"
-                          className="hidden"
-                          onChange={(event) => setFileNames(Array.from(event.target.files ?? []).map((file) => file.name))}
-                        />
-                      </label>
-                      <div className="min-w-0">
-                        <p className="text-xs leading-5 text-slate-500">上传文件和粘贴文本一样，都是用于匹配 Skill 的任务材料。当前只记录文件名，暂不读取文件内容。</p>
-                        {fileNames.length > 0 && (
-                          <div className="mt-3 flex max-h-20 flex-wrap gap-2 overflow-auto">
-                            {fileNames.map((name) => (
-                              <p key={name} className="max-w-full truncate rounded-md bg-white px-2 py-1 text-xs text-slate-600">{name}</p>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <label className="mt-4 block">
-                  <span className="text-xs font-semibold text-slate-600">处理目的</span>
-                  <textarea
-                    aria-label="处理目的"
-                    value={task}
-                    onChange={(event) => setTask(event.target.value)}
-                    className="mt-2 h-32 w-full rounded-md border border-slate-200 p-3 text-sm leading-6 outline-none focus:border-slate-500"
-                  />
-                </label>
-
-                <div className="mt-4 rounded-lg border border-slate-200 p-4">
-                  <SectionTitle title="可选：指定任务类型" meta={selectedEntrypoint ? selectedEntrypoint : '可不选'} />
-                  <p className="mt-1 text-xs leading-5 text-slate-500">点击后会先带出该类型常用 Skill；生成推荐时，模型会再结合你的材料重新排序。</p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {coreSkillEntrypoints.map((entry) => (
+          <div className="space-y-5">
+            <section className="rounded-lg border border-slate-200 bg-white p-5">
+              <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_420px]">
+                <div className="flex min-h-0 flex-col gap-5">
+                  <div className="flex h-9 items-center justify-between gap-3">
+                    <SectionTitle title="匹配任务和 Skill" meta="核心功能" />
+                    {recommendReturnTarget && (
                       <button
-                        key={entry}
-                        onClick={() => selectTaskEntrypoint(entry)}
-                        className={`rounded-md px-2.5 py-1.5 text-[11px] font-medium ${
-                          selectedEntrypoint === entry
-                            ? 'bg-slate-900 text-white'
-                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                        }`}
+                        type="button"
+                        onClick={() => goToReturnTarget(recommendReturnTarget)}
+                        className="h-9 w-fit rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
                       >
-                        {entry}
+                        {recommendReturnTarget.label}
                       </button>
-                    ))}
-                  </div>
-                  {selectedEntrypoint && entrypointSkills.length > 0 && (
-                    <div className="mt-4 rounded-md bg-slate-50 p-3">
-                      <div className="flex items-center justify-between gap-3">
-                        <p className="text-xs font-semibold text-slate-700">预制关联 Skill</p>
-                        <span className="text-[11px] text-slate-400">{selectedEntrypoint}</span>
-                      </div>
-                      <div className="mt-3 grid gap-2">
-                        {entrypointSkills.slice(0, 4).map((skill) => (
-                          <div key={skill.id} className="flex items-center justify-between gap-3 rounded-md bg-white px-3 py-2">
-                            <div className="min-w-0">
-                              <p className="truncate text-xs font-semibold text-slate-800">{skill.chineseName}</p>
-                              <p className="mt-0.5 truncate text-[11px] text-slate-500">{skill.practice} · {displayOriginLabel(skill)}</p>
-                            </div>
-                            <button
-                              type="button"
-                              onClick={() => chooseSkill(skill, 'library')}
-                              className="shrink-0 rounded-md border border-slate-200 px-2 py-1 text-[11px] font-semibold text-slate-600 hover:border-slate-400"
-                            >
-                              查看
-                            </button>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {recommendationScenarios.map((scenario, index) => (
-                    <button
-                      key={scenario}
-                      onClick={() => {
-                        setSelectedEntrypoint('')
-                        setRecommendationResult(null)
-                        setTask(scenario)
-                      }}
-                      className="rounded-md bg-slate-100 px-2.5 py-1.5 text-[11px] font-medium text-slate-600 hover:bg-slate-200"
-                    >
-                      示例 {index + 1}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="mt-4">
-                  {knowledgePicker}
-                </div>
-
-                <div className="mt-5 flex flex-wrap items-center gap-3">
-                  <button
-                    onClick={() => requestModelAction('recommend', sourceText)}
-                    disabled={isAnalyzing}
-                    className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
-                  >
-                    {isAnalyzing ? '分析中...' : '生成推荐'}
-                  </button>
-                  <p className="text-xs text-slate-500">已接入大模型推荐；模型不可用时会自动使用本地兜底。</p>
-                </div>
-                {recommendationError && <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-700">{recommendationError}</p>}
-              </section>
-
-            </div>
-
-            <section className="rounded-lg border border-slate-200 bg-white p-5 xl:sticky xl:top-20 xl:self-start">
-              <SectionTitle title="匹配结果" meta={recommendationResult ? (recommendationResult.mode === 'llm' ? 'LLM' : '模拟 LLM') : '等待输入'} />
-              {recommendationResult ? (
-                <div className="mt-4 space-y-4">
-                  <div className="rounded-lg bg-slate-50 p-4">
-                    <p className="text-xs font-semibold text-slate-500">任务画像</p>
-                    <p className="text-sm font-semibold text-slate-950">{recommendationResult.summary}</p>
-                    <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-slate-600">
-                      <p className="rounded-md bg-white px-2 py-2">类型：{recommendationResult.taskType}</p>
-                      <p className="rounded-md bg-white px-2 py-2">阶段：{recommendationResult.matterStage}</p>
-                    </div>
-                    {!!recommendationResult.riskFlags?.length && (
-                      <div className="mt-3">
-                        <p className="text-[11px] font-semibold text-slate-500">需要补充 / 注意</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {recommendationResult.riskFlags.map((flag) => (
-                            <span key={flag} className="rounded-md bg-amber-50 px-2 py-1 text-[11px] font-medium text-amber-700">{flag}</span>
-                          ))}
-                        </div>
-                      </div>
                     )}
                   </div>
 
-                  <div className="space-y-3">
-                    <div>
-                      <SectionTitle title="匹配 Skill" meta="按匹配度排序" />
-                    </div>
-                    {(recommendationResult.recommendations || []).map((item) => {
-                      const skill = allSkills.find((candidate) => candidate.id === item.skillId)
-                      if (!skill) return null
-                      return (
-                        <div key={item.skillId} className="rounded-lg border border-slate-200 bg-white p-4">
-                          <div className="flex items-start justify-between gap-3">
-                            <div className="min-w-0">
-                              <div className="flex flex-wrap items-center gap-2">
-                                <span className="rounded-md bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700">{formatMatchPercent(item.score)}</span>
-                                <p className="text-sm font-semibold text-slate-950">{skill.chineseName}</p>
+                  <div className="relative flex min-h-0 flex-col">
+                    <label className="flex flex-col">
+                      <span className="text-xs font-semibold text-slate-600">待处理文本内容</span>
+                      <textarea
+                        aria-label="待处理文本内容"
+                        rows={3}
+                        value={sourceText}
+                        onChange={(event) => setSourceText(event.target.value)}
+                        placeholder="将合同条款、裁判文书、客户邮件或资料清单直接粘贴到这里；也可在下方上传文件（TXT / MD / CSV / Word / PDF）参与匹配"
+                        className="mt-2 w-full resize-none rounded-md border border-slate-200 p-3 pb-12 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500"
+                      />
+                    </label>
+                    <button
+                      onClick={() => requestModelAction('recommend', sourceText)}
+                      disabled={isAnalyzing}
+                      className="absolute bottom-3 right-3 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+                    >
+                      {isAnalyzing ? '分析中...' : '生成推荐'}
+                    </button>
+                  </div>
+
+                  <div className="rounded-lg border border-slate-200 bg-white p-4">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <div className="flex min-h-0 flex-col">
+                        <p className="text-xs font-semibold text-slate-600">上传文件</p>
+                        <div className="mt-3 flex flex-1 flex-col rounded-md border border-dashed border-slate-300 bg-slate-50 p-3">
+                          <label className="flex h-24 cursor-pointer flex-col items-center justify-center rounded-md border border-slate-200 bg-white text-center hover:border-slate-400">
+                            <span className="text-sm font-semibold text-slate-800">选择文件</span>
+                            <span className="mt-1 text-xs text-slate-500">PDF / Word / Excel / 图片</span>
+                              <input
+                                multiple
+                                type="file"
+                                className="hidden"
+                                onChange={async (event) => {
+                                  const files = Array.from(event.target.files ?? [])
+                                  setFileNames(files.map((file) => file.name))
+                                  const payloads: { name: string; base64: string }[] = []
+                                  for (const file of files) {
+                                    const base64 = await new Promise<string>((resolve, reject) => {
+                                      const reader = new FileReader()
+                                      reader.onload = () => {
+                                        const dataUrl = reader.result as string
+                                        resolve(dataUrl.split(',')[1] ?? '')
+                                      }
+                                      reader.onerror = () => reject(reader.error)
+                                      reader.readAsDataURL(file)
+                                    })
+                                    payloads.push({ name: file.name, base64 })
+                                  }
+                                  setUploadedFilePayloads(payloads)
+                                }}
+                              />
+                            </label>
+                            <div className="mt-3 min-w-0 flex-1 overflow-auto">
+                              <p className="text-xs leading-5 text-slate-500">上传文件后，系统会读取文件正文（支持 TXT / MD / CSV / Word / PDF），与文本框一起参与 Skill 匹配。</p>
+                            {fileNames.length > 0 && (
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {fileNames.map((name) => (
+                                  <p key={name} className="max-w-full truncate rounded-md bg-white px-2 py-1 text-xs text-slate-600">{name}</p>
+                                ))}
                               </div>
-                              <p className="mt-1 text-xs text-slate-500">{skill.practice} · {displayOriginLabel(skill)} · {skill.jurisdiction}</p>
-                            </div>
-                          </div>
-                          <div className="mt-3 space-y-1 text-xs leading-5 text-slate-600">
-                            {(item.reasons || []).map((reason) => <p key={reason}>为什么匹配：{reason}</p>)}
-                            {(item.cautions || []).map((caution) => <p key={caution}>使用边界：{caution}</p>)}
-                          </div>
-                          <div className="mt-4 flex flex-wrap gap-2">
-                            <button
-                              onClick={() => chooseSkill(skill, 'library')}
-                              className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
-                            >
-                              打开详情
-                            </button>
-                            <button
-                              onClick={() => openSkillEffectTest(skill, item)}
-                              className="rounded-md border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100"
-                            >
-                              测试效果
-                            </button>
-                            <button
-                              onClick={() => copyAiPromptForSkill(skill)}
-                              className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
-                            >
-                              复制给 AI
-                            </button>
-                            <button
-                              onClick={() => startEditFromSkill(skill)}
-                              className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-700"
-                            >
-                              基于此编辑
-                            </button>
+                            )}
                           </div>
                         </div>
-                      )
-                    })}
-                    {recommendCopyNotice && <p className="rounded-md bg-emerald-50 px-3 py-2 text-xs text-emerald-700">{recommendCopyNotice}</p>}
+                      </div>
+
+                      <div className="flex min-h-0 flex-col">
+                        <p className="text-xs font-semibold text-slate-600">开始匹配</p>
+                        <p className="mt-1 text-xs leading-5 text-slate-500">点击文本框右下角“生成推荐”，结合上方任务材料匹配最合适的 Skill。</p>
+                        <p className="mt-2 text-xs text-slate-500">已接入大模型推荐；模型不可用时会自动使用本地兜底。</p>
+                        {recommendationError && <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-700">{recommendationError}</p>}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              ) : (
-                <div className="mt-4 space-y-3">
-                  <div className="rounded-lg bg-slate-50 p-4">
-                    <p className="text-sm font-semibold text-slate-950">生成推荐后，匹配结果会显示在这里</p>
-                    <p className="mt-2 text-xs leading-5 text-slate-600">左侧可以先选择任务类型和预制关联 Skill；正式匹配只在点击“生成推荐”后出现。</p>
-                  </div>
+
+                <div className="flex min-h-0 flex-col">
+                  <SectionTitle title="匹配结果" meta={recommendationResult ? (recommendationResult.mode === 'llm' ? 'LLM' : '模拟 LLM') : '等待输入'} />
+                  {pendingModelAction?.kind === 'recommend' && !recommendationResult && (
+                    <p className="mt-4 rounded-md bg-amber-50 px-3 py-2 text-sm text-amber-700">已检测到敏感信息，请在上方弹窗确认脱敏后继续生成推荐。</p>
+                  )}
+                  {recommendationResult ? (
+                    <div className="mt-4 space-y-4">
+                      <div className="rounded-lg bg-slate-50 p-4">
+                        <p className="text-xs font-semibold text-slate-500">任务画像</p>
+                        <p className="text-sm font-semibold text-slate-950">{recommendationResult.summary}</p>
+                        <div className="mt-3 grid grid-cols-2 gap-2 text-xs text-slate-600">
+                          <p className="rounded-md bg-white px-2 py-2">类型：{recommendationResult.taskType}</p>
+                          <p className="rounded-md bg-white px-2 py-2">阶段：{recommendationResult.matterStage}</p>
+                        </div>
+                        {!!recommendationResult.riskFlags?.length && (
+                          <div className="mt-3">
+                            <p className="text-[11px] font-semibold text-slate-500">需要补充 / 注意</p>
+                            <div className="mt-2 flex flex-wrap gap-2">
+                              {recommendationResult.riskFlags.map((flag) => (
+                                <span key={flag} className="rounded-md bg-amber-50 px-2 py-1 text-[11px] font-medium text-amber-700">{flag}</span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="space-y-3">
+                        <div>
+                          <SectionTitle title="匹配 Skill" meta="按匹配度排序" />
+                        </div>
+                        {(recommendationResult.recommendations || []).map((item) => {
+                          const skill = allSkills.find((candidate) => candidate.id === item.skillId)
+                          if (!skill) return null
+                          return (
+                            <div key={item.skillId} className="rounded-lg border border-slate-200 bg-white p-4">
+                              <div className="flex items-start justify-between gap-3">
+                                <div className="min-w-0">
+                                  <div className="flex flex-wrap items-center gap-2">
+                                    <span className="rounded-md bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700">{formatMatchPercent(item.score)}</span>
+                                    <p className="text-sm font-semibold text-slate-950">{skill.chineseName}</p>
+                                  </div>
+                                  <p className="mt-1 text-xs text-slate-500">{skill.practice} · {displayOriginLabel(skill)} · {skill.jurisdiction}</p>
+                                </div>
+                              </div>
+                              <div className="mt-3 space-y-1 text-xs leading-5 text-slate-600">
+                                {(item.reasons || []).map((reason) => <p key={reason}>为什么匹配：{reason}</p>)}
+                                {(item.cautions || []).map((caution) => <p key={caution}>使用边界：{caution}</p>)}
+                              </div>
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                <button
+                                  onClick={() => chooseSkill(skill, 'library')}
+                                  className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                                >
+                                  打开详情
+                                </button>
+                                <button
+                                  onClick={() => openSkillEffectTest(skill, item)}
+                                  className="rounded-md border border-indigo-100 bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-100"
+                                >
+                                  测试效果
+                                </button>
+                                <button
+                                  onClick={() => copyAiPromptForSkill(skill)}
+                                  className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                                >
+                                  复制给 AI
+                                </button>
+                                <button
+                                  onClick={() => startEditFromSkill(skill)}
+                                  className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white hover:bg-slate-700"
+                                >
+                                  基于此编辑
+                                </button>
+                              </div>
+                            </div>
+                          )
+                        })}
+                        {recommendCopyNotice && <p className="rounded-md bg-emerald-50 px-3 py-2 text-xs text-emerald-700">{recommendCopyNotice}</p>}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="mt-4 space-y-3">
+                      <div className="rounded-lg bg-slate-50 p-4">
+                        <p className="text-sm font-semibold text-slate-950">生成推荐后，匹配结果会显示在这里</p>
+                        <p className="mt-2 text-xs leading-5 text-slate-600">在上方输入任务材料或上传文件，点击“生成推荐”后，匹配结果会显示在这里。</p>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </section>
           </div>
         )}
