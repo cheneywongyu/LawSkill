@@ -2784,45 +2784,38 @@ export default function SkillsPlatformPage() {
         {activeView === 'recommend' && (
           <div className="space-y-5">
             <section className="rounded-lg border border-slate-200 bg-white p-5">
-              <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_420px]">
+              <div className="grid items-start gap-6 grid-cols-[minmax(0,1fr)_420px]">
                 <div className="flex min-h-0 flex-col gap-5">
-                  <div className="flex h-9 items-center justify-between gap-3">
-                    <SectionTitle title="匹配任务和 Skill" meta="核心功能" />
-                    {recommendReturnTarget && (
-                      <button
-                        type="button"
-                        onClick={() => goToReturnTarget(recommendReturnTarget)}
-                        className="h-9 w-fit rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
-                      >
-                        {recommendReturnTarget.label}
-                      </button>
-                    )}
-                  </div>
+                  <div className="rounded-lg border border-slate-200 bg-white p-5">
+                    <div className="mb-4 flex h-9 items-center justify-between gap-3">
+                      <SectionTitle title="匹配任务和 Skill" meta="核心功能" />
+                      {recommendReturnTarget && (
+                        <button
+                          type="button"
+                          onClick={() => goToReturnTarget(recommendReturnTarget)}
+                          className="h-9 w-fit rounded-md border border-slate-200 bg-white px-3 text-xs font-semibold text-slate-600 hover:border-slate-400 hover:text-slate-900"
+                        >
+                          {recommendReturnTarget.label}
+                        </button>
+                      )}
+                    </div>
 
-                  <div className="relative flex min-h-0 flex-col">
-                    <label className="flex flex-col">
-                      <span className="text-xs font-semibold text-slate-600">待处理文本内容</span>
-                      <textarea
-                        aria-label="待处理文本内容"
-                        rows={3}
-                        value={sourceText}
-                        onChange={(event) => setSourceText(event.target.value)}
-                        placeholder="将合同条款、裁判文书、客户邮件或资料清单直接粘贴到这里；也可在下方上传文件（TXT / MD / CSV / Word / PDF）参与匹配"
-                        className="mt-2 w-full resize-none rounded-md border border-slate-200 p-3 pb-12 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500"
-                      />
-                    </label>
-                    <button
-                      onClick={() => requestModelAction('recommend', sourceText)}
-                      disabled={isAnalyzing}
-                      className="absolute bottom-3 right-3 rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
-                    >
-                      {isAnalyzing ? '分析中...' : '生成推荐'}
-                    </button>
-                  </div>
+                    <div className="grid items-start gap-5 grid-cols-2">
+                      <div className="flex min-h-0 flex-col gap-3">
+                        <label className="flex flex-col">
+                          <span className="text-xs font-semibold text-slate-600">待处理文本内容</span>
+                          <textarea
+                            aria-label="待处理文本内容"
+                            rows={3}
+                            value={sourceText}
+                            onChange={(event) => setSourceText(event.target.value)}
+                            placeholder="将合同条款、裁判文书、客户邮件或资料清单直接粘贴到这里；也可在右侧上传文件（TXT / MD / CSV / Word / PDF）参与匹配"
+                            className="mt-2 w-full resize-none rounded-md border border-slate-200 p-3 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500"
+                          />
+                        </label>
+                      </div>
 
-                  <div className="rounded-lg border border-slate-200 bg-white p-4">
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <div className="flex min-h-0 flex-col">
+                      <div className="rounded-lg border border-slate-200 bg-white p-4">
                         <p className="text-xs font-semibold text-slate-600">上传文件</p>
                         <div className="mt-3 flex flex-1 flex-col rounded-md border border-dashed border-slate-300 bg-slate-50 p-3">
                           <label className="flex h-24 cursor-pointer flex-col items-center justify-center rounded-md border border-slate-200 bg-white text-center hover:border-slate-400">
@@ -2864,13 +2857,16 @@ export default function SkillsPlatformPage() {
                           </div>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="flex min-h-0 flex-col">
-                        <p className="text-xs font-semibold text-slate-600">开始匹配</p>
-                        <p className="mt-1 text-xs leading-5 text-slate-500">点击文本框右下角“生成推荐”，结合上方任务材料匹配最合适的 Skill。</p>
-                        <p className="mt-2 text-xs text-slate-500">已接入大模型推荐；模型不可用时会自动使用本地兜底。</p>
-                        {recommendationError && <p className="mt-3 rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-700">{recommendationError}</p>}
-                      </div>
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        onClick={() => requestModelAction('recommend', sourceText)}
+                        disabled={isAnalyzing}
+                        className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+                      >
+                        {isAnalyzing ? '分析中...' : '生成推荐'}
+                      </button>
                     </div>
                   </div>
                 </div>
