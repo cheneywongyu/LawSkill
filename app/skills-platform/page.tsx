@@ -52,6 +52,7 @@ type ModelRecommendationResult = {
   workflowPlan?: string[]
   searchHints?: string[]
   recommendedKnowledgeIds?: string[]
+  fileWarnings?: string[]
   recommendations: ModelRecommendation[]
 }
 type SkillOptimization = {
@@ -1174,7 +1175,7 @@ export default function SkillsPlatformPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'recommend',
-          purpose: sanitizedText || (uploadedFilePayloads.length ? '根据上传材料匹配 Skill' : '未填写处理目的'),
+          purpose: sanitizedText || (uploadedFilePayloads.length ? '根据上传的材料进行匹配' : '未填写处理目的'),
           taskEntrypoint: selectedEntrypoint || undefined,
           text: sanitizedText,
           fileNames,
@@ -2800,9 +2801,9 @@ export default function SkillsPlatformPage() {
                       )}
                     </div>
 
-                    <div className="grid items-start gap-5 grid-cols-2">
-                      <div className="flex min-h-0 flex-col gap-3">
-                        <label className="flex flex-col">
+                    <div className="grid items-stretch gap-5 grid-cols-2">
+                      <div className="flex min-h-0 flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4">
+                        <label className="flex h-full flex-col">
                           <span className="text-xs font-semibold text-slate-600">待处理文本内容</span>
                           <textarea
                             aria-label="待处理文本内容"
@@ -2810,7 +2811,7 @@ export default function SkillsPlatformPage() {
                             value={sourceText}
                             onChange={(event) => setSourceText(event.target.value)}
                             placeholder="将合同条款、裁判文书、客户邮件或资料清单直接粘贴到这里；也可在右侧上传文件（TXT / MD / CSV / Word / PDF）参与匹配"
-                            className="mt-2 w-full resize-none rounded-md border border-slate-200 p-3 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500"
+                            className="mt-2 w-full flex-1 resize-none rounded-md border border-slate-200 p-3 text-sm leading-6 text-slate-900 outline-none placeholder:text-slate-400 focus:border-slate-500"
                           />
                         </label>
                       </div>
@@ -2846,7 +2847,6 @@ export default function SkillsPlatformPage() {
                               />
                             </label>
                             <div className="mt-3 min-w-0 flex-1 overflow-auto">
-                              <p className="text-xs leading-5 text-slate-500">上传文件后，系统会读取文件正文（支持 TXT / MD / CSV / Word / PDF），与文本框一起参与 Skill 匹配。</p>
                             {fileNames.length > 0 && (
                               <div className="mt-3 flex flex-wrap gap-2">
                                 {fileNames.map((name) => (
@@ -2878,6 +2878,16 @@ export default function SkillsPlatformPage() {
                   )}
                   {recommendationResult ? (
                     <div className="mt-4 space-y-4">
+                      {!!recommendationResult.fileWarnings?.length && (
+                        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                          <p className="text-xs font-semibold text-amber-800">文件读取提示</p>
+                          <ul className="mt-1 space-y-1">
+                            {recommendationResult.fileWarnings.map((warn) => (
+                              <li key={warn} className="text-xs leading-5 text-amber-700">{warn}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
                       <div className="rounded-lg bg-slate-50 p-4">
                         <p className="text-xs font-semibold text-slate-500">任务画像</p>
                         <p className="text-sm font-semibold text-slate-950">{recommendationResult.summary}</p>

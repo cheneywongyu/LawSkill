@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'node:fs/promises'
 import path from 'node:path'
-import { pathToFileURL } from 'node:url'
 import mammoth from 'mammoth'
 import { firmSkills, originLabels, riskLabels } from '@/data/skillPlatform'
 import type { FirmSkill } from '@/data/skillPlatform'
@@ -38,6 +37,7 @@ type RecommendationResult = {
   workflowPlan: string[]
   searchHints: string[]
   recommendedKnowledgeIds: string[]
+  fileWarnings?: string[]
   recommendations: {
     skillId: string
     score: number
@@ -577,32 +577,33 @@ export async function POST(req: NextRequest) {
     if (payload.action === 'optimize') {
       return NextResponse.json(await optimizeSkill(payload))
     }
-    const uploadedText = await resolveUploadedText(payload)
+    const { text: uploadedText, warnings } = await resolveUploadedText(payload)
     const mergedPayload: RecommendRequest = uploadedText
       ? { ...payload, text: [payload.text, uploadedText].filter(Boolean).join('\n\n') }
       : payload
     const result = await callClaudeRecommend(mergedPayload)
-    return NextResponse.json(result)
+    return NextResponse.json({ ...result, fileWarnings: warnings })
   } catch (error) {
     console.error(error)
     return NextResponse.json({ error: '推荐分析失败，请重试' }, { status: 500 })
   }
 }
 
-async function resolveUploadedText(payload: RecommendRequest): Promise<string> {
+async function resolveUploadedText(payload: RecommendRequest): Promise<{ text: string; warnings: string[] }> {
   const payloads = payload.filePayloads ?? []
-  if (payloads.length === 0) return ''
+  if (payloads.length === 0) return { text: '', warnings: [] }
   const parts: string[] = []
+  const warnings: string[] = []
   for (const item of payloads) {
     const buf = Buffer.from(item.base64, 'base64')
     const ext = item.name.split('.').pop()?.toLowerCase() ?? ''
     try {
       if (ext === 'docx' || ext === 'doc') {
         const { value } = await mammoth.extractRawText({ buffer: buf })
-        if (value) parts.push(value)
+        if (value && value.trim()) parts.push(value)
+        else warnings.push(`${item.name}：未读取到正文，可能是空文档或图片型文件。`)
       } else if (ext === 'pdf') {
-        const pdfjsPath = path.join(process.cwd(), 'node_modules', 'unpdf', 'dist', 'pdfjs.mjs')
-        const pdfjs = await import(pathToFileURL(pdfjsPath).href) as PdfjsModule
+        const pdfjs = await import('unpdf/pdfjs') as PdfjsModule
         const doc = await pdfjs.getDocument({ data: new Uint8Array(buf), useWorkerFetch: false, isEvalSupported: false }).promise
         const pageTexts: string[] = []
         for (let i = 1; i <= doc.numPages; i++) {
@@ -610,14 +611,19 @@ async function resolveUploadedText(payload: RecommendRequest): Promise<string> {
           const content = await page.getTextContent()
           pageTexts.push(content.items.map((item) => item.str ?? '').join(' '))
         }
-        const extracted = pageTexts.join('\n')
+        const extracted = pageTexts.join('\n').trim()
         if (extracted) parts.push(extracted)
+        else warnings.push(`${item.name}：未能从 PDF 中提取文字，可能是扫描件/图片型 PDF，建议先做 OCR 或将文本粘贴到左侧输入框。`)
       } else if (['txt', 'md', 'markdown', 'csv', 'tsv', 'json', 'log'].includes(ext) || ext === '') {
-        parts.push(buf.toString('utf-8'))
+        const txt = buf.toString('utf-8')
+        if (txt.trim()) parts.push(txt)
+        else warnings.push(`${item.name}：文件内容为空。`)
       }
-    } catch {
-      // 单个文件解析失败时跳过，不阻断整次匹配
+    } catch (e) {
+      const reason = e instanceof Error ? e.message : String(e)
+      console.error('resolveUploadedText error for', item.name, ext, reason)
+      warnings.push(`${item.name}：文件解析失败（${reason}），可换用 TXT / Word 或将文本粘贴到左侧输入框。`)
     }
   }
-  return parts.join('\n\n')
+  return { text: parts.join('\n\n'), warnings }
 }
