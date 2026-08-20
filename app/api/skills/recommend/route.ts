@@ -38,6 +38,9 @@ type RecommendationResult = {
   searchHints: string[]
   recommendedKnowledgeIds: string[]
   fileWarnings?: string[]
+  matchStage?: 'local' | 'llm'
+  escalatedToLlm?: boolean
+  llmUnavailable?: boolean
   recommendations: {
     skillId: string
     score: number
@@ -96,6 +99,7 @@ const keywordGroups = [
   { area: 'Skill 构建', terms: ['skill', '构建', '创建', '测试', '包装', '发布', '方法论', 'agent'] },
 ]
 const llmTimeoutMs = 45000
+const LOCAL_CONFIDENT_THRESHOLD = 55
 const openAiCompatibleModel = process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'
 
 function clampScore(score: number) {
@@ -443,32 +447,57 @@ function normalizeRecommendationResult(result: unknown, fallback: Recommendation
 
 async function callClaudeRecommend(payload: RecommendRequest) {
   const skills = await getRecommendationSkills()
-  const fallback = localRecommendWithSkills(payload, skills)
+  const local = localRecommendWithSkills(payload, skills)
+  const topLocalScore = local.recommendations[0]?.score ?? 0
+  const matter = inferMatter(payload.purpose ?? '', payload.text ?? '')
+  // 本地优先级：只要命中了法律领域关键词，或首条匹配分较高，即视为本地已找到结果
+  const localConfident = matter.taskType !== '通用法律工作' || topLocalScore >= LOCAL_CONFIDENT_THRESHOLD
+
+  if (localConfident) {
+    return { ...local, matchStage: 'local' }
+  }
+
+  // 本地未找到高匹配度 Skill → 升级使用大模型在知识库内做语义检索
   const config = llmConfig()
-  if (process.env.SKILL_RECOMMENDER_USE_LLM !== 'true' || !config.apiKey) return fallback
+  if (process.env.SKILL_RECOMMENDER_USE_LLM === 'true' && config.apiKey) {
+    try {
+      const result = await callLlmSearch(payload, skills, local)
+      if (result === local) {
+        // 大模型未返回可用结果，退回本地最接近项
+        return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+      }
+      return { ...result, matchStage: 'llm', escalatedToLlm: true }
+    } catch (error) {
+      console.error(error)
+      return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+    }
+  }
+  // 未配置大模型 → 返回本地最接近项，并标注大模型不可用
+  return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+}
 
-  try {
-    const candidates = [...skills]
-      .map((skill) => ({ skill, score: scoreSkillForMatter(skill, payload) }))
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 16)
-      .map(({ skill }) => ({
-        id: skill.id,
-        name: skill.chineseName,
-        englishName: skill.name,
-        practice: skill.practice,
-        origin: originLabels[skill.origin],
-        risk: riskLabels[skill.risk],
-        description: skill.description,
-        tags: skill.tags,
-        suitableFor: skill.suitableFor,
-        notFor: skill.notFor,
-        outputFormat: skill.outputFormat,
-        documentStatus: docStatusForSkill(skill),
-        hasSkillMd: Boolean(skill.skillMdPath || skill.hasSkillMd),
-      }))
+async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fallback: RecommendationResult) {
+  const candidates = [...skills]
+    .map((skill) => ({ skill, score: scoreSkillForMatter(skill, payload) }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 30)
+    .map(({ skill }) => ({
+      id: skill.id,
+      name: skill.chineseName,
+      englishName: skill.name,
+      practice: skill.practice,
+      origin: originLabels[skill.origin],
+      risk: riskLabels[skill.risk],
+      description: skill.description,
+      tags: skill.tags,
+      suitableFor: skill.suitableFor,
+      notFor: skill.notFor,
+      outputFormat: skill.outputFormat,
+      documentStatus: docStatusForSkill(skill),
+      hasSkillMd: Boolean(skill.skillMdPath || skill.hasSkillMd),
+    }))
 
-    const result = await callOpenAiCompatibleJson<RecommendationResult>(`你是律所内部 Skill 推荐系统。请根据律师输入的任务目的、待处理文本和候选 Skill，推荐最适合的 3-5 个 Skill。只返回 JSON，结构必须包含：mode、summary、taskType、matterStage、riskFlags、selectionRule、workflowPlan、searchHints、recommendedKnowledgeIds、recommendations。mode 固定为 "llm"。
+  const result = await callOpenAiCompatibleJson<RecommendationResult>(`你是律所内部 Skill 推荐系统。本地关键词匹配未找到高匹配度 Skill，请改用语义理解从候选 Skill 中检索最适合的 3-5 个。只返回 JSON，结构必须包含：mode、summary、taskType、matterStage、riskFlags、selectionRule、workflowPlan、searchHints、recommendedKnowledgeIds、recommendations。mode 固定为 "llm"。
 
 推荐逻辑必须采用两层：
 1. 任务模糊或大类法律工作：先选核心 Skill，负责案件分析、事实抽取、证据目录、文书起草、合同风险审查、合规审查、法律研究、案例检索、脱敏、OCR 等入口判断。
@@ -497,13 +526,9 @@ async function callClaudeRecommend(payload: RecommendRequest) {
 待处理文本：
 ${(payload.text || '').slice(0, 8000)}
 
-候选 Skill：
+候选 Skill（本地预筛的最接近 30 个，请基于语义进一步挑选）：
 ${JSON.stringify(candidates)}`, 2200)
-    return normalizeRecommendationResult(result, fallback, payload, skills)
-  } catch (error) {
-    console.error(error)
-    return fallback
-  }
+  return normalizeRecommendationResult(result, fallback, payload, skills)
 }
 
 async function optimizeSkill(payload: RecommendRequest) {

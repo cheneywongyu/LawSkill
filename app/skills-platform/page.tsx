@@ -53,6 +53,9 @@ type ModelRecommendationResult = {
   searchHints?: string[]
   recommendedKnowledgeIds?: string[]
   fileWarnings?: string[]
+  matchStage?: 'local' | 'llm'
+  escalatedToLlm?: boolean
+  llmUnavailable?: boolean
   recommendations: ModelRecommendation[]
 }
 type SkillOptimization = {
@@ -2886,6 +2889,22 @@ export default function SkillsPlatformPage() {
                               <li key={warn} className="text-xs leading-5 text-amber-700">{warn}</li>
                             ))}
                           </ul>
+                        </div>
+                      )}
+                      {recommendationResult.matchStage === 'llm' ? (
+                        <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-3">
+                          <p className="text-xs font-semibold text-indigo-800">匹配阶段：大模型语义检索</p>
+                          <p className="mt-1 text-xs leading-5 text-indigo-700">本地库未找到高匹配度 Skill，已用大模型在知识库内重新语义检索并给出结果。</p>
+                        </div>
+                      ) : recommendationResult.escalatedToLlm ? (
+                        <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
+                          <p className="text-xs font-semibold text-amber-800">匹配阶段：本地匹配（大模型未启用）</p>
+                          <p className="mt-1 text-xs leading-5 text-amber-700">本地库未找到高匹配度 Skill；当前未接入大模型，已返回最接近的项。可补充关键词、上传更具体的材料，或配置大模型后重试。</p>
+                        </div>
+                      ) : (
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+                          <p className="text-xs font-semibold text-slate-600">匹配阶段：本地知识库匹配</p>
+                          <p className="mt-1 text-xs leading-5 text-slate-500">已在本地 Skill 库中匹配到相关结果。</p>
                         </div>
                       )}
                       <div className="rounded-lg bg-slate-50 p-4">
