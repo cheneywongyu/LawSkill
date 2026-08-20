@@ -21,7 +21,7 @@ type Ring = {
   color: string
 }
 
-const COLORS = ['#6366f1', '#8b5cf6', '#ec4899', '#f59e0b', '#10b981', '#38bdf8', '#f43f5e']
+const COLORS = ['#1e3a5f', '#2c5282', '#b8860b', '#c9a227', '#8b2635', '#a87b1e']
 
 export default function FireworksLayer() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
