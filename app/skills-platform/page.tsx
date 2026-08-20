@@ -11,6 +11,7 @@ import {
   skillCategories,
   statusLabels,
 } from '@/data/skillPlatform'
+import FireworksLayer from './FireworksLayer'
 
 type PlatformView = 'library' | 'recommend' | 'editor' | 'knowledge' | 'admin'
 type LibraryMode = 'home' | 'category' | 'skill'
@@ -2491,11 +2492,11 @@ export default function SkillsPlatformPage() {
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
-      <header className="sticky top-0 z-20 border-b border-slate-200 bg-white/95 px-5 py-3 backdrop-blur">
+    <div className="min-h-screen app-gradient text-slate-900">
+      <header className="sticky top-0 z-20 glass-header relative px-5 py-3">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="grid size-9 shrink-0 place-items-center rounded-md bg-slate-900 text-sm font-bold text-white">SK</div>
+            <div className="grid size-9 shrink-0 place-items-center rounded-md brand-mark text-sm font-bold text-white">SK</div>
             <div>
               <h1 className="text-sm font-semibold tracking-tight text-slate-950">律所 Skill 工作台</h1>
               <p className="text-xs text-slate-500">AI 工作能力库</p>
@@ -2542,7 +2543,7 @@ export default function SkillsPlatformPage() {
             <button
               type="button"
               onClick={createNewMySkill}
-              className="rounded-md bg-slate-900 px-3 py-2 text-xs font-semibold text-white hover:bg-slate-700"
+              className="rounded-md btn-accent px-3 py-2 text-xs font-semibold"
             >
               新建 Skill
             </button>
@@ -2867,7 +2868,7 @@ export default function SkillsPlatformPage() {
                       <button
                         onClick={() => requestModelAction('recommend', sourceText)}
                         disabled={isAnalyzing}
-                        className="rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+                        className="rounded-md btn-accent px-4 py-2 text-sm font-semibold disabled:cursor-not-allowed"
                       >
                         {isAnalyzing ? '分析中...' : '生成推荐'}
                       </button>
@@ -2915,7 +2916,7 @@ export default function SkillsPlatformPage() {
                           <button
                             onClick={() => generateModelRecommendations(sourceText, '未执行脱敏检查', true)}
                             disabled={isAnalyzing}
-                            className="mt-2 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-indigo-300"
+                            className="mt-2 rounded-md btn-accent px-3 py-1.5 text-xs font-semibold disabled:cursor-not-allowed"
                           >
                             {isAnalyzing ? '大模型检索中...' : '用大模型重新搜索'}
                           </button>
@@ -3253,6 +3254,8 @@ export default function SkillsPlatformPage() {
           </form>
         </div>
       )}
+
+      <FireworksLayer />
     </div>
   )
 }

@@ -65,3 +65,62 @@ body {
     animation: none;
   }
 }
+
+/* ===== 主题刷新：柔和渐变背景 / 玻璃导航 / 品牌与主色按钮 ===== */
+
+.app-gradient {
+  background:
+    radial-gradient(1100px 560px at 82% -12%, rgba(139, 92, 246, 0.10), transparent 60%),
+    radial-gradient(900px 480px at -6% 4%, rgba(56, 189, 248, 0.09), transparent 55%),
+    linear-gradient(180deg, #f8fafc 0%, #fafafa 100%);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.glass-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899, #38bdf8);
+  opacity: 0.9;
+}
+
+.brand-mark {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 6px 18px -6px rgba(99, 102, 241, 0.65);
+}
+
+.btn-accent {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: #ffffff;
+  box-shadow: 0 10px 22px -10px rgba(79, 70, 229, 0.75);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.btn-accent:hover:not(:disabled) {
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px -10px rgba(79, 70, 229, 0.85);
+}
+
+.btn-accent:disabled {
+  filter: grayscale(0.25) brightness(0.95);
+  cursor: not-allowed;
+}
+
+.lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -14px rgba(15, 23, 42, 0.45);
+  border-color: rgba(99, 102, 241, 0.5);
+}
