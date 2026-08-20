@@ -42,6 +42,7 @@ type RecommendationResult = {
   fileWarnings?: string[]
   matchStage?: 'local' | 'llm'
   escalatedToLlm?: boolean
+  forcedLlm?: boolean
   llmUnavailable?: boolean
   recommendations: {
     skillId: string
@@ -457,7 +458,7 @@ async function callClaudeRecommend(payload: RecommendRequest) {
 
   // 用户手动要求用大模型重新检索（即使本地已匹配到结果）
   if (payload.forceLlm) {
-    return tryLlmSearch(payload, skills, local)
+    return tryLlmSearch(payload, skills, local, true)
   }
 
   if (localConfident) {
@@ -465,27 +466,28 @@ async function callClaudeRecommend(payload: RecommendRequest) {
   }
 
   // 本地未找到高匹配度 Skill → 升级使用大模型在知识库内做语义检索
-  return tryLlmSearch(payload, skills, local)
+  return tryLlmSearch(payload, skills, local, false)
 }
 
 // 尝试用大模型在全部 Skill 库内做语义检索；大模型未配置或失败时退回本地结果。
-async function tryLlmSearch(payload: RecommendRequest, skills: FirmSkill[], local: RecommendationResult): Promise<RecommendationResult> {
+// forced=true 表示用户手动触发，false 表示本地低分自动升级。
+async function tryLlmSearch(payload: RecommendRequest, skills: FirmSkill[], local: RecommendationResult, forced: boolean): Promise<RecommendationResult> {
   const config = llmConfig()
   if (process.env.SKILL_RECOMMENDER_USE_LLM === 'true' && config.apiKey) {
     try {
       const result = await callLlmSearch(payload, skills, local)
       if (result === local) {
         // 大模型未返回可用结果，退回本地最接近项
-        return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+        return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
       }
-      return { ...result, matchStage: 'llm', escalatedToLlm: true }
+      return { ...result, matchStage: 'llm', escalatedToLlm: true, forcedLlm: forced }
     } catch (error) {
       console.error(error)
-      return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+      return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
     }
   }
   // 未配置大模型 → 返回本地最接近项，并标注大模型不可用
-  return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true }
+  return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
 }
 
 async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fallback: RecommendationResult) {

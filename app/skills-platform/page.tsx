@@ -2894,8 +2894,8 @@ export default function SkillsPlatformPage() {
                       )}
                       {recommendationResult.matchStage === 'llm' ? (
                         <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-3">
-                          <p className="text-xs font-semibold text-indigo-800">匹配阶段：大模型语义检索</p>
-                          <p className="mt-1 text-xs leading-5 text-indigo-700">本地库未找到高匹配度 Skill，已用大模型在知识库内重新语义检索并给出结果。</p>
+                          <p className="text-xs font-semibold text-indigo-800">匹配阶段：大模型语义检索{recommendationResult.forcedLlm ? '（手动触发）' : '（自动升级）'}</p>
+                          <p className="mt-1 text-xs leading-5 text-indigo-700">{recommendationResult.forcedLlm ? '你手动要求用大模型在全部 Skill 库内重新语义检索，下列结果均由大模型给出。' : '本地库未找到高匹配度 Skill，已自动用大模型在知识库内重新语义检索并给出结果。'}</p>
                         </div>
                       ) : recommendationResult.escalatedToLlm ? (
                         <div className="rounded-lg border border-amber-200 bg-amber-50 p-3">
@@ -2953,6 +2953,9 @@ export default function SkillsPlatformPage() {
                                 <div className="min-w-0">
                                   <div className="flex flex-wrap items-center gap-2">
                                     <span className="rounded-md bg-indigo-50 px-2 py-1 text-[11px] font-semibold text-indigo-700">{formatMatchPercent(item.score)}</span>
+                                    {recommendationResult.matchStage === 'llm' && (
+                                      <span className="rounded-md bg-indigo-600 px-2 py-1 text-[11px] font-semibold text-white">大模型检索</span>
+                                    )}
                                     <p className="text-sm font-semibold text-slate-950">{skill.chineseName}</p>
                                   </div>
                                   <p className="mt-1 text-xs text-slate-500">{skill.practice} · {displayOriginLabel(skill)} · {skill.jurisdiction}</p>
