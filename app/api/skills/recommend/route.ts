@@ -449,9 +449,9 @@ async function callClaudeRecommend(payload: RecommendRequest) {
   const skills = await getRecommendationSkills()
   const local = localRecommendWithSkills(payload, skills)
   const topLocalScore = local.recommendations[0]?.score ?? 0
-  const matter = inferMatter(payload.purpose ?? '', payload.text ?? '')
-  // 本地优先级：只要命中了法律领域关键词，或首条匹配分较高，即视为本地已找到结果
-  const localConfident = matter.taskType !== '通用法律工作' || topLocalScore >= LOCAL_CONFIDENT_THRESHOLD
+  // 本地优先级：仅当本地最高匹配分达到阈值，才视为「本地已找到相应 Skill」直接返回；
+  // 否则升级大模型在知识库内做语义检索（边缘/弱匹配的法律输入也能借大模型补全）。
+  const localConfident = topLocalScore >= LOCAL_CONFIDENT_THRESHOLD
 
   if (localConfident) {
     return { ...local, matchStage: 'local' }
