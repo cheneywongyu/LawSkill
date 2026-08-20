@@ -1167,7 +1167,7 @@ export default function SkillsPlatformPage() {
     }
   }
 
-  async function generateModelRecommendations(sanitizedText = sourceText, redactionSummary = '未执行脱敏检查') {
+  async function generateModelRecommendations(sanitizedText = sourceText, redactionSummary = '未执行脱敏检查', forceLlm = false) {
     setIsAnalyzing(true)
     setRecommendationError('')
     setRecommendCopyNotice('')
@@ -1185,6 +1185,7 @@ export default function SkillsPlatformPage() {
           filePayloads: uploadedFilePayloads,
           knowledgeSources: selectedKnowledgeSources,
           redactionSummary,
+          forceLlm,
         }),
       })
       if (!response.ok) throw new Error('推荐分析失败')
@@ -2905,6 +2906,19 @@ export default function SkillsPlatformPage() {
                         <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
                           <p className="text-xs font-semibold text-slate-600">匹配阶段：本地知识库匹配</p>
                           <p className="mt-1 text-xs leading-5 text-slate-500">已在本地 Skill 库中匹配到相关结果。</p>
+                        </div>
+                      )}
+                      {recommendationResult.matchStage === 'local' && !recommendationResult.escalatedToLlm && (
+                        <div className="rounded-lg border border-indigo-200 bg-indigo-50 p-3">
+                          <p className="text-xs font-semibold text-indigo-800">本地匹配结果可能不是你预期的？</p>
+                          <p className="mt-1 text-xs leading-5 text-indigo-700">可让大模型基于语义在全部 Skill 库中重新检索，结果可能更贴合你的任务。</p>
+                          <button
+                            onClick={() => generateModelRecommendations(sourceText, '未执行脱敏检查', true)}
+                            disabled={isAnalyzing}
+                            className="mt-2 rounded-md bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-indigo-300"
+                          >
+                            {isAnalyzing ? '大模型检索中...' : '用大模型重新搜索'}
+                          </button>
                         </div>
                       )}
                       <div className="rounded-lg bg-slate-50 p-4">

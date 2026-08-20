@@ -21,6 +21,7 @@ type RecommendRequest = {
   filePayloads?: { name: string; base64: string }[]
   skillId?: string
   redactionSummary?: string
+  forceLlm?: boolean
   knowledgeSources?: {
     id: string
     title: string
@@ -454,11 +455,21 @@ async function callClaudeRecommend(payload: RecommendRequest) {
   // 否则升级大模型在知识库内做语义检索（边缘/弱匹配的法律输入也能借大模型补全）。
   const localConfident = topLocalScore >= LOCAL_CONFIDENT_THRESHOLD
 
+  // 用户手动要求用大模型重新检索（即使本地已匹配到结果）
+  if (payload.forceLlm) {
+    return tryLlmSearch(payload, skills, local)
+  }
+
   if (localConfident) {
     return { ...local, matchStage: 'local' }
   }
 
   // 本地未找到高匹配度 Skill → 升级使用大模型在知识库内做语义检索
+  return tryLlmSearch(payload, skills, local)
+}
+
+// 尝试用大模型在全部 Skill 库内做语义检索；大模型未配置或失败时退回本地结果。
+async function tryLlmSearch(payload: RecommendRequest, skills: FirmSkill[], local: RecommendationResult): Promise<RecommendationResult> {
   const config = llmConfig()
   if (process.env.SKILL_RECOMMENDER_USE_LLM === 'true' && config.apiKey) {
     try {
