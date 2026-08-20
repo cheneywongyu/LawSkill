@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises'
 import path from 'node:path'
 import mammoth from 'mammoth'
 import { firmSkills, originLabels, riskLabels } from '@/data/skillPlatform'
+import { legalSkillsChinese } from '@/data/legalSkillsChinese'
 import type { FirmSkill } from '@/data/skillPlatform'
 
 type PdfjsPage = { getTextContent: () => Promise<{ items: Array<{ str?: string }> }> }
@@ -179,7 +180,7 @@ async function getRecommendationSkills() {
   try {
     const indexPath = path.join(process.cwd(), 'outputs/internal-skills-md/index.json')
     const payload = JSON.parse(await readFile(indexPath, 'utf8')) as { skills?: FirmSkill[] }
-    return [...firmSkills, ...(payload.skills || [])]
+    return [...firmSkills, ...legalSkillsChinese, ...(payload.skills || [])]
   } catch {
     return firmSkills
   }

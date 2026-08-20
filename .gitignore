@@ -39,6 +39,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# vendor copies (cloned third-party skill repos, not committed)
+/vendor
+
+# scratch / test dir
+/_test_tmp
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
