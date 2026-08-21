@@ -1,4 +1,114 @@
 {
   "source": "internal-edited-skills",
-  "skills": []
+  "skills": [
+    {
+      "id": "internal-edited-dismissal-notification-generator-my-skill-20260820032819",
+      "name": "Dismissal Notification Generator-my-skill",
+      "chineseName": "解雇通知生成器（我的 Skill）",
+      "owner": "Lawve / Sélim Brihi",
+      "practice": "劳动雇佣",
+      "jurisdiction": "FR",
+      "status": "published",
+      "risk": "high",
+      "version": "internal-20260820032819",
+      "updated": "2026-08-20",
+      "usage": 0,
+      "rating": 4,
+      "reviewScore": 82,
+      "description": "符合法国劳动法的解雇通知起草指南。当用户要求起草、准备、创建或编辑终止信时使用，特别是针对严重不当行为、重大不当行为或个人原因。该技能指导准确信息的收集和起草具有法国法律规定的所有强制性要素的合法合理的通知。",
+      "suitableFor": [
+        "内部本地化改造",
+        "脱敏样本试跑",
+        "进入评审后发布"
+      ],
+      "notFor": [
+        "未经律师复核直接对客户出具",
+        "替代本所标准模板或正式法律意见"
+      ],
+      "workflow": [
+        "核对任务是否属于 劳动雇佣。",
+        "识别客户目标、时间节点、交易或案件阶段。",
+        "标注必须由律师判断的法律问题。",
+        "输出不确定事项、缺失材料和追问清单。"
+      ],
+      "outputFormat": "Markdown README、SKILL.md 原文、任务说明、可复用流程、内部改造路径",
+      "sources": [
+        "我的 Skill 库",
+        "改造来源：我的 Skill 库",
+        "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator"
+      ],
+      "tags": [
+        "我的 Skill",
+        "劳动雇佣",
+        "high"
+      ],
+      "origin": "internal",
+      "sourceName": "我的 Skill 库",
+      "sourceUrl": "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator",
+      "mdPath": "D:\\cherry\\2026-ai\\Git\\lawskill\\outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032819.md",
+      "internalSavedPath": "D:\\cherry\\2026-ai\\Git\\lawskill\\outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032819.md",
+      "relativeMdPath": "outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032819.md",
+      "sourceSkillId": "internal-edited-dismissal-notification-generator-my-skill-20260820032817",
+      "sourceSkillName": "Dismissal Notification Generator-my-skill",
+      "sourceSkillMdPath": "",
+      "savedAt": "2026-08-20T03:28:19.406Z",
+      "isMySkill": true,
+      "uploadNames": []
+    },
+    {
+      "id": "internal-edited-dismissal-notification-generator-my-skill-20260820032817",
+      "name": "Dismissal Notification Generator-my-skill",
+      "chineseName": "解雇通知生成器（我的 Skill）",
+      "owner": "Lawve / Sélim Brihi",
+      "practice": "劳动雇佣",
+      "jurisdiction": "FR",
+      "status": "published",
+      "risk": "high",
+      "version": "internal-20260820032817",
+      "updated": "2026-08-20",
+      "usage": 0,
+      "rating": 4,
+      "reviewScore": 82,
+      "description": "符合法国劳动法的解雇通知起草指南。当用户要求起草、准备、创建或编辑终止信时使用，特别是针对严重不当行为、重大不当行为或个人原因。该技能指导准确信息的收集和起草具有法国法律规定的所有强制性要素的合法合理的通知。",
+      "suitableFor": [
+        "内部本地化改造",
+        "脱敏样本试跑",
+        "进入评审后发布"
+      ],
+      "notFor": [
+        "未经律师复核直接对客户出具",
+        "替代本所标准模板或正式法律意见"
+      ],
+      "workflow": [
+        "核对任务是否属于 劳动雇佣。",
+        "识别客户目标、时间节点、交易或案件阶段。",
+        "标注必须由律师判断的法律问题。",
+        "输出不确定事项、缺失材料和追问清单。"
+      ],
+      "outputFormat": "Markdown README、SKILL.md 原文、任务说明、可复用流程、内部改造路径",
+      "sources": [
+        "我的 Skill 库",
+        "改造来源：我的 Skill 库",
+        "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator"
+      ],
+      "tags": [
+        "我的 Skill",
+        "劳动雇佣",
+        "high"
+      ],
+      "origin": "internal",
+      "sourceName": "我的 Skill 库",
+      "sourceUrl": "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator",
+      "mdPath": "D:\\cherry\\2026-ai\\Git\\lawskill\\outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032817.md",
+      "internalSavedPath": "D:\\cherry\\2026-ai\\Git\\lawskill\\outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032817.md",
+      "relativeMdPath": "outputs\\internal-skills-md\\md\\dismissal-notification-generator-my-skill-20260820032817.md",
+      "sourceSkillId": "my-skill-local-20260820032749",
+      "sourceSkillName": "Dismissal Notification Generator-my-skill",
+      "sourceSkillMdPath": "/Users/lilithium/Desktop/my-project/outputs/lawve-skills-md-full/raw/202-selim-brihi-dismissal-notification-generator.SKILL.md",
+      "savedAt": "2026-08-20T03:28:17.665Z",
+      "isMySkill": true,
+      "uploadNames": []
+    }
+  ],
+  "updatedAt": "2026-08-20T03:28:19.406Z"
 }
