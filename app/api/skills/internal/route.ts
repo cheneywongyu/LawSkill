@@ -25,14 +25,17 @@ type InternalSkillPayload = {
     chineseName?: string
     practice?: string
     description: string
+    triggerConditions: string
     owner: string
     jurisdiction: string
     risk: 'low' | 'medium' | 'high'
     inputMaterials: string
     checklist: string
+    sourcePolicy: string
     prohibited: string
     deliverableTemplate: string
     outputFormat: string
+    verificationChecklist: string
     qaTask: string
     versionNote: string
     approvalNote: string
@@ -70,6 +73,8 @@ function buildMarkdown(payload: InternalSkillPayload, savedAt: string) {
   if (draft.customSkillMd?.trim()) return `${draft.customSkillMd.trim()}\n`
   return [
     '---',
+    `name: ${JSON.stringify(safeSegment(draft.name || sourceSkill.name))}`,
+    `description: ${JSON.stringify(draft.description)}`,
     `source_skill_id: ${JSON.stringify(sourceSkill.id)}`,
     `source_skill_name: ${JSON.stringify(sourceSkill.name)}`,
     `source_url: ${JSON.stringify(sourceSkill.sourceUrl || '')}`,
@@ -106,35 +111,47 @@ function buildMarkdown(payload: InternalSkillPayload, savedAt: string) {
     '',
     draft.inputMaterials,
     '',
-    '## 五、审查清单',
+    '## 五、何时使用',
+    '',
+    draft.triggerConditions,
+    '',
+    '## 六、工作流',
     '',
     draft.checklist,
     '',
-    '## 六、禁止自动判断的事项',
+    '## 七、来源与引用规则',
+    '',
+    draft.sourcePolicy,
+    '',
+    '## 八、边界与禁止事项',
     '',
     draft.prohibited,
     '',
-    '## 七、交付物模板',
+    '## 九、交付物模板',
     '',
     draft.deliverableTemplate,
     '',
-    '## 八、输出格式要求',
+    '## 十、输出格式要求',
     '',
     draft.outputFormat,
     '',
-    '## 九、试跑任务',
+    '## 十一、验证清单',
+    '',
+    draft.verificationChecklist,
+    '',
+    '## 十二、试跑任务',
     '',
     draft.qaTask,
     '',
-    '## 十、上传附件',
+    '## 十三、上传附件',
     '',
     ...(draft.uploadNames?.length ? draft.uploadNames.map((name) => `- ${name}`) : ['- 暂无上传附件']),
     '',
-    '## 十一、版本说明',
+    '## 十四、版本说明',
     '',
     draft.versionNote,
     '',
-    '## 十二、发布前签核',
+    '## 十五、发布前签核',
     '',
     draft.approvalNote,
     '',

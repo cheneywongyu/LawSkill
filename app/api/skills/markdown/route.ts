@@ -4,9 +4,17 @@ import path from 'node:path'
 
 export const dynamic = 'force-dynamic'
 
+function resolveProjectMarkdownPath(filePath: string) {
+  const projectRoot = process.cwd()
+  const portablePath = filePath.replace(/\\/g, '/')
+  const projectRelativeMatch = portablePath.match(/(?:^|\/)((?:outputs|data)\/.+)$/)
+  if (projectRelativeMatch) return path.resolve(projectRoot, projectRelativeMatch[1])
+  return path.resolve(projectRoot, portablePath)
+}
+
 function isAllowedMarkdownPath(filePath: string) {
   const projectRoot = process.cwd()
-  const normalized = path.resolve(filePath)
+  const normalized = resolveProjectMarkdownPath(filePath)
   const allowedRoots = [
     path.join(projectRoot, 'outputs'),
     path.join(projectRoot, 'data'),
@@ -22,8 +30,9 @@ export async function POST(request: NextRequest) {
       if (!filePath) return [key, { path: '', content: '', error: '未提供路径' }]
       if (!isAllowedMarkdownPath(filePath)) return [key, { path: filePath, content: '', error: '路径不在允许读取范围内' }]
       try {
-        const content = await readFile(path.resolve(filePath), 'utf8')
-        return [key, { path: filePath, content }]
+        const resolvedPath = resolveProjectMarkdownPath(filePath)
+        const content = await readFile(resolvedPath, 'utf8')
+        return [key, { path: filePath, resolvedPath, content }]
       } catch (error) {
         return [key, { path: filePath, content: '', error: error instanceof Error ? error.message : '读取失败' }]
       }

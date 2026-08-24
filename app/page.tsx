@@ -1,151 +1,114 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { SavedCase } from '@/types/timeline'
-import { getAllCases, deleteCase, setCurrentCaseId } from '@/lib/caseStorage'
-import CaseCard from '@/components/CaseCard'
+import Image from 'next/image'
+import { useEffect, useMemo, useState } from 'react'
 
-export default function DashboardPage() {
-  const router = useRouter()
-  const [cases, setCases] = useState<SavedCase[]>([])
-  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null)
+type Mood = 'reading' | 'observing' | 'resting'
+
+const moods: Record<Mood, { label: string; title: string; line: string; focus: number; icon: string }> = {
+  reading: { label: '阅读', title: '沉浸于书页之间', line: '文字不会背叛你。误读它的人才会。', focus: 92, icon: '⌑' },
+  observing: { label: '观察', title: '审视屏幕之外', line: '有趣。你刚才停顿了三秒——在犹豫吗？', focus: 78, icon: '◉' },
+  resting: { label: '静默', title: '短暂的留白', line: '安静并非空无，它只是尚未开口。', focus: 64, icon: '◌' },
+}
+
+const whispers = [
+  '真正重要的东西，往往不会主动发出声音。',
+  '你今天的思绪，比昨天更有秩序。',
+  '不必急于抵达。观察本身就是答案的一部分。',
+  '收藏不是占有，而是理解一件事物曾经存在。',
+]
+
+export default function ChrolloCompanion() {
+  const [mood, setMood] = useState<Mood>('reading')
+  const [bond, setBond] = useState(73)
+  const [line, setLine] = useState(moods.reading.line)
+  const [time, setTime] = useState('')
+  const [minimal, setMinimal] = useState(false)
+  const current = moods[mood]
 
   useEffect(() => {
-    const refresh = window.setTimeout(() => {
-      setCases(getAllCases())
-    }, 0)
-    return () => window.clearTimeout(refresh)
+    const update = () => setTime(new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date()))
+    update()
+    const timer = window.setInterval(update, 30000)
+    return () => window.clearInterval(timer)
   }, [])
 
-  function handleOpen(c: SavedCase) {
-    localStorage.setItem('timeline_result', JSON.stringify(c.result))
-    localStorage.setItem('timeline_events', JSON.stringify(c.currentEvents))
-    localStorage.setItem('timeline_reports', JSON.stringify(c.reports))
-    setCurrentCaseId(c.id)
-    router.push('/timeline')
+  const date = useMemo(() => new Intl.DateTimeFormat('zh-CN', { month: 'long', day: 'numeric', weekday: 'short' }).format(new Date()), [])
+
+  function changeMood(next: Mood) {
+    setMood(next)
+    setLine(moods[next].line)
   }
 
-  function handleDelete(id: string) {
-    if (deleteConfirm !== id) {
-      setDeleteConfirm(id)
-      setTimeout(() => setDeleteConfirm(null), 3000)
-      return
-    }
-    deleteCase(id)
-    setCases(getAllCases())
-    setDeleteConfirm(null)
+  function talk() {
+    setLine(whispers[Math.floor(Math.random() * whispers.length)])
+    setBond((value) => Math.min(100, value + 1))
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 px-6 py-4 sticky top-0 z-10">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
-              <span className="text-white text-sm font-bold">法</span>
-            </div>
-            <div>
-              <h1 className="text-sm font-semibold text-slate-800">案件时间线 AI</h1>
-              <p className="text-xs text-slate-400">Legal Timeline · Powered by Claude</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => router.push('/skills-platform')}
-              className="hidden sm:flex items-center gap-2 px-3 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-200 transition-colors"
-            >
-              Skill 平台原型
-            </button>
-            <button
-              onClick={() => router.push('/new')}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              <span className="text-base leading-none">+</span>
-              新建案件分析
-            </button>
-          </div>
+    <main className={`chrollo-shell ${minimal ? 'is-minimal' : ''}`}>
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+
+      <header className="pet-nav">
+        <div className="pet-brand">
+          <span className="spider-mark">☸</span>
+          <div><b>NOCTURNE</b><small>CODEX COMPANION</small></div>
+        </div>
+        <div className="nav-actions">
+          <span className="online"><i />灵魂连接稳定</span>
+          <button aria-label="切换极简模式" onClick={() => setMinimal((value) => !value)}>◐</button>
+          <button aria-label="更多设置">•••</button>
         </div>
       </header>
 
-      <main className="flex-1 px-6 py-8 max-w-5xl mx-auto w-full">
-        {cases.length === 0 ? (
-          /* Empty state */
-          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center">
-            <div className="w-20 h-20 rounded-2xl bg-slate-100 flex items-center justify-center mb-5 text-4xl">
-              📁
-            </div>
-            <h2 className="text-lg font-semibold text-slate-700 mb-2">暂无案件记录</h2>
-            <p className="text-sm text-slate-400 mb-6 max-w-sm leading-relaxed">
-              上传案件文书，AI 自动提取时间线、预警截止日，保存后在此管理所有案件
-            </p>
-            <button
-              onClick={() => router.push('/new')}
-              className="px-6 py-3 bg-blue-600 text-white text-sm font-medium rounded-xl hover:bg-blue-700 transition-colors shadow-sm"
-            >
-              开始分析第一个案件
-            </button>
-
-            {/* Feature preview */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl">
-              {[
-                { icon: '⚡', title: 'AI 智能抽取', desc: '从起诉状、判决书等文书中自动识别所有关键时间节点' },
-                { icon: '⏰', title: '截止日预警', desc: '自动高亮上诉期、举证期限等关键截止日，显示距今天数' },
-                { icon: '📋', title: '阶段汇报', desc: '按案件阶段一键生成客户友好的进度汇报，随时复制发送' },
-              ].map((f) => (
-                <div key={f.title} className="bg-white border border-slate-200 rounded-xl p-4 text-left">
-                  <div className="text-2xl mb-2">{f.icon}</div>
-                  <p className="text-xs font-semibold text-slate-700 mb-1">{f.title}</p>
-                  <p className="text-xs text-slate-400 leading-relaxed">{f.desc}</p>
-                </div>
-              ))}
-            </div>
+      <section className="pet-stage">
+        <aside className="identity-panel">
+          <p className="eyebrow">SUBJECT 00 · PHANTOM</p>
+          <h1>库洛洛<br /><em>鲁西鲁</em></h1>
+          <p className="roman">CHROLLO LUCILFER</p>
+          <div className="quote-mark">“</div>
+          <p className="character-note">冷静的观察者，危险的收藏家。<br />他不负责取悦，只负责陪你看清。</p>
+          <div className="traits">
+            <span>理性</span><span>神秘</span><span>克制</span>
           </div>
-        ) : (
-          <>
-            {/* Stats bar */}
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h2 className="text-base font-semibold text-slate-800">案件管理</h2>
-                <p className="text-xs text-slate-400 mt-0.5">共 {cases.length} 个案件</p>
-              </div>
-            </div>
+        </aside>
 
-            {/* Cases grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {cases.map((c) => (
-                <div key={c.id} className="relative">
-                  {deleteConfirm === c.id && (
-                    <div className="absolute inset-0 z-10 bg-white/95 rounded-xl flex flex-col items-center justify-center border border-red-200 gap-3">
-                      <p className="text-sm font-medium text-slate-700">确认删除此案件？</p>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => setDeleteConfirm(null)}
-                          className="px-3 py-1.5 text-xs text-slate-600 bg-slate-100 rounded-lg hover:bg-slate-200 transition-colors"
-                        >
-                          取消
-                        </button>
-                        <button
-                          onClick={() => handleDelete(c.id)}
-                          className="px-3 py-1.5 text-xs text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors"
-                        >
-                          确认删除
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                  <CaseCard
-                    savedCase={c}
-                    onOpen={handleOpen}
-                    onDelete={handleDelete}
-                  />
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-      </main>
-    </div>
+        <div className="character-zone">
+          <div className="moon-disc"><span>0</span><span>0</span></div>
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <div className="character-halo" />
+          <Image className="character-image" src="/chrollo-pet.png" alt="库洛洛·鲁西鲁桌面宠物形象" width={1024} height={1024} priority />
+          <div className="speech-card" onClick={talk} role="button" tabIndex={0}>
+            <span>CHROLLO SAYS</span><p>“{line}”</p><small>点击听他继续说</small>
+          </div>
+        </div>
+
+        <aside className="status-panel">
+          <div className="clock"><b>{time || '00:00'}</b><span>{date}</span></div>
+          <div className="status-card">
+            <div className="status-title"><span>{current.icon}</span><div><small>当前状态</small><b>{current.title}</b></div></div>
+            <div className="meter-label"><span>专注度</span><strong>{current.focus}%</strong></div>
+            <div className="meter"><i style={{ width: `${current.focus}%` }} /></div>
+            <div className="meter-label"><span>羁绊值</span><strong>{bond}%</strong></div>
+            <div className="meter bond"><i style={{ width: `${bond}%` }} /></div>
+          </div>
+          <div className="thought-card"><span>此刻在想</span><p>“人为什么会为了得不到的东西，编造出永恒？”</p></div>
+        </aside>
+      </section>
+
+      <footer className="pet-dock">
+        <span className="dock-caption">INTERACTION</span>
+        {(Object.keys(moods) as Mood[]).map((item) => (
+          <button key={item} className={mood === item ? 'active' : ''} onClick={() => changeMood(item)}>
+            <i>{moods[item].icon}</i><span>{moods[item].label}</span>
+          </button>
+        ))}
+        <div className="dock-rule" />
+        <button onClick={talk}><i>◇</i><span>低语</span></button>
+        <button onClick={() => setBond((value) => Math.min(100, value + 3))}><i>✦</i><span>赠礼</span></button>
+      </footer>
+    </main>
   )
 }

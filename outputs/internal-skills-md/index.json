@@ -2,6 +2,168 @@
   "source": "internal-edited-skills",
   "skills": [
     {
+      "id": "internal-edited-skill-20260823-20260823054914",
+      "name": "skill-20260823",
+      "chineseName": "发布功能测试 Skill 20260823",
+      "owner": "我的工作台",
+      "practice": "数据保护",
+      "jurisdiction": "中国 / 欧盟",
+      "status": "published",
+      "risk": "high",
+      "version": "internal-20260823054914",
+      "updated": "2026-08-23",
+      "usage": 0,
+      "rating": 4,
+      "reviewScore": 82,
+      "description": "描述这个 Skill 要解决的律师日常任务、输入材料、输出边界和复核规则。",
+      "suitableFor": [
+        "内部本地化改造",
+        "脱敏样本试跑",
+        "进入评审后发布"
+      ],
+      "notFor": [
+        "员工个人信息专项审计",
+        "网络安全等级保护测评",
+        "正式法律意见直接出具"
+      ],
+      "workflow": [
+        "核对任务是否属于 数据保护。",
+        "识别客户目标、时间节点、交易或案件阶段。",
+        "标注必须由律师判断的法律问题。",
+        "输出不确定事项、缺失材料和追问清单。"
+      ],
+      "outputFormat": "结论摘要、事实依据、风险清单、追问问题、律师复核项",
+      "sources": [
+        "我的 Skill 库",
+        "改造来源：我的 Skill 库",
+        "内部创建"
+      ],
+      "tags": [
+        "我的 Skill",
+        "数据保护",
+        "high"
+      ],
+      "origin": "internal",
+      "sourceName": "我的 Skill 库",
+      "mdPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/skill-20260823-20260823054914.md",
+      "internalSavedPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/skill-20260823-20260823054914.md",
+      "relativeMdPath": "outputs/internal-skills-md/md/skill-20260823-20260823054914.md",
+      "sourceSkillId": "my-skill-local-20260823054900",
+      "sourceSkillName": "skill-20260823",
+      "sourceSkillMdPath": "",
+      "savedAt": "2026-08-23T05:49:14.857Z",
+      "isMySkill": true,
+      "uploadNames": []
+    },
+    {
+      "id": "internal-edited-dismissal-notification-generator-my-skill-20260823054647",
+      "name": "Dismissal Notification Generator-my-skill",
+      "chineseName": "解雇通知生成器（我的 Skill）",
+      "owner": "Lawve / Sélim Brihi",
+      "practice": "劳动雇佣",
+      "jurisdiction": "FR",
+      "status": "published",
+      "risk": "high",
+      "version": "internal-20260823054647",
+      "updated": "2026-08-23",
+      "usage": 0,
+      "rating": 4,
+      "reviewScore": 82,
+      "description": "符合法国劳动法的解雇通知起草指南。当用户要求起草、准备、创建或编辑终止信时使用，特别是针对严重不当行为、重大不当行为或个人原因。该技能指导准确信息的收集和起草具有法国法律规定的所有强制性要素的合法合理的通知。",
+      "suitableFor": [
+        "内部本地化改造",
+        "脱敏样本试跑",
+        "进入评审后发布"
+      ],
+      "notFor": [
+        "未经律师复核直接对客户出具",
+        "替代本所标准模板或正式法律意见"
+      ],
+      "workflow": [
+        "核对任务是否属于 劳动雇佣。",
+        "识别客户目标、时间节点、交易或案件阶段。",
+        "标注必须由律师判断的法律问题。",
+        "输出不确定事项、缺失材料和追问清单。"
+      ],
+      "outputFormat": "Markdown README、SKILL.md 原文、任务说明、可复用流程、内部改造路径",
+      "sources": [
+        "我的 Skill 库",
+        "改造来源：我的 Skill 库",
+        "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator"
+      ],
+      "tags": [
+        "我的 Skill",
+        "劳动雇佣",
+        "high"
+      ],
+      "origin": "internal",
+      "sourceName": "我的 Skill 库",
+      "sourceUrl": "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator",
+      "mdPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260823054647.md",
+      "internalSavedPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260823054647.md",
+      "relativeMdPath": "outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260823054647.md",
+      "sourceSkillId": "internal-edited-dismissal-notification-generator-my-skill-20260822155012",
+      "sourceSkillName": "Dismissal Notification Generator-my-skill",
+      "sourceSkillMdPath": "",
+      "savedAt": "2026-08-23T05:46:47.773Z",
+      "isMySkill": true,
+      "uploadNames": []
+    },
+    {
+      "id": "internal-edited-dismissal-notification-generator-my-skill-20260822155012",
+      "name": "Dismissal Notification Generator-my-skill",
+      "chineseName": "解雇通知生成器（我的 Skill）",
+      "owner": "Lawve / Sélim Brihi",
+      "practice": "劳动雇佣",
+      "jurisdiction": "FR",
+      "status": "published",
+      "risk": "high",
+      "version": "internal-20260822155012",
+      "updated": "2026-08-22",
+      "usage": 0,
+      "rating": 4,
+      "reviewScore": 82,
+      "description": "符合法国劳动法的解雇通知起草指南。当用户要求起草、准备、创建或编辑终止信时使用，特别是针对严重不当行为、重大不当行为或个人原因。该技能指导准确信息的收集和起草具有法国法律规定的所有强制性要素的合法合理的通知。",
+      "suitableFor": [
+        "内部本地化改造",
+        "脱敏样本试跑",
+        "进入评审后发布"
+      ],
+      "notFor": [
+        "未经律师复核直接对客户出具",
+        "替代本所标准模板或正式法律意见"
+      ],
+      "workflow": [
+        "核对任务是否属于 劳动雇佣。",
+        "识别客户目标、时间节点、交易或案件阶段。",
+        "标注必须由律师判断的法律问题。",
+        "输出不确定事项、缺失材料和追问清单。"
+      ],
+      "outputFormat": "Markdown README、SKILL.md 原文、任务说明、可复用流程、内部改造路径",
+      "sources": [
+        "我的 Skill 库",
+        "改造来源：我的 Skill 库",
+        "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator"
+      ],
+      "tags": [
+        "我的 Skill",
+        "劳动雇佣",
+        "high"
+      ],
+      "origin": "internal",
+      "sourceName": "我的 Skill 库",
+      "sourceUrl": "https://lawve.ai/@selim-brihi/skill/dismissal-notification-generator",
+      "mdPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260822155012.md",
+      "internalSavedPath": "/Users/lilithium/Documents/lawskill/outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260822155012.md",
+      "relativeMdPath": "outputs/internal-skills-md/md/dismissal-notification-generator-my-skill-20260822155012.md",
+      "sourceSkillId": "internal-edited-dismissal-notification-generator-my-skill-20260820032819",
+      "sourceSkillName": "Dismissal Notification Generator-my-skill",
+      "sourceSkillMdPath": "",
+      "savedAt": "2026-08-22T15:50:12.861Z",
+      "isMySkill": true,
+      "uploadNames": []
+    },
+    {
       "id": "internal-edited-dismissal-notification-generator-my-skill-20260820032819",
       "name": "Dismissal Notification Generator-my-skill",
       "chineseName": "解雇通知生成器（我的 Skill）",
@@ -110,5 +272,5 @@
       "uploadNames": []
     }
   ],
-  "updatedAt": "2026-08-20T03:28:19.406Z"
+  "updatedAt": "2026-08-23T05:49:14.857Z"
 }

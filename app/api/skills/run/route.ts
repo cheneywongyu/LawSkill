@@ -7,10 +7,13 @@ type RunDraft = {
   chineseName: string
   practice: string
   description: string
+  triggerConditions: string
   checklist: string
+  sourcePolicy: string
   prohibited: string
   deliverableTemplate: string
   outputFormat: string
+  verificationChecklist: string
   qaTask: string
 }
 
@@ -33,7 +36,9 @@ type SkillRunRequest = {
 type SkillRunResult = {
   mode: string
   summary: string
+  withoutSkillOutput: string
   output: string
+  comparison: string[]
   citations: string[]
   followUps: string[]
   score: number
@@ -108,6 +113,13 @@ function localRun(payload: SkillRunRequest): SkillRunResult {
   return {
     mode: process.env.SKILL_RECOMMENDER_USE_LLM === 'true' && process.env.ANTHROPIC_API_KEY ? 'local-fallback' : 'mock-llm',
     summary: `已按“${payload.draft.chineseName || payload.sourceSkill.chineseName}”完成一次脱敏试跑，材料长度 ${material.length} 字。`,
+    withoutSkillOutput: [
+      '# 不使用 Skill 的普通回答',
+      '',
+      '- 已识别这是一项法律工作任务。',
+      '- 建议进一步核对主体、日期、事实和适用法律。',
+      '- 可根据补充材料继续分析风险并提出建议。',
+    ].join('\n'),
     output: [
       `# ${payload.draft.chineseName || payload.sourceSkill.chineseName} · 试跑输出`,
       '',
@@ -129,6 +141,11 @@ function localRun(payload: SkillRunRequest): SkillRunResult {
       '- 按模板生成正式底稿。',
       '- 将失败点、人工修改点记录到评估系统。',
     ].join('\n'),
+    comparison: [
+      '使用 Skill 后按预设律师工作流组织输出，而普通回答主要依赖模型即时判断。',
+      '使用 Skill 后明确列出引用、缺失材料、追问和律师复核点。',
+      '使用 Skill 后交付结构更稳定，便于重复试跑和人工验收。',
+    ],
     citations: [
       knowledge[0]?.title || '当前试跑材料',
       payload.draft.outputFormat || '输出格式要求',
@@ -146,7 +163,9 @@ function normalize(value: unknown, fallback: SkillRunResult): SkillRunResult {
   return {
     mode: typeof result.mode === 'string' ? result.mode : 'llm',
     summary: typeof result.summary === 'string' ? result.summary : fallback.summary,
+    withoutSkillOutput: typeof result.withoutSkillOutput === 'string' ? result.withoutSkillOutput : fallback.withoutSkillOutput,
     output: typeof result.output === 'string' ? result.output : fallback.output,
+    comparison: Array.isArray(result.comparison) ? result.comparison.map(String).slice(0, 6) : fallback.comparison,
     citations: Array.isArray(result.citations) ? result.citations.map(String).slice(0, 6) : fallback.citations,
     followUps: Array.isArray(result.followUps) ? result.followUps.map(String).slice(0, 6) : fallback.followUps,
     score: Number.isFinite(Number(result.score)) ? Number(result.score) : fallback.score,
@@ -161,13 +180,16 @@ async function runWithModel(payload: SkillRunRequest) {
   if (process.env.SKILL_RECOMMENDER_USE_LLM !== 'true' || !config.apiKey) return fallback
 
   try {
-    const result = await callOpenAiCompatibleJson<SkillRunResult>(`你是律所内部 Skill 试跑引擎。请严格基于已脱敏材料、Skill 草稿和知识库引用生成一次试跑输出。只返回 JSON，结构必须包含 mode、summary、output、citations、followUps、score、passed、failureReason。mode 固定为 "llm"。
+    const result = await callOpenAiCompatibleJson<SkillRunResult>(`你是律所内部 Skill 试跑引擎。请对同一份脱敏材料生成“不使用 Skill”和“使用当前 Skill”两份处理结果，并客观评估差异。只返回 JSON，结构必须包含 mode、summary、withoutSkillOutput、output、comparison、citations、followUps、score、passed、failureReason。mode 固定为 "llm"。
 
 要求：
 1. 不给客户交付级最终法律意见。
 2. 明确引用来源、缺失材料、追问项和律师复核点。
 3. score 用于评估本次试跑质量，0-100；passed 表示是否可进入人工复核。
 4. 如脱敏摘要显示替换过敏感信息，不要尝试还原。
+5. withoutSkillOutput 只能使用任务材料和一般法律助手能力，不得偷用 Skill 的工作流、模板、禁止事项或验证清单。
+6. output 必须明确执行 Skill 中的步骤、输出模板、引用规则、边界和复核要求。
+7. comparison 用 3-6 条具体说明 Skill 带来的改变，应对比事实/条款定位、分析深度、交付结构、缺失信息、引用可追溯性和律师复核边界；不得为了显示 Skill 有价值而故意生成低质量普通回答。
 
 Skill 草稿：
 ${JSON.stringify(payload.draft)}
@@ -179,7 +201,7 @@ ${payload.redactionSummary || '无'}
 ${JSON.stringify(payload.knowledgeSources || [])}
 
 已脱敏试跑材料：
-${payload.sanitizedMaterial.slice(0, 10000)}`, 3200)
+${payload.sanitizedMaterial.slice(0, 10000)}`, 5200)
     return normalize(result, fallback)
   } catch (error) {
     console.error(error)

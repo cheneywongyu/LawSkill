@@ -50,19 +50,19 @@ export default function FireworksLayer() {
 
     const burst = (x: number, y: number) => {
       const base = COLORS[Math.floor(Math.random() * COLORS.length)]
-      const count = 28 + Math.floor(Math.random() * 12)
+      const count = 7 + Math.floor(Math.random() * 4)
       for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.35
-        const speed = 2.4 + Math.random() * 4.6
+        const angle = (Math.PI * 2 * i) / count + Math.random() * 0.2
+        const speed = 0.8 + Math.random() * 1.4
         particlesRef.current.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed,
           life: 1,
-          decay: 0.012 + Math.random() * 0.01,
-          color: Math.random() > 0.55 ? base : COLORS[Math.floor(Math.random() * COLORS.length)],
-          size: 1.6 + Math.random() * 2.4,
+          decay: 0.035 + Math.random() * 0.018,
+          color: base,
+          size: 0.7 + Math.random() * 0.8,
         })
       }
       ringsRef.current.push({ x, y, radius: 4, life: 1, color: base })
@@ -80,9 +80,9 @@ export default function FireworksLayer() {
         const p = ps[i]
         p.x += p.vx
         p.y += p.vy
-        p.vy += 0.055
-        p.vx *= 0.985
-        p.vy *= 0.985
+        p.vy += 0.018
+        p.vx *= 0.96
+        p.vy *= 0.96
         p.life -= p.decay
         if (p.life <= 0) {
           ps.splice(i, 1)
@@ -98,15 +98,15 @@ export default function FireworksLayer() {
       const rs = ringsRef.current
       for (let i = rs.length - 1; i >= 0; i--) {
         const r = rs[i]
-        r.radius += 3.2
-        r.life -= 0.045
+        r.radius += 1.4
+        r.life -= 0.075
         if (r.life <= 0) {
           rs.splice(i, 1)
           continue
         }
-        ctx.globalAlpha = Math.max(r.life, 0) * 0.6
+        ctx.globalAlpha = Math.max(r.life, 0) * 0.22
         ctx.strokeStyle = r.color
-        ctx.lineWidth = 2
+        ctx.lineWidth = 1
         ctx.beginPath()
         ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2)
         ctx.stroke()

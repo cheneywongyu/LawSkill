@@ -41,6 +41,11 @@ yarn-error.log*
 
 # vendor copies (cloned third-party skill repos, not committed)
 /vendor
+/outputs/public-agent-crawl/repositories/
+/outputs/public-agent-crawl/raw/
+/outputs/public-agent-crawl/normalized/
+/outputs/public-agent-crawl/skills/
+/skills-generator/
 
 # scratch / test dir
 /_test_tmp

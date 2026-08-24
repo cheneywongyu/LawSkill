@@ -1,6 +1,6 @@
-import { lawveExternalSkills } from './lawveExternalSkills'
+import { lawveExternalSkills, publicAgentSkills } from './publicAgentSkills.generated'
 
-export { lawveExternalSkills }
+export { lawveExternalSkills, publicAgentSkills }
 
 export type SkillStatus = 'published' | 'review' | 'draft' | 'deprecated'
 export type RiskLevel = 'low' | 'medium' | 'high'
@@ -22,6 +22,7 @@ export type FirmSkill = {
   reviewScore: number
   description: string
   suitableFor: string[]
+  triggerConditions?: string[]
   notFor: string[]
   workflow: string[]
   outputFormat: string
@@ -45,6 +46,12 @@ export type FirmSkill = {
   isMySkill?: boolean
   sourceSkillName?: string
   uploadNames?: string[]
+  license?: string
+  redistribution?: 'allowed' | 'review-required' | 'metadata-only'
+  securityNotes?: string[]
+  resourceCount?: number
+  resourcePaths?: string[]
+  scriptsRequireReview?: boolean
 }
 
 export const originLabels: Record<SkillOrigin, string> = {
@@ -221,12 +228,12 @@ export const skillCategories = [
     border: 'border-fuchsia-200',
   },
   {
-    id: 'international-human-rights',
-    name: '国际法与人权',
-    englishName: 'International / Human Rights',
-    practice: '国际法与人权',
-    summary: '国际法庭、特别法庭、人权机制和跨境公共法材料。',
-    signal: '国际',
+    id: 'foreign-cross-border',
+    name: '域外法与跨境业务',
+    englishName: 'Foreign / Cross-border',
+    practice: '域外法与跨境业务',
+    summary: '域外法律检索、移民、国际贸易、海关及跨境事项。',
+    signal: '跨境',
     accent: 'bg-red-950',
     soft: 'bg-red-50',
     border: 'border-red-200',
@@ -252,6 +259,17 @@ export const skillCategories = [
     accent: 'bg-pink-950',
     soft: 'bg-pink-50',
     border: 'border-pink-200',
+  },
+  {
+    id: 'general-legal',
+    name: '综合法律业务',
+    englishName: 'General Legal',
+    practice: '综合法律业务',
+    summary: '暂不适合归入单一专业领域的综合律师工作方法。',
+    signal: '综合',
+    accent: 'bg-gray-950',
+    soft: 'bg-gray-50',
+    border: 'border-gray-200',
   },
 ]
 
@@ -407,7 +425,7 @@ export const firmSkills: FirmSkill[] = [...internalFirmSkills, ...lawveExternalS
 export const platformMetrics = [
   { label: 'Skill 总量', value: `${firmSkills.length}`, delta: `${lawveExternalSkills.length} 个外部开源` },
   { label: '示例内部', value: `${internalFirmSkills.length}`, delta: '用于演示内部沉淀方式' },
-  { label: '外部开源', value: `${lawveExternalSkills.length}`, delta: 'Lawve.ai 来源' },
+  { label: '外部开源', value: `${lawveExternalSkills.length}`, delta: '三个公开仓库来源' },
   { label: '高风险待复核', value: `${firmSkills.filter((skill) => skill.risk === 'high').length}`, delta: '发布前需业务复核' },
 ]
 

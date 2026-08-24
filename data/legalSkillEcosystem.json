@@ -1,0 +1,779 @@
+{
+  "title": "法律 AI 技能聚合中心",
+  "hero": {
+    "subtitle": "汇聚 3197+ 法律领域 Agent Skills，覆盖 Lawve AI、AgentSkills.Legal、Legal SkillHub 与法律 MCP 生态",
+    "stats": [
+      {
+        "num": "265",
+        "label": "Lawve AI"
+      },
+      {
+        "num": "883",
+        "label": "AgentSkills"
+      },
+      {
+        "num": "2049",
+        "label": "Legal SkillHub"
+      },
+      {
+        "num": "22",
+        "label": "MCP 服务器"
+      },
+      {
+        "num": "3197+",
+        "label": "法律技能总计"
+      }
+    ]
+  },
+  "platforms": [
+    {
+      "name": "Lawve AI",
+      "href": "https://github.com/lawve-ai/awesome-legal-skills",
+      "desc": "The Ultimate AI Agent Hub for Law — 265 个经安全审计的法律技能",
+      "meta": [
+        "GitHub: lawve-ai/awesome-legal-skills",
+        "650 Stars"
+      ]
+    },
+    {
+      "name": "法律元力 Yuanli Vault",
+      "href": "https://yuanli.ailaw.cn/",
+      "desc": "法律人的智能体与 Skills 门户",
+      "meta": [
+        "yuanli.ailaw.cn",
+        "Skills 目录"
+      ]
+    },
+    {
+      "name": "AgentSkills.Legal",
+      "href": "https://github.com/CaseMark/skills/tree/main/skills/legal",
+      "desc": "883 个法律技能，由 CaseMark 构建",
+      "meta": [
+        "GitHub: CaseMark/skills",
+        "883 Skills"
+      ]
+    },
+    {
+      "name": "Legal SkillHub",
+      "href": "https://github.com/CSlawyer1985/legal-skillhub",
+      "desc": "2049 个法律技能，8 维标签体系，17 个法域覆盖，含学习中心与部署入口",
+      "meta": [
+        "GitHub: CSlawyer1985/legal-skillhub",
+        "2,049 Skills",
+        "17 法域"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "lawve",
+      "icon": "[ Lawve AI ]",
+      "title": "Lawve AI — 法律技能（直达 GitHub）",
+      "desc": "所有技能均在 <a data-page-node-id=\"CewV9fwct3090akDL0FNbJ\" href=\"https://github.com/lawve-ai/awesome-legal-skills\" target=\"_blank\" style=\"color:var(--accent)\">lawve-ai/awesome-legal-skills</a> 仓库中",
+      "cards": [
+        {
+          "name": "eu-ai-act-system-classifier",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/eu-ai-act-system-classifier-werner-plutat",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "按 EU AI Act 分类 AI 系统并映射合规义务",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "eu-data-act-compliance",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/eu-data-act-compliance-assessment-werner-plutat",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "评估 EU Data Act 合规义务：IoT、数据共享、云迁移",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "gpai-code-of-practice",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/gpai-code-of-practice-compliance-werner-plutat",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "评估 EU GPAI Code of Practice 合规性",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "serious-incident-reporting",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/serious-incident-reporting-eu-ai-act-art-73-werner-plutat",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "EU AI Act Art.73 严重事故报告",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "fria-art-27",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/fundamental-rights-impact-assessment-eu-ai-act-art-27-werner-plutat",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "基础权利影响评估（FRIA）",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "regulatory-audit-generator",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/regulatory-audit-generator-moonshot-ai",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "GDPR/PIPL 合规检查清单生成",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "legal-risk-assessor",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/legal-risk-assessor-anthropic",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "严重度×可能性法律风险评估框架",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "footnote-relegator",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/footnote-relegator-seth-chandler",
+          "badge": "起草",
+          "category": "drafting",
+          "desc": "将学术法律文章非必要细节移入脚注",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "pdf-editor",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/pdf-editor-openai",
+          "badge": "工具",
+          "category": "drafting",
+          "desc": "专业 PDF：HTML+Paged.js 创建 + Python 处理",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "isds-arbitrators",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/isds-arbitrators-cameron-russell",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "ISDS 仲裁员研究工具",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "recherche-jurisprudence",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/recherche-jurisprudence-librejustice",
+          "badge": "研究",
+          "category": "research",
+          "desc": "搜索和引用法国及欧洲判例法",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "recherche-normes",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/recherche-normes-librejustice",
+          "badge": "研究",
+          "category": "research",
+          "desc": "查找法规：法国法典、欧盟法律、59 国外国法典",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "gdpr-compliance",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/gdpr-compliance-tanaji-hemant-naik",
+          "badge": "隐私",
+          "category": "privacy",
+          "desc": "GDPR 全流程合规",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "ccpa-cpra",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/ccpa-cpra-tanaji-hemant-naik",
+          "badge": "隐私",
+          "category": "privacy",
+          "desc": "CCPA/CPRA 合规",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "privacy-policy",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/privacy-policy-stephane-boghossian",
+          "badge": "隐私",
+          "category": "privacy",
+          "desc": "零幻觉隐私政策生成器",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "nda-reviewer",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/nda-reviewer-anthropic",
+          "badge": "合同",
+          "category": "corporate",
+          "desc": "NDA 快速审查：GREEN/YELLOW/RED 三级分类",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "yc-saas-drafter",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/yc-saas-drafter-victor-wang",
+          "badge": "合同",
+          "category": "corporate",
+          "desc": "基于 YC 标准模板起草 SaaS 客户协议",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "dpdpa",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/dpdpa-tanaji-hemant-naik",
+          "badge": "隐私",
+          "category": "ip",
+          "desc": "印度 DPDPA 2023 合规顾问",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "soc2",
+          "href": "https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/soc2-tanaji-hemant-naik",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "SOC 2 合规：五大信任服务标准全覆盖",
+          "meta": [],
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "as",
+      "icon": "[ AgentSkills ]",
+      "title": "AgentSkills.Legal — 法律技能（直达 GitHub）",
+      "desc": "所有技能均在 <a data-page-node-id=\"4qsuoTxoVhskt3dL8uH9Ph\" href=\"https://github.com/CaseMark/skills/tree/main/skills/legal\" target=\"_blank\" style=\"color:var(--accent)\">CaseMark/skills</a> 仓库中",
+      "cards": [
+        {
+          "name": "litigation",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/litigation",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "诉讼实践根参考：民事、刑事和行政",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "regulatory",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/regulatory",
+          "badge": "监管",
+          "category": "regulatory",
+          "desc": "监管合规、政府关系、行政法全覆盖",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "transactional",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/transactional",
+          "badge": "交易",
+          "category": "agreement",
+          "desc": "合同、交易、企业组建路由",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "demand-letter",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/demand-letter",
+          "badge": "起草",
+          "category": "drafting",
+          "desc": "诉前需求信起草：14 个真实范例",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "energy-regulation",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/energy-regulation-summaries",
+          "badge": "监管",
+          "category": "regulatory",
+          "desc": "美国能源法规和里程碑案例",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "nonprofit-compliance",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/nonprofit-compliance-summary",
+          "badge": "合规",
+          "category": "regulatory",
+          "desc": "美国 501(c)(3) 非营利组织合规",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "wrongful-termination",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/wrongful-termination-complaint",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "不当解雇投诉：Title VII/ADA/ADEA/FMLA",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "writ-of-execution",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/writ-of-execution",
+          "badge": "起草",
+          "category": "drafting",
+          "desc": "执行令和扣押指令起草",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "work-for-hire",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/work-for-hire-agreement",
+          "badge": "协议",
+          "category": "agreement",
+          "desc": "雇佣作品协议（17 U.S.C. §§ 101/201(b)）",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "witness-prep",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/witness-prep",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "证人准备：双会议模式、模拟盘问",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "verdict-form",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/verdict-form",
+          "badge": "起草",
+          "category": "drafting",
+          "desc": "民事审判裁决表",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "wisp",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/wisp",
+          "badge": "合规",
+          "category": "regulatory",
+          "desc": "信息安全计划：MA 201 CMR 17.00 + GDPR/CCPA",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "voting-agreement",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/voting-agreement",
+          "badge": "公司",
+          "category": "corporate",
+          "desc": "股东投票协议：DGCL §218 合规",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "viability-conflict-check",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/viability-conflict-check-report",
+          "badge": "分析",
+          "category": "analysis",
+          "desc": "诉前案件受理：冲突筛查 + 可行性",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "volunteer-waiver",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/volunteer-waiver-release",
+          "badge": "协议",
+          "category": "agreement",
+          "desc": "志愿者豁免和责任释放协议",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "whistleblower-policy",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/whistleblower-policy",
+          "badge": "合规",
+          "category": "regulatory",
+          "desc": "举报人保护政策：SOX/Dodd-Frank",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "underwriting-agreement",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/underwriting-agreement",
+          "badge": "起草",
+          "category": "drafting",
+          "desc": "SEC 注册公开发行承销协议",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "ucc-lien-release",
+          "href": "https://github.com/CaseMark/skills/tree/main/skills/legal/ucc-lien-release",
+          "badge": "协议",
+          "category": "agreement",
+          "desc": "UCC 留置权释放证明",
+          "meta": [],
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "lsh",
+      "icon": "[ Legal SkillHub ]",
+      "title": "Legal SkillHub — 法律技能（直达 GitHub）",
+      "desc": "所有技能均在 <a data-page-node-id=\"r9VljlCQHuKDyaqhqymNn5\" href=\"https://github.com/CSlawyer1985/legal-skillhub\" target=\"_blank\" style=\"color:var(--accent)\">CSlawyer1985/legal-skillhub</a> 仓库中 · 2049 个技能 · 17 个法域 · 8 维标签",
+      "cards": [
+        {
+          "name": "ai-compliance",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ai-compliance",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "AI 合规全面审查：EU AI Act / 中国 AI 法规",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "ai-contract-review",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ai-contract-review",
+          "badge": "合同",
+          "category": "contract",
+          "desc": "AI 智能合同审查：风险识别 + 条款建议",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "amicus-curiae-brief",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/amicus-curiae-brief",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "法庭之友意见书起草",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "app-privacy-compliance",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/app-privacy-compliance",
+          "badge": "隐私",
+          "category": "privacy",
+          "desc": "移动应用隐私合规审查",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "agent-commercial-contract",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/agent-commercial-contract",
+          "badge": "合同",
+          "category": "corporate",
+          "desc": "商业合同起草与审查",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "aml-compliance-program",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/aml-compliance-program",
+          "badge": "合规",
+          "category": "compliance",
+          "desc": "反洗钱合规计划构建",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "ad-compliance-review-plus",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ad-compliance-consumer-rights-ai-review-plus",
+          "badge": "合规",
+          "category": "china",
+          "desc": "广告合规 + 消费者权益保护 AI 审查",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "archive-ip-pdfs",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/archive-ip-pdfs",
+          "badge": "IP",
+          "category": "ip",
+          "desc": "知识产权 PDF 文档归档",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "answer-affirmative-defenses",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/answer-affirmative-defenses",
+          "badge": "诉讼",
+          "category": "litigation",
+          "desc": "答辩状：积极抗辩回应",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "annual-meeting-notice",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/annual-meeting-notice",
+          "badge": "公司",
+          "category": "corporate",
+          "desc": "年度股东大会通知起草",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "api-license-agreement",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/api-license-agreement",
+          "badge": "合同",
+          "category": "contract",
+          "desc": "API 许可协议起草",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "analyse-dpa-fournisseur",
+          "href": "https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/analyse-dpa-fournisseur-hugo-salard",
+          "badge": "隐私",
+          "category": "privacy",
+          "desc": "供应商数据处理协议分析",
+          "meta": [],
+          "tags": []
+        }
+      ]
+    },
+    {
+      "id": "lsh-mcp",
+      "icon": "[ MCP/插件 ]",
+      "title": "法律 MCP 服务器 & 平台插件",
+      "desc": "22 个 MCP 服务器 + 平台连接器与插件，覆盖全球 108 国法律数据源",
+      "cards": [
+        {
+          "name": "legaldatahunter",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "全球 108 国法律研究，1860 万+ 文档，免费额度",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "moonlit",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "欧盟/荷兰等 30+ 法域法律研究，100 次/月免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "ansvar-gateway",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "欧盟法规情报：GDPR/AI Act/NIS2/DORA",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "librejustice",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "法国法律研究，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "goodlegal",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "法国/欧盟法律研究，免费额度",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "lawbster",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "德国/欧盟法律研究，免费额度",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "pii-shield",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "privacy",
+          "desc": "PII 脱敏处理，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "eu-ai-act",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "compliance",
+          "desc": "EU AI Act 合规工具，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "legifrance",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "法国官方法律数据库接入，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "judilibre",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "法国判例数据库接入，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "tclp-knowledge-graph",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "opendata",
+          "desc": "商业与合同法律知识图谱，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "Themia",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "法国法律研究，付费服务",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "data.gouv",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "opendata",
+          "desc": "法国政府开放数据接入，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "human-rights",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "人权与公民自由法律研究，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "legal-drafting",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "drafting",
+          "desc": "法律文书起草工具，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "uk-legislation",
+          "href": "https://lawve.ai/connectors",
+          "badge": "MCP",
+          "category": "research",
+          "desc": "英国立法数据库接入，完全免费",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "open-legal-compliance-mcp",
+          "href": "https://github.com/TCoder920/open-legal-compliance-mcp",
+          "badge": "开源",
+          "category": "compliance",
+          "desc": "多法域合规分析：GovInfo/CourtListener/Congress",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "taiwan-legal-plugin",
+          "href": "https://github.com/lawchat-oss/taiwan-legal-plugin",
+          "badge": "开源",
+          "category": "research",
+          "desc": "台湾法律数据库：裁判书/法规查询",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "dingduff-public",
+          "href": "https://github.com/DingDuff/dingduff-public",
+          "badge": "开源",
+          "category": "research",
+          "desc": "美国判例 + PACER：900 万+ 判例",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "courtlistener-mcp",
+          "href": "https://www.courtlistener.com/api/",
+          "badge": "开源",
+          "category": "research",
+          "desc": "CourtListener API 接入：美国联邦判例",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "eu-regulations-mcp",
+          "href": "https://github.com/ansvar-ai/eu-regulations-mcp",
+          "badge": "开源",
+          "category": "compliance",
+          "desc": "欧盟法规：TEU/TFEU/宪章/CJEU 判例",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "Lawve AI 连接器",
+          "href": "https://lawve.ai/connectors",
+          "badge": "平台",
+          "category": "platform",
+          "desc": "16 个法律 MCP 连接器，覆盖全球法律数据源",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "Lawve AI 插件",
+          "href": "https://lawve.ai/plugins",
+          "badge": "平台",
+          "category": "platform",
+          "desc": "Claude/ChatGPT/Gemini 法律插件",
+          "meta": [],
+          "tags": []
+        },
+        {
+          "name": "AgentSkills.Integrate",
+          "href": "https://agentskills.legal/skills",
+          "badge": "平台",
+          "category": "platform",
+          "desc": "883 个法律技能的集成接入方案",
+          "meta": [],
+          "tags": []
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "sources": [
+      {
+        "name": "Lawve AI",
+        "href": "https://github.com/lawve-ai/awesome-legal-skills"
+      },
+      {
+        "name": "法律元力",
+        "href": "https://yuanli.ailaw.cn"
+      },
+      {
+        "name": "AgentSkills.Legal",
+        "href": "https://github.com/CaseMark/skills"
+      },
+      {
+        "name": "Legal SkillHub",
+        "href": "https://github.com/CSlawyer1985/legal-skillhub"
+      }
+    ],
+    "note": "聚合作者 LiaoFaJun（小红书）于 2026-08 · 所有链接直达 GitHub 仓库 · 技能由各自作者维护"
+  }
+}

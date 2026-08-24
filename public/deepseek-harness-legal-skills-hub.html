@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>法律 AI 技能聚合中心</title>
+<style>
+:root{
+  --bg:#f5f7fa;--surface:#ffffff;--border:#e2e8f0;
+  --accent:#2563eb;--accent2:#0ea5e9;--accent3:#f59e0b;--accent4:#eab308;--accent5:#8b5cf6;
+  --text:#1e293b;--text2:#475569;--text3:#94a3b8;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.hero{background:linear-gradient(180deg,#2563eb 0%,#1e40af 100%);padding:40px 20px;text-align:center;color:#fff}
+.hero h1{font-size:clamp(22px,3vw,32px);font-weight:700;margin-bottom:12px}
+.hero p{color:#dbeafe;font-size:16px;max-width:720px;margin:0 auto 20px}
+.stats-row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.stat-box{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:14px 20px;min-width:140px}
+.stat-num{font-size:22px;font-weight:700;color:#fff}
+.stat-label{color:#bfdbfe;font-size:13px;margin-top:4px}
+.nav-bar{background:#fff;border-bottom:1px solid var(--border);padding:10px;display:flex;flex-wrap:wrap;gap:8px;position:sticky;top:0;z-index:100;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.nav-btn{flex-shrink:0;padding:6px 14px;background:#f1f5f9;border:1px solid var(--border);border-radius:8px;color:var(--text2);font-size:14px;cursor:pointer;transition:all .15s}
+.nav-btn:hover,.nav-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.section{max-width:1200px;margin:0 auto;padding:28px 16px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:18px;border-left:4px solid var(--accent);padding:10px 14px;background:#fff;border-radius:8px}
+.section-icon{font-size:13px;color:var(--accent);font-weight:600}
+.section-title{font-size:18px;font-weight:700;color:var(--text)}
+.section-desc{color:var(--text2);font-size:14px;margin-top:2px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;transition:all .15s}
+.card:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(37,99,235,.12)}
+.card-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:8px}
+.card-name{font-size:15px;font-weight:600;color:var(--accent);word-break:break-all}
+.card-name a{color:inherit;text-decoration:none}
+.card-name a:hover{text-decoration:underline}
+.card-badge{flex-shrink:0;padding:2px 8px;font-size:11px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:rgba(37,99,235,.06)}
+.card-desc{color:var(--text2);font-size:14px;line-height:1.5}
+.card-meta{display:flex;gap:10px;margin-top:10px;font-size:12px;color:var(--text3);flex-wrap:wrap}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.tag{padding:2px 8px;font-size:11px;border-radius:6px;border:1px dashed var(--text3);color:var(--text3)}
+.platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:24px}
+.platform-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;color:inherit;display:block;transition:all .15s}
+.platform-card:hover{border-color:var(--accent);box-shadow:0 4px 14px rgba(37,99,235,.12);transform:translateY(-2px)}
+.platform-card h3{font-size:16px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.platform-card p{color:var(--text2);font-size:14px;margin-bottom:10px}
+.platform-card .meta-row{display:flex;gap:6px;font-size:12px;color:var(--text3);flex-wrap:wrap}
+.platform-card .meta-row span{background:#f1f5f9;padding:3px 8px;border-radius:6px}
+.cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.cat-tab{padding:5px 12px;border:1px solid var(--border);border-radius:8px;background:#f1f5f9;color:var(--text2);font-size:13px;cursor:pointer}
+.cat-tab:hover,.cat-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.footer{text-align:center;padding:24px;color:var(--text3);font-size:13px;border-top:1px solid var(--border);margin-top:30px}
+.footer a{color:var(--accent);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.c-purple{color:var(--accent5)!important;border-color:var(--accent5)!important}
+.c-cyan{color:var(--accent2)!important;border-color:var(--accent2)!important}
+.c-amber{color:var(--accent3)!important;border-color:var(--accent3)!important}
+.c-yellow{color:var(--accent4)!important;border-color:var(--accent4)!important}
+@media(max-width:768px){.card-grid{grid-template-columns:1fr}.stats-row{gap:8px}.stat-box{min-width:110px;padding:10px 14px}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>法律 AI 技能聚合中心</h1>
+  <p>汇聚 3197+ 法律领域 Agent Skills，覆盖 Lawve AI、AgentSkills.Legal、Legal SkillHub 与法律 MCP 生态</p>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num">265</div><div class="stat-label">Lawve AI</div></div>
+    <div class="stat-box"><div class="stat-num">883</div><div class="stat-label">AgentSkills</div></div>
+    <div class="stat-box"><div class="stat-num">2049</div><div class="stat-label">Legal SkillHub</div></div>
+    <div class="stat-box"><div class="stat-num">22</div><div class="stat-label">MCP 服务器</div></div>
+    <div class="stat-box"><div class="stat-num">3197+</div><div class="stat-label">法律技能总计</div></div>
+  </div>
+</div>
+<div class="nav-bar">
+  <button class="nav-btn active" onclick="go('#platforms')">平台入口</button>
+  <button class="nav-btn" onclick="go('#lawve')">Lawve AI</button>
+  <button class="nav-btn" onclick="go('#as')">AgentSkills.Legal</button>
+  <button class="nav-btn" onclick="go('#lsh')">Legal SkillHub</button>
+  <button class="nav-btn" onclick="go('#lsh-mcp')">法律 MCP 服务器 &amp; 平台插件</button>
+</div>
+<div class="section" id="platforms">
+  <div class="section-header"><div><div class="section-title">法律技能平台入口</div><div class="section-desc">一键直达各聚合平台的官方仓库与门户</div></div></div>
+  <div class="platform-grid">
+    <a class="platform-card" href="https://github.com/lawve-ai/awesome-legal-skills" target="_blank">
+      <h3>Lawve AI</h3>
+      <p>The Ultimate AI Agent Hub for Law — 265 个经安全审计的法律技能</p>
+      <div class="meta-row"><span>GitHub: lawve-ai/awesome-legal-skills</span><span>650 Stars</span></div>
+    </a>
+    <a class="platform-card" href="https://yuanli.ailaw.cn/" target="_blank">
+      <h3>法律元力 Yuanli Vault</h3>
+      <p>法律人的智能体与 Skills 门户</p>
+      <div class="meta-row"><span>yuanli.ailaw.cn</span><span>Skills 目录</span></div>
+    </a>
+    <a class="platform-card" href="https://github.com/CaseMark/skills/tree/main/skills/legal" target="_blank">
+      <h3>AgentSkills.Legal</h3>
+      <p>883 个法律技能，由 CaseMark 构建</p>
+      <div class="meta-row"><span>GitHub: CaseMark/skills</span><span>883 Skills</span></div>
+    </a>
+    <a class="platform-card" href="https://github.com/CSlawyer1985/legal-skillhub" target="_blank">
+      <h3>Legal SkillHub</h3>
+      <p>2049 个法律技能，8 维标签体系，17 个法域覆盖，含学习中心与部署入口</p>
+      <div class="meta-row"><span>GitHub: CSlawyer1985/legal-skillhub</span><span>2,049 Skills</span><span>17 法域</span></div>
+    </a>
+  </div>
+</div>
+<div class="section" id="lawve">
+    <div class="section-header"><span class="section-icon">[ Lawve AI ]</span><div><div class="section-title">Lawve AI — 法律技能（直达 GitHub）</div><div class="section-desc">所有技能均在 <a data-page-node-id="CewV9fwct3090akDL0FNbJ" href="https://github.com/lawve-ai/awesome-legal-skills" target="_blank" style="color:var(--accent)">lawve-ai/awesome-legal-skills</a> 仓库中</div></div></div>
+    <div class="cat-tabs" id="lawve-tabs">
+        <button class="cat-tab active" onclick="cat('lawve','all',this)">全部</button>
+        <button class="cat-tab" onclick="cat('lawve','compliance',this)">compliance</button>
+        <button class="cat-tab" onclick="cat('lawve','drafting',this)">drafting</button>
+        <button class="cat-tab" onclick="cat('lawve','litigation',this)">litigation</button>
+        <button class="cat-tab" onclick="cat('lawve','research',this)">research</button>
+        <button class="cat-tab" onclick="cat('lawve','privacy',this)">privacy</button>
+        <button class="cat-tab" onclick="cat('lawve','corporate',this)">corporate</button>
+        <button class="cat-tab" onclick="cat('lawve','ip',this)">ip</button>
+      </div>
+    <div class="card-grid" id="lawve-c">
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/eu-ai-act-system-classifier-werner-plutat" target="_blank">eu-ai-act-system-classifier</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">按 EU AI Act 分类 AI 系统并映射合规义务</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/eu-data-act-compliance-assessment-werner-plutat" target="_blank">eu-data-act-compliance</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">评估 EU Data Act 合规义务：IoT、数据共享、云迁移</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/gpai-code-of-practice-compliance-werner-plutat" target="_blank">gpai-code-of-practice</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">评估 EU GPAI Code of Practice 合规性</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/serious-incident-reporting-eu-ai-act-art-73-werner-plutat" target="_blank">serious-incident-reporting</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">EU AI Act Art.73 严重事故报告</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/fundamental-rights-impact-assessment-eu-ai-act-art-27-werner-plutat" target="_blank">fria-art-27</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">基础权利影响评估（FRIA）</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/regulatory-audit-generator-moonshot-ai" target="_blank">regulatory-audit-generator</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">GDPR/PIPL 合规检查清单生成</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/legal-risk-assessor-anthropic" target="_blank">legal-risk-assessor</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">严重度×可能性法律风险评估框架</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/footnote-relegator-seth-chandler" target="_blank">footnote-relegator</a></div>
+        <span class="card-badge ">起草</span>
+      </div>
+      <div class="card-desc">将学术法律文章非必要细节移入脚注</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/pdf-editor-openai" target="_blank">pdf-editor</a></div>
+        <span class="card-badge ">工具</span>
+      </div>
+      <div class="card-desc">专业 PDF：HTML+Paged.js 创建 + Python 处理</div>
+      
+      
+    </div>
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/isds-arbitrators-cameron-russell" target="_blank">isds-arbitrators</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">ISDS 仲裁员研究工具</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/recherche-jurisprudence-librejustice" target="_blank">recherche-jurisprudence</a></div>
+        <span class="card-badge ">研究</span>
+      </div>
+      <div class="card-desc">搜索和引用法国及欧洲判例法</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/recherche-normes-librejustice" target="_blank">recherche-normes</a></div>
+        <span class="card-badge ">研究</span>
+      </div>
+      <div class="card-desc">查找法规：法国法典、欧盟法律、59 国外国法典</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/gdpr-compliance-tanaji-hemant-naik" target="_blank">gdpr-compliance</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">GDPR 全流程合规</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/ccpa-cpra-tanaji-hemant-naik" target="_blank">ccpa-cpra</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">CCPA/CPRA 合规</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/privacy-policy-stephane-boghossian" target="_blank">privacy-policy</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">零幻觉隐私政策生成器</div>
+      
+      
+    </div>
+      <div class="card" data-c="corporate">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/nda-reviewer-anthropic" target="_blank">nda-reviewer</a></div>
+        <span class="card-badge ">合同</span>
+      </div>
+      <div class="card-desc">NDA 快速审查：GREEN/YELLOW/RED 三级分类</div>
+      
+      
+    </div>
+      <div class="card" data-c="corporate">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/yc-saas-drafter-victor-wang" target="_blank">yc-saas-drafter</a></div>
+        <span class="card-badge ">合同</span>
+      </div>
+      <div class="card-desc">基于 YC 标准模板起草 SaaS 客户协议</div>
+      
+      
+    </div>
+      <div class="card" data-c="ip">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/dpdpa-tanaji-hemant-naik" target="_blank">dpdpa</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">印度 DPDPA 2023 合规顾问</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawve-ai/awesome-legal-skills/tree/main/skills/soc2-tanaji-hemant-naik" target="_blank">soc2</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">SOC 2 合规：五大信任服务标准全覆盖</div>
+      
+      
+    </div>
+    </div>
+  </div>
+<div class="section" id="as">
+    <div class="section-header"><span class="section-icon">[ AgentSkills ]</span><div><div class="section-title">AgentSkills.Legal — 法律技能（直达 GitHub）</div><div class="section-desc">所有技能均在 <a data-page-node-id="4qsuoTxoVhskt3dL8uH9Ph" href="https://github.com/CaseMark/skills/tree/main/skills/legal" target="_blank" style="color:var(--accent)">CaseMark/skills</a> 仓库中</div></div></div>
+    <div class="cat-tabs" id="as-tabs">
+        <button class="cat-tab active" onclick="cat('as','all',this)">全部</button>
+        <button class="cat-tab" onclick="cat('as','litigation',this)">litigation</button>
+        <button class="cat-tab" onclick="cat('as','regulatory',this)">regulatory</button>
+        <button class="cat-tab" onclick="cat('as','agreement',this)">agreement</button>
+        <button class="cat-tab" onclick="cat('as','drafting',this)">drafting</button>
+        <button class="cat-tab" onclick="cat('as','corporate',this)">corporate</button>
+        <button class="cat-tab" onclick="cat('as','analysis',this)">analysis</button>
+      </div>
+    <div class="card-grid" id="as-c">
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/litigation" target="_blank">litigation</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">诉讼实践根参考：民事、刑事和行政</div>
+      
+      
+    </div>
+      <div class="card" data-c="regulatory">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/regulatory" target="_blank">regulatory</a></div>
+        <span class="card-badge ">监管</span>
+      </div>
+      <div class="card-desc">监管合规、政府关系、行政法全覆盖</div>
+      
+      
+    </div>
+      <div class="card" data-c="agreement">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/transactional" target="_blank">transactional</a></div>
+        <span class="card-badge ">交易</span>
+      </div>
+      <div class="card-desc">合同、交易、企业组建路由</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/demand-letter" target="_blank">demand-letter</a></div>
+        <span class="card-badge ">起草</span>
+      </div>
+      <div class="card-desc">诉前需求信起草：14 个真实范例</div>
+      
+      
+    </div>
+      <div class="card" data-c="regulatory">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/energy-regulation-summaries" target="_blank">energy-regulation</a></div>
+        <span class="card-badge ">监管</span>
+      </div>
+      <div class="card-desc">美国能源法规和里程碑案例</div>
+      
+      
+    </div>
+      <div class="card" data-c="regulatory">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/nonprofit-compliance-summary" target="_blank">nonprofit-compliance</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">美国 501(c)(3) 非营利组织合规</div>
+      
+      
+    </div>
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/wrongful-termination-complaint" target="_blank">wrongful-termination</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">不当解雇投诉：Title VII/ADA/ADEA/FMLA</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/writ-of-execution" target="_blank">writ-of-execution</a></div>
+        <span class="card-badge ">起草</span>
+      </div>
+      <div class="card-desc">执行令和扣押指令起草</div>
+      
+      
+    </div>
+      <div class="card" data-c="agreement">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/work-for-hire-agreement" target="_blank">work-for-hire</a></div>
+        <span class="card-badge ">协议</span>
+      </div>
+      <div class="card-desc">雇佣作品协议（17 U.S.C. §§ 101/201(b)）</div>
+      
+      
+    </div>
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/witness-prep" target="_blank">witness-prep</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">证人准备：双会议模式、模拟盘问</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/verdict-form" target="_blank">verdict-form</a></div>
+        <span class="card-badge ">起草</span>
+      </div>
+      <div class="card-desc">民事审判裁决表</div>
+      
+      
+    </div>
+      <div class="card" data-c="regulatory">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/wisp" target="_blank">wisp</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">信息安全计划：MA 201 CMR 17.00 + GDPR/CCPA</div>
+      
+      
+    </div>
+      <div class="card" data-c="corporate">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/voting-agreement" target="_blank">voting-agreement</a></div>
+        <span class="card-badge ">公司</span>
+      </div>
+      <div class="card-desc">股东投票协议：DGCL §218 合规</div>
+      
+      
+    </div>
+      <div class="card" data-c="analysis">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/viability-conflict-check-report" target="_blank">viability-conflict-check</a></div>
+        <span class="card-badge ">分析</span>
+      </div>
+      <div class="card-desc">诉前案件受理：冲突筛查 + 可行性</div>
+      
+      
+    </div>
+      <div class="card" data-c="agreement">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/volunteer-waiver-release" target="_blank">volunteer-waiver</a></div>
+        <span class="card-badge ">协议</span>
+      </div>
+      <div class="card-desc">志愿者豁免和责任释放协议</div>
+      
+      
+    </div>
+      <div class="card" data-c="regulatory">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/whistleblower-policy" target="_blank">whistleblower-policy</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">举报人保护政策：SOX/Dodd-Frank</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/underwriting-agreement" target="_blank">underwriting-agreement</a></div>
+        <span class="card-badge ">起草</span>
+      </div>
+      <div class="card-desc">SEC 注册公开发行承销协议</div>
+      
+      
+    </div>
+      <div class="card" data-c="agreement">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CaseMark/skills/tree/main/skills/legal/ucc-lien-release" target="_blank">ucc-lien-release</a></div>
+        <span class="card-badge ">协议</span>
+      </div>
+      <div class="card-desc">UCC 留置权释放证明</div>
+      
+      
+    </div>
+    </div>
+  </div>
+<div class="section" id="lsh">
+    <div class="section-header"><span class="section-icon">[ Legal SkillHub ]</span><div><div class="section-title">Legal SkillHub — 法律技能（直达 GitHub）</div><div class="section-desc">所有技能均在 <a data-page-node-id="r9VljlCQHuKDyaqhqymNn5" href="https://github.com/CSlawyer1985/legal-skillhub" target="_blank" style="color:var(--accent)">CSlawyer1985/legal-skillhub</a> 仓库中 · 2049 个技能 · 17 个法域 · 8 维标签</div></div></div>
+    <div class="cat-tabs" id="lsh-tabs">
+        <button class="cat-tab active" onclick="cat('lsh','all',this)">全部</button>
+        <button class="cat-tab" onclick="cat('lsh','compliance',this)">compliance</button>
+        <button class="cat-tab" onclick="cat('lsh','contract',this)">contract</button>
+        <button class="cat-tab" onclick="cat('lsh','litigation',this)">litigation</button>
+        <button class="cat-tab" onclick="cat('lsh','privacy',this)">privacy</button>
+        <button class="cat-tab" onclick="cat('lsh','corporate',this)">corporate</button>
+        <button class="cat-tab" onclick="cat('lsh','china',this)">china</button>
+        <button class="cat-tab" onclick="cat('lsh','ip',this)">ip</button>
+      </div>
+    <div class="card-grid" id="lsh-c">
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ai-compliance" target="_blank">ai-compliance</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">AI 合规全面审查：EU AI Act / 中国 AI 法规</div>
+      
+      
+    </div>
+      <div class="card" data-c="contract">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ai-contract-review" target="_blank">ai-contract-review</a></div>
+        <span class="card-badge ">合同</span>
+      </div>
+      <div class="card-desc">AI 智能合同审查：风险识别 + 条款建议</div>
+      
+      
+    </div>
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/amicus-curiae-brief" target="_blank">amicus-curiae-brief</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">法庭之友意见书起草</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/app-privacy-compliance" target="_blank">app-privacy-compliance</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">移动应用隐私合规审查</div>
+      
+      
+    </div>
+      <div class="card" data-c="corporate">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/agent-commercial-contract" target="_blank">agent-commercial-contract</a></div>
+        <span class="card-badge ">合同</span>
+      </div>
+      <div class="card-desc">商业合同起草与审查</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/aml-compliance-program" target="_blank">aml-compliance-program</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">反洗钱合规计划构建</div>
+      
+      
+    </div>
+      <div class="card" data-c="china">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/ad-compliance-consumer-rights-ai-review-plus" target="_blank">ad-compliance-review-plus</a></div>
+        <span class="card-badge c-yellow">合规</span>
+      </div>
+      <div class="card-desc">广告合规 + 消费者权益保护 AI 审查</div>
+      
+      
+    </div>
+      <div class="card" data-c="ip">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/archive-ip-pdfs" target="_blank">archive-ip-pdfs</a></div>
+        <span class="card-badge ">IP</span>
+      </div>
+      <div class="card-desc">知识产权 PDF 文档归档</div>
+      
+      
+    </div>
+      <div class="card" data-c="litigation">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/answer-affirmative-defenses" target="_blank">answer-affirmative-defenses</a></div>
+        <span class="card-badge ">诉讼</span>
+      </div>
+      <div class="card-desc">答辩状：积极抗辩回应</div>
+      
+      
+    </div>
+      <div class="card" data-c="corporate">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/annual-meeting-notice" target="_blank">annual-meeting-notice</a></div>
+        <span class="card-badge ">公司</span>
+      </div>
+      <div class="card-desc">年度股东大会通知起草</div>
+      
+      
+    </div>
+      <div class="card" data-c="contract">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/api-license-agreement" target="_blank">api-license-agreement</a></div>
+        <span class="card-badge ">合同</span>
+      </div>
+      <div class="card-desc">API 许可协议起草</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/CSlawyer1985/legal-skillhub/tree/main/skills/analyse-dpa-fournisseur-hugo-salard" target="_blank">analyse-dpa-fournisseur</a></div>
+        <span class="card-badge ">隐私</span>
+      </div>
+      <div class="card-desc">供应商数据处理协议分析</div>
+      
+      
+    </div>
+    </div>
+  </div>
+<div class="section" id="lsh-mcp">
+    <div class="section-header"><span class="section-icon">[ MCP/插件 ]</span><div><div class="section-title">法律 MCP 服务器 &amp; 平台插件</div><div class="section-desc">22 个 MCP 服务器 + 平台连接器与插件，覆盖全球 108 国法律数据源</div></div></div>
+    <div class="cat-tabs" id="lsh-mcp-tabs">
+        <button class="cat-tab active" onclick="cat('lsh-mcp','all',this)">全部</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','research',this)">research</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','privacy',this)">privacy</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','compliance',this)">compliance</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','opendata',this)">opendata</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','drafting',this)">drafting</button>
+        <button class="cat-tab" onclick="cat('lsh-mcp','platform',this)">platform</button>
+      </div>
+    <div class="card-grid" id="lsh-mcp-c">
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">legaldatahunter</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">全球 108 国法律研究，1860 万+ 文档，免费额度</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">moonlit</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">欧盟/荷兰等 30+ 法域法律研究，100 次/月免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">ansvar-gateway</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">欧盟法规情报：GDPR/AI Act/NIS2/DORA</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">librejustice</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国法律研究，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">goodlegal</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国/欧盟法律研究，免费额度</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">lawbster</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">德国/欧盟法律研究，免费额度</div>
+      
+      
+    </div>
+      <div class="card" data-c="privacy">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">pii-shield</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">PII 脱敏处理，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">eu-ai-act</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">EU AI Act 合规工具，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">legifrance</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国官方法律数据库接入，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">judilibre</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国判例数据库接入，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="opendata">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">tclp-knowledge-graph</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">商业与合同法律知识图谱，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">Themia</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国法律研究，付费服务</div>
+      
+      
+    </div>
+      <div class="card" data-c="opendata">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">data.gouv</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法国政府开放数据接入，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">human-rights</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">人权与公民自由法律研究，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="drafting">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">legal-drafting</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">法律文书起草工具，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">uk-legislation</a></div>
+        <span class="card-badge c-purple">MCP</span>
+      </div>
+      <div class="card-desc">英国立法数据库接入，完全免费</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/TCoder920/open-legal-compliance-mcp" target="_blank">open-legal-compliance-mcp</a></div>
+        <span class="card-badge c-cyan">开源</span>
+      </div>
+      <div class="card-desc">多法域合规分析：GovInfo/CourtListener/Congress</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/lawchat-oss/taiwan-legal-plugin" target="_blank">taiwan-legal-plugin</a></div>
+        <span class="card-badge c-cyan">开源</span>
+      </div>
+      <div class="card-desc">台湾法律数据库：裁判书/法规查询</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/DingDuff/dingduff-public" target="_blank">dingduff-public</a></div>
+        <span class="card-badge c-cyan">开源</span>
+      </div>
+      <div class="card-desc">美国判例 + PACER：900 万+ 判例</div>
+      
+      
+    </div>
+      <div class="card" data-c="research">
+      <div class="card-head">
+        <div class="card-name"><a href="https://www.courtlistener.com/api/" target="_blank">courtlistener-mcp</a></div>
+        <span class="card-badge c-cyan">开源</span>
+      </div>
+      <div class="card-desc">CourtListener API 接入：美国联邦判例</div>
+      
+      
+    </div>
+      <div class="card" data-c="compliance">
+      <div class="card-head">
+        <div class="card-name"><a href="https://github.com/ansvar-ai/eu-regulations-mcp" target="_blank">eu-regulations-mcp</a></div>
+        <span class="card-badge c-cyan">开源</span>
+      </div>
+      <div class="card-desc">欧盟法规：TEU/TFEU/宪章/CJEU 判例</div>
+      
+      
+    </div>
+      <div class="card" data-c="platform">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/connectors" target="_blank">Lawve AI 连接器</a></div>
+        <span class="card-badge c-amber">平台</span>
+      </div>
+      <div class="card-desc">16 个法律 MCP 连接器，覆盖全球法律数据源</div>
+      
+      
+    </div>
+      <div class="card" data-c="platform">
+      <div class="card-head">
+        <div class="card-name"><a href="https://lawve.ai/plugins" target="_blank">Lawve AI 插件</a></div>
+        <span class="card-badge c-amber">平台</span>
+      </div>
+      <div class="card-desc">Claude/ChatGPT/Gemini 法律插件</div>
+      
+      
+    </div>
+      <div class="card" data-c="platform">
+      <div class="card-head">
+        <div class="card-name"><a href="https://agentskills.legal/skills" target="_blank">AgentSkills.Integrate</a></div>
+        <span class="card-badge c-amber">平台</span>
+      </div>
+      <div class="card-desc">883 个法律技能的集成接入方案</div>
+      
+      
+    </div>
+    </div>
+  </div>
+<div class="footer">
+    <p>数据来源：<a href="https://github.com/lawve-ai/awesome-legal-skills" target="_blank">Lawve AI</a> · <a href="https://yuanli.ailaw.cn" target="_blank">法律元力</a> · <a href="https://github.com/CaseMark/skills" target="_blank">AgentSkills.Legal</a> · <a href="https://github.com/CSlawyer1985/legal-skillhub" target="_blank">Legal SkillHub</a></p>
+    <p style="margin-top:6px">聚合作者 LiaoFaJun（小红书）于 2026-08 · 所有链接直达 GitHub 仓库 · 技能由各自作者维护</p>
+    <p style="margin-top:10px"><a href="/skills-platform" target="_blank">返回应用内「法律技能生态」视图 →</a></p>
+  </div>
+<script>
+function go(s){document.querySelector(s)?.scrollIntoView({behavior:'smooth',block:'start'});document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active')}
+function filter(i,cls){const q=i.value.toLowerCase();document.querySelectorAll('.'+cls+' .card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'':'none')}
+function cat(prefix,tag,btn){document.querySelectorAll('#'+prefix+'-tabs .cat-tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#'+prefix+'-c .card').forEach(c=>{c.style.display=(tag==='all'||c.dataset.c===tag)?'':'none'})}
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){const id=x.target.id;document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.toggle('active',b.getAttribute('onclick')?.includes('#'+id))})}})},{rootMargin:'-80px 0px -60% 0px'});
+document.querySelectorAll('.section[id]').forEach(s=>obs.observe(s));
+</script>
+</body>
+</html>

@@ -4,6 +4,7 @@ import path from 'node:path'
 import mammoth from 'mammoth'
 import { firmSkills, originLabels, riskLabels } from '@/data/skillPlatform'
 import { legalSkillsChinese } from '@/data/legalSkillsChinese'
+import { legalSkillEcosystem, type EcosystemCard } from '@/data/legalSkillEcosystem'
 import type { FirmSkill } from '@/data/skillPlatform'
 
 type PdfjsPage = { getTextContent: () => Promise<{ items: Array<{ str?: string }> }> }
@@ -21,7 +22,6 @@ type RecommendRequest = {
   filePayloads?: { name: string; base64: string }[]
   skillId?: string
   redactionSummary?: string
-  forceLlm?: boolean
   knowledgeSources?: {
     id: string
     title: string
@@ -40,10 +40,7 @@ type RecommendationResult = {
   searchHints: string[]
   recommendedKnowledgeIds: string[]
   fileWarnings?: string[]
-  matchStage?: 'local' | 'llm'
-  escalatedToLlm?: boolean
-  forcedLlm?: boolean
-  llmUnavailable?: boolean
+  matchStage?: 'llm'
   recommendations: {
     skillId: string
     score: number
@@ -61,6 +58,14 @@ type LooseRecommendation = Partial<RecommendationResult['recommendations'][numbe
   reason?: string
   expectedOutput?: string[]
   limitation?: string
+}
+
+type BilingualSearchProfile = {
+  normalizedTask: string
+  chineseTerms: string[]
+  englishTerms: string[]
+  documentTypes: string[]
+  expectedOutputs: string[]
 }
 
 const coreSkillRules = [
@@ -102,7 +107,6 @@ const keywordGroups = [
   { area: 'Skill 构建', terms: ['skill', '构建', '创建', '测试', '包装', '发布', '方法论', 'agent'] },
 ]
 const llmTimeoutMs = 45000
-const LOCAL_CONFIDENT_THRESHOLD = 55
 const openAiCompatibleModel = process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'
 
 function clampScore(score: number) {
@@ -178,17 +182,67 @@ function withTimeout<T>(promise: Promise<T>, ms = llmTimeoutMs) {
   ])
 }
 
+// 生态卡片 → FirmSkill 同构对象，并入推荐候选池（方案 A：让匹配任务也能扫到生态）
+function ecosystemCardToFirmSkill(card: EcosystemCard, sectionId: string, sectionTitle: string): FirmSkill {
+  const id = `eco:${sectionId}:${card.name}`
+  const tags = [...card.tags, card.category].filter(Boolean)
+  return {
+    id,
+    name: card.name,
+    chineseName: card.name,
+    owner: '外部生态',
+    practice: sectionTitle,
+    jurisdiction: '',
+    status: 'published',
+    risk: 'medium',
+    version: '1.0',
+    updated: '2026-08',
+    usage: 0,
+    rating: 4,
+    reviewScore: 80,
+    description: card.desc,
+    suitableFor: [card.category, ...card.tags].filter(Boolean),
+    notFor: [],
+    workflow: [],
+    outputFormat: '详见 GitHub 仓库 README',
+    sources: [card.href],
+    tags,
+    origin: 'external-open-source',
+    sourceName: sectionTitle,
+    sourceUrl: card.href,
+    mdPath: undefined,
+    skillMdPath: undefined,
+    hasReadmeMd: false,
+    hasSkillMd: false,
+    externalCategory: card.category,
+    isMySkill: false,
+    sourceSkillName: card.name,
+    redistribution: 'metadata-only',
+    securityNotes: card.badge ? [`标签：${card.badge}`] : undefined,
+  } as FirmSkill
+}
+
+function ecosystemSkills(): FirmSkill[] {
+  const out: FirmSkill[] = []
+  for (const section of legalSkillEcosystem.sections) {
+    for (const card of section.cards) {
+      out.push(ecosystemCardToFirmSkill(card, section.id, section.title))
+    }
+  }
+  return out
+}
+
 async function getRecommendationSkills() {
   try {
     const indexPath = path.join(process.cwd(), 'outputs/internal-skills-md/index.json')
     const payload = JSON.parse(await readFile(indexPath, 'utf8')) as { skills?: FirmSkill[] }
-    return [...firmSkills, ...legalSkillsChinese, ...(payload.skills || [])]
+    return [...firmSkills, ...legalSkillsChinese, ...ecosystemSkills(), ...(payload.skills || [])]
   } catch {
-    return firmSkills
+    return [...firmSkills, ...ecosystemSkills()]
   }
 }
 
-function scoreSkillForMatter(skill: FirmSkill, payload: RecommendRequest) {
+function scoreSkillForMatter(skill: FirmSkill, payload: RecommendRequest, expandedTerms: string[] = []) {
   const purpose = payload.purpose ?? ''
   const text = payload.text ?? ''
   const fileText = payload.fileNames?.join(' ') ?? ''
@@ -205,6 +259,9 @@ function scoreSkillForMatter(skill: FirmSkill, payload: RecommendRequest) {
   const matchedTerms = keywordGroups
     .flatMap((group) => group.terms)
     .filter((term) => matter.includes(normalizeText(term)) && haystack.includes(normalizeText(term)))
+  const expandedHits = uniqueItems(expandedTerms, 30)
+    .map(normalizeText)
+    .filter((term) => term.length >= 3 && haystack.includes(term))
   const matchedCore = coreSkillRules.find((rule) => rule.name === payload.taskEntrypoint)
     || coreSkillRules
       .map((rule) => ({
@@ -233,6 +290,7 @@ function scoreSkillForMatter(skill: FirmSkill, payload: RecommendRequest) {
   return clampScore(
     38
     + matchedTerms.length * 7
+    + Math.min(expandedHits.length, 10) * 10
     + preferredBoost
     + entrypointBoost
     + practiceHit
@@ -245,6 +303,62 @@ function scoreSkillForMatter(skill: FirmSkill, payload: RecommendRequest) {
     + skill.rating
     - penalty,
   )
+}
+
+const bilingualFallbackTerms: Array<{ zh: string[]; en: string[] }> = [
+  { zh: ['破产', '偏颇清偿', '可撤销交易'], en: ['bankruptcy', 'preference action', 'avoidance action', 'fraudulent transfer'] },
+  { zh: ['起诉状', '应诉', '答辩', '抗辩'], en: ['complaint', 'litigation response', 'answer', 'affirmative defenses'] },
+  { zh: ['合同审查', '合同风险', '条款审查'], en: ['contract review', 'contract risk', 'clause analysis'] },
+  { zh: ['保密协议', '保密条款'], en: ['non-disclosure agreement', 'NDA', 'confidentiality'] },
+  { zh: ['劳动', '雇佣', '解雇', '解除劳动合同'], en: ['employment', 'termination', 'dismissal', 'labor law'] },
+  { zh: ['数据保护', '个人信息', '隐私', '跨境传输'], en: ['data protection', 'privacy', 'personal data', 'cross-border transfer'] },
+  { zh: ['尽职调查', '并购', '股权收购'], en: ['due diligence', 'mergers and acquisitions', 'M&A', 'share purchase'] },
+  { zh: ['证券', '虚假陈述', '资本市场'], en: ['securities', 'misrepresentation', 'capital markets'] },
+  { zh: ['知识产权', '专利', '商标', '著作权'], en: ['intellectual property', 'patent', 'trademark', 'copyright'] },
+  { zh: ['证据', '证据目录', '举证'], en: ['evidence', 'exhibit list', 'proof', 'evidentiary'] },
+  { zh: ['法律研究', '案例检索', '判例'], en: ['legal research', 'case law research', 'precedent'] },
+  { zh: ['合规', '监管', '行政处罚'], en: ['compliance', 'regulatory', 'enforcement action', 'administrative penalty'] },
+]
+
+function fallbackBilingualTerms(payload: RecommendRequest) {
+  const source = normalizeText(`${payload.purpose || ''} ${payload.taskEntrypoint || ''} ${payload.text || ''}`)
+  return uniqueItems(
+    bilingualFallbackTerms
+      .filter((group) => group.zh.some((term) => source.includes(normalizeText(term))))
+      .flatMap((group) => group.en),
+    30,
+  )
+}
+
+async function buildBilingualSearchProfile(payload: RecommendRequest): Promise<BilingualSearchProfile> {
+  const fallbackTerms = fallbackBilingualTerms(payload)
+  try {
+    const result = await callOpenAiCompatibleJson<Partial<BilingualSearchProfile>>(`你是法律 Skill 跨语言检索词生成器。根据中文或中英混合任务，生成用于检索英文法律 Skill 名称、description、tags、适用场景和输出格式的双语检索画像。只返回 JSON：normalizedTask、chineseTerms、englishTerms、documentTypes、expectedOutputs。
+
+要求：
+1. englishTerms 给出 8-20 个律师实际使用的英文术语，包含同义词、文书名称、程序名称和常见缩写。
+2. 不要只做字面翻译，要根据法律语境补充对应的英美法/国际通用检索表达；但不得改变用户立场和工作目的。
+3. chineseTerms 给出 5-12 个规范中文法律术语。
+4. 每个数组只放短语，不要写解释句。
+
+任务目的：${payload.purpose || '未填写'}
+任务类型：${payload.taskEntrypoint || '未指定'}
+文件名：${payload.fileNames?.join('、') || '无'}
+材料：${(payload.text || '').slice(0, 5000)}`, 800)
+    return {
+      normalizedTask: typeof result.normalizedTask === 'string' ? result.normalizedTask : '',
+      chineseTerms: uniqueItems(Array.isArray(result.chineseTerms) ? result.chineseTerms.map(String) : [], 12),
+      englishTerms: uniqueItems([
+        ...(Array.isArray(result.englishTerms) ? result.englishTerms.map(String) : []),
+        ...fallbackTerms,
+      ], 24),
+      documentTypes: uniqueItems(Array.isArray(result.documentTypes) ? result.documentTypes.map(String) : [], 8),
+      expectedOutputs: uniqueItems(Array.isArray(result.expectedOutputs) ? result.expectedOutputs.map(String) : [], 8),
+    }
+  } catch (error) {
+    console.error('Bilingual query expansion failed', error)
+    return { normalizedTask: '', chineseTerms: [], englishTerms: fallbackTerms, documentTypes: [], expectedOutputs: [] }
+  }
 }
 
 function explainLocalMatch(skill: FirmSkill, payload: RecommendRequest, taskType: string, index: number) {
@@ -371,14 +485,14 @@ function localRecommendWithSkills(payload: RecommendRequest, skills: FirmSkill[]
 }
 
 function normalizeRecommendationResult(result: unknown, fallback: RecommendationResult, payload: RecommendRequest, skills: FirmSkill[]): RecommendationResult {
-  if (!result || typeof result !== 'object') return fallback
+  if (!result || typeof result !== 'object') throw new Error('大模型未返回有效的推荐结果')
   const value = result as Partial<RecommendationResult>
   if (!Array.isArray(value.recommendations) || value.recommendations.length === 0) {
     console.error('LLM recommendation returned no usable recommendations', {
       keys: Object.keys(value),
       recommendationType: Array.isArray(value.recommendations) ? 'array' : typeof value.recommendations,
     })
-    return fallback
+    throw new Error('大模型未返回可用的 Skill 推荐')
   }
   const workflowPlan = Array.isArray(value.workflowPlan) ? value.workflowPlan.filter((item): item is string => typeof item === 'string') : []
   const searchHints = Array.isArray(value.searchHints) ? value.searchHints.filter((item): item is string => typeof item === 'string') : []
@@ -429,7 +543,9 @@ function normalizeRecommendationResult(result: unknown, fallback: Recommendation
           role: recommendation.role === 'core' || recommendation.role === 'specialist' || recommendation.role === 'support' ? recommendation.role : 'specialist',
           reasons: skill && usefulReasons.length === 0 ? explainLocalMatch(skill, payload, fallback.taskType, index) : uniqueItems(usefulReasons, 3),
           cautions: skill && usefulCautions.length === 0 ? explainLocalCautions(skill, payload) : uniqueItems(usefulCautions, 2),
-          nextPrompt: typeof recommendation.nextPrompt === 'string' ? recommendation.nextPrompt : fallback.recommendations[0]?.nextPrompt ?? '',
+          nextPrompt: skill
+            ? `请基于本次任务目的“${payload.purpose?.trim() || '当前律师任务'}”，将 ${skill.chineseName} 调整为：先识别材料类型和缺失信息，再按该 Skill 的专业工作流输出成果、引用依据和律师复核项。`
+            : typeof recommendation.nextPrompt === 'string' ? recommendation.nextPrompt : fallback.recommendations[0]?.nextPrompt ?? '',
         }
       })
       .filter((item) => item.skillId && skillById.has(item.skillId))
@@ -445,54 +561,35 @@ function normalizeRecommendationResult(result: unknown, fallback: Recommendation
       firstItem: value.recommendations[0],
     })
   }
-  return normalized.recommendations.length > 0 ? normalized : fallback
+  if (normalized.recommendations.length === 0) throw new Error('大模型返回的 Skill 不在当前知识库中')
+  return normalized
 }
 
 async function callClaudeRecommend(payload: RecommendRequest) {
   const skills = await getRecommendationSkills()
   const local = localRecommendWithSkills(payload, skills)
-  const topLocalScore = local.recommendations[0]?.score ?? 0
-  // 本地优先级：仅当本地最高匹配分达到阈值，才视为「本地已找到相应 Skill」直接返回；
-  // 否则升级大模型在知识库内做语义检索（边缘/弱匹配的法律输入也能借大模型补全）。
-  const localConfident = topLocalScore >= LOCAL_CONFIDENT_THRESHOLD
-
-  // 用户手动要求用大模型重新检索（即使本地已匹配到结果）
-  if (payload.forceLlm) {
-    return tryLlmSearch(payload, skills, local, true)
-  }
-
-  if (localConfident) {
-    return { ...local, matchStage: 'local' }
-  }
-
-  // 本地未找到高匹配度 Skill → 升级使用大模型在知识库内做语义检索
-  return tryLlmSearch(payload, skills, local, false)
+  return searchWithLlm(payload, skills, local)
 }
 
-// 尝试用大模型在全部 Skill 库内做语义检索；大模型未配置或失败时退回本地结果。
-// forced=true 表示用户手动触发，false 表示本地低分自动升级。
-async function tryLlmSearch(payload: RecommendRequest, skills: FirmSkill[], local: RecommendationResult, forced: boolean): Promise<RecommendationResult> {
+// 推荐结果只允许来自大模型；未配置或调用失败时直接报错，不回退本地匹配。
+async function searchWithLlm(payload: RecommendRequest, skills: FirmSkill[], local: RecommendationResult): Promise<RecommendationResult> {
   const config = llmConfig()
-  if (process.env.SKILL_RECOMMENDER_USE_LLM === 'true' && config.apiKey) {
-    try {
-      const result = await callLlmSearch(payload, skills, local)
-      if (result === local) {
-        // 大模型未返回可用结果，退回本地最接近项
-        return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
-      }
-      return { ...result, matchStage: 'llm', escalatedToLlm: true, forcedLlm: forced }
-    } catch (error) {
-      console.error(error)
-      return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
-    }
-  }
-  // 未配置大模型 → 返回本地最接近项，并标注大模型不可用
-  return { ...local, matchStage: 'local', llmUnavailable: true, escalatedToLlm: true, forcedLlm: forced }
+  if (process.env.SKILL_RECOMMENDER_USE_LLM !== 'true') throw new Error('大模型检索未启用')
+  if (!config.apiKey) throw new Error('缺少大模型 API Key')
+  const result = await callLlmSearch(payload, skills, local)
+  return { ...result, mode: 'llm', matchStage: 'llm' }
 }
 
 async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fallback: RecommendationResult) {
+  const bilingualProfile = await buildBilingualSearchProfile(payload)
+  const expandedTerms = uniqueItems([
+    ...bilingualProfile.chineseTerms,
+    ...bilingualProfile.englishTerms,
+    ...bilingualProfile.documentTypes,
+    ...bilingualProfile.expectedOutputs,
+  ], 40)
   const candidates = [...skills]
-    .map((skill) => ({ skill, score: scoreSkillForMatter(skill, payload) }))
+    .map((skill) => ({ skill, score: scoreSkillForMatter(skill, payload, expandedTerms) }))
     .sort((a, b) => b.score - a.score)
     .slice(0, 30)
     .map(({ skill }) => ({
@@ -537,6 +634,7 @@ async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fal
 预留上传文件名：${payload.fileNames?.join('、') || '无'}
 脱敏摘要：${payload.redactionSummary || '未执行'}
 知识库引用：${JSON.stringify(payload.knowledgeSources || [])}
+跨语言检索画像：${JSON.stringify(bilingualProfile)}
 待处理文本：
 ${(payload.text || '').slice(0, 8000)}
 
@@ -624,7 +722,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ...result, fileWarnings: warnings })
   } catch (error) {
     console.error(error)
-    return NextResponse.json({ error: '推荐分析失败，请重试' }, { status: 500 })
+    const message = error instanceof Error ? error.message : '推荐分析失败，请重试'
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }
 
