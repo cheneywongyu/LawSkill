@@ -3,17 +3,25 @@ import { NextRequest } from 'next/server'
 export const dynamic = 'force-dynamic'
 
 const llmTimeoutMs = 90000
-const model = process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'
 
 function llmConfig() {
+  // Ollama 本地模型支持：设置 OLLAMA_BASE_URL（如 http://localhost:11434）即可切换到本地推理
+  const ollamaBase = process.env.OLLAMA_BASE_URL?.replace(/\/+$/, '')
   const explicitBase = process.env.OPENAI_BASE_URL
   const explicitKey = process.env.OPENAI_API_KEY
-  const apiKey = explicitBase ? explicitKey : process.env.TOKENBUY_API_KEY || explicitKey || process.env.ANTHROPIC_API_KEY
-  const baseURL = explicitBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
+  const apiKey = ollamaBase
+    ? (process.env.OLLAMA_API_KEY || 'ollama')
+    : explicitBase ? explicitKey : process.env.TOKENBUY_API_KEY || explicitKey || process.env.ANTHROPIC_API_KEY
+  const baseURL = ollamaBase || explicitBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
   const normalizedBaseURL = baseURL.replace(/\/+$/, '')
+  const isOllama = Boolean(ollamaBase) || normalizedBaseURL.includes('://localhost:11434') || normalizedBaseURL.includes('://127.0.0.1:11434')
   return {
     apiKey,
+    model: ollamaBase
+      ? (process.env.OLLAMA_MODEL || 'qwen2.5:3b')
+      : (process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'),
     chatUrl: normalizedBaseURL.endsWith('/v1') ? `${normalizedBaseURL}/chat/completions` : `${normalizedBaseURL}/v1/chat/completions`,
+    timeoutMs: Number(process.env.LLM_TIMEOUT_MS) || (isOllama ? 300000 : llmTimeoutMs),
   }
 }
 
@@ -21,7 +29,7 @@ async function translateMarkdown(markdown: string, contentType: 'skill-md' | 'in
   const config = llmConfig()
   if (!config.apiKey) throw new Error('缺少大模型 API Key')
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(), llmTimeoutMs)
+  const timeout = setTimeout(() => controller.abort(), config.timeoutMs)
   try {
     const response = await fetch(config.chatUrl, {
       method: 'POST',
@@ -31,7 +39,7 @@ async function translateMarkdown(markdown: string, contentType: 'skill-md' | 'in
       },
       signal: controller.signal,
       body: JSON.stringify({
-        model,
+        model: config.model,
         messages: [
           {
             role: 'system',

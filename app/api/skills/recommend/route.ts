@@ -107,7 +107,6 @@ const keywordGroups = [
   { area: 'Skill 构建', terms: ['skill', '构建', '创建', '测试', '包装', '发布', '方法论', 'agent'] },
 ]
 const llmTimeoutMs = 45000
-const openAiCompatibleModel = process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'
 
 function clampScore(score: number) {
   return Math.max(35, Math.min(99, Math.round(score)))
@@ -129,14 +128,23 @@ function normalizeText(value: string) {
 }
 
 function llmConfig() {
+  // Ollama 本地模型支持：设置 OLLAMA_BASE_URL（如 http://localhost:11434）即可切换到本地推理
+  const ollamaBase = process.env.OLLAMA_BASE_URL?.replace(/\/+$/, '')
   const explicitOpenAiBase = process.env.OPENAI_BASE_URL
   const explicitOpenAiKey = process.env.OPENAI_API_KEY
-  const apiKey = explicitOpenAiBase ? explicitOpenAiKey : process.env.TOKENBUY_API_KEY || explicitOpenAiKey || process.env.ANTHROPIC_API_KEY
-  const baseURL = explicitOpenAiBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
+  const apiKey = ollamaBase
+    ? (process.env.OLLAMA_API_KEY || 'ollama')
+    : explicitOpenAiBase ? explicitOpenAiKey : process.env.TOKENBUY_API_KEY || explicitOpenAiKey || process.env.ANTHROPIC_API_KEY
+  const baseURL = ollamaBase || explicitOpenAiBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
   const normalizedBaseURL = baseURL.replace(/\/+$/, '')
+  const isOllama = Boolean(ollamaBase) || normalizedBaseURL.includes('://localhost:11434') || normalizedBaseURL.includes('://127.0.0.1:11434')
   return {
     apiKey,
+    model: ollamaBase
+      ? (process.env.OLLAMA_MODEL || 'qwen2.5:3b')
+      : (process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'),
     chatUrl: normalizedBaseURL.endsWith('/v1') ? `${normalizedBaseURL}/chat/completions` : `${normalizedBaseURL}/v1/chat/completions`,
+    timeoutMs: Number(process.env.LLM_TIMEOUT_MS) || (isOllama ? 300000 : llmTimeoutMs),
   }
 }
 
@@ -155,7 +163,7 @@ async function callOpenAiCompatibleJson<T>(prompt: string, maxTokens: number): P
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: openAiCompatibleModel,
+      model: config.model,
       messages: [
         { role: 'system', content: '你只输出合法 JSON，不要输出 Markdown 代码块或解释文字。' },
         { role: 'user', content: prompt },
@@ -164,7 +172,7 @@ async function callOpenAiCompatibleJson<T>(prompt: string, maxTokens: number): P
       max_tokens: maxTokens,
       response_format: { type: 'json_object' },
     }),
-  }))
+  }), config.timeoutMs)
   const text = await response.text()
   if (!response.ok) throw new Error(`${response.status} ${text}`)
   const payload = JSON.parse(text) as { choices?: { message?: { content?: string } }[] }
@@ -330,8 +338,18 @@ function fallbackBilingualTerms(payload: RecommendRequest) {
   )
 }
 
+// 是否使用 Ollama 本地推理（CPU 较慢，走精简提示词策略）
+function usingOllama() {
+  const base = (process.env.OLLAMA_BASE_URL || process.env.OPENAI_BASE_URL || '').replace(/\/+$/, '')
+  return Boolean(process.env.OLLAMA_BASE_URL) || base.includes('://localhost:11434') || base.includes('://127.0.0.1:11434')
+}
+
 async function buildBilingualSearchProfile(payload: RecommendRequest): Promise<BilingualSearchProfile> {
   const fallbackTerms = fallbackBilingualTerms(payload)
+  // 本地 Ollama：跳过画像 LLM 调用，直接用本地规则词表，节省一半耗时
+  if (usingOllama()) {
+    return { normalizedTask: payload.purpose || '', chineseTerms: [], englishTerms: fallbackTerms, documentTypes: [], expectedOutputs: [] }
+  }
   try {
     const result = await callOpenAiCompatibleJson<Partial<BilingualSearchProfile>>(`你是法律 Skill 跨语言检索词生成器。根据中文或中英混合任务，生成用于检索英文法律 Skill 名称、description、tags、适用场景和输出格式的双语检索画像。只返回 JSON：normalizedTask、chineseTerms、englishTerms、documentTypes、expectedOutputs。
 
@@ -499,6 +517,11 @@ function normalizeRecommendationResult(result: unknown, fallback: Recommendation
   const riskFlags = Array.isArray(value.riskFlags) ? value.riskFlags.filter((item): item is string => typeof item === 'string') : []
   const recommendedKnowledgeIds = Array.isArray(value.recommendedKnowledgeIds) ? value.recommendedKnowledgeIds.filter((item): item is string => typeof item === 'string') : []
   const skillById = new Map(skills.map((skill) => [skill.id, skill]))
+  // 名称→id 索引（长名称优先），用于小模型漏掉 skillId 时按推荐理由回映射
+  const skillNameIndex = skills
+    .flatMap((skill) => [[skill.id, skill.id] as const, [skill.chineseName, skill.id] as const, [skill.name, skill.id] as const])
+    .filter(([name]) => Boolean(name))
+    .sort((a, b) => b[0].length - a[0].length)
   const normalized = {
     mode: typeof value.mode === 'string' ? value.mode : 'llm',
     summary: typeof value.summary === 'string' ? value.summary : fallback.summary,
@@ -533,7 +556,18 @@ function normalizeRecommendationResult(result: unknown, fallback: Recommendation
         const cautions = Array.isArray(recommendation.cautions)
           ? recommendation.cautions.map(String)
           : [recommendation.limitation || '客户交付前需律师复核']
-        const skillId = String(recommendation.skillId || recommendation.id || '')
+        const rawSkillId = String(recommendation.skillId || recommendation.id || '')
+        // 本地小模型（如 Ollama qwen2.5:3b）可能漏掉 skillId 字段：从推荐理由/注意事项文本中按候选名称回映射
+        const skillId = skillById.has(rawSkillId)
+          ? rawSkillId
+          : ([
+              rawSkillId,
+              ...(Array.isArray(recommendation.reasons) ? recommendation.reasons : []),
+              ...(Array.isArray(recommendation.cautions) ? recommendation.cautions : []),
+              typeof recommendation.reason === 'string' ? [recommendation.reason] : [],
+            ] as string[]).flatMap((text) =>
+              skillNameIndex.filter(([name]) => text.includes(name)).map(([, id]) => id),
+            )[0] || rawSkillId
         const skill = skillById.get(skillId)
         const usefulReasons = reasons.filter((reason) => !/与任务相关|可作为参考|模型推荐/.test(reason))
         const usefulCautions = cautions.filter((caution) => !/客户交付前需律师复核/.test(caution))
@@ -588,11 +622,21 @@ async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fal
     ...bilingualProfile.documentTypes,
     ...bilingualProfile.expectedOutputs,
   ], 40)
+  // 本地 Ollama（CPU 推理慢）：候选从 30 压到 12，只保留关键信息，缩短提示词处理时间
+  const compact = usingOllama()
   const candidates = [...skills]
     .map((skill) => ({ skill, score: scoreSkillForMatter(skill, payload, expandedTerms) }))
     .sort((a, b) => b.score - a.score)
-    .slice(0, 30)
-    .map(({ skill }) => ({
+    .slice(0, compact ? 12 : 30)
+    .map(({ skill }) => (compact ? {
+      id: skill.id,
+      name: skill.chineseName,
+      englishName: skill.name,
+      practice: skill.practice,
+      description: skill.description?.slice(0, 120),
+      tags: skill.tags.slice(0, 8),
+      notFor: skill.notFor.slice(0, 3),
+    } : {
       id: skill.id,
       name: skill.chineseName,
       englishName: skill.name,
@@ -615,7 +659,7 @@ async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fal
 2. 任务明确：再选扩展库专项 Skill，例如并购/交易文件、数据隐私、诉讼争议、资本市场、劳动雇佣、知识产权等。
 3. 复杂任务：用核心 Skill 定总体框架，扩展 Skill 做具体产出。每个推荐项 role 必须标为 core、specialist 或 support。
 4. 在合同、投资接触、商业谈判语境中，NDA 默认指 Non-Disclosure Agreement / 保密协议，不要解释为 New Drug Application。
-5. 只能从候选 Skill 中选择 skillId，不得虚构 Skill。
+5. 只能从候选 Skill 中选择 skillId，不得虚构 Skill。每个 recommendations[i] 必须包含 skillId 字段，值必须原样复制候选列表中该项的 id 字符串，一条推荐只对应一个 Skill。
 6. 如果候选 Skill 的 notFor 明确覆盖用户任务，不要推荐；除非只是作为反例，并且 score 必须低于 55。
 
 输出约束：
@@ -636,10 +680,10 @@ async function callLlmSearch(payload: RecommendRequest, skills: FirmSkill[], fal
 知识库引用：${JSON.stringify(payload.knowledgeSources || [])}
 跨语言检索画像：${JSON.stringify(bilingualProfile)}
 待处理文本：
-${(payload.text || '').slice(0, 8000)}
+${(payload.text || '').slice(0, compact ? 3000 : 8000)}
 
-候选 Skill（本地预筛的最接近 30 个，请基于语义进一步挑选）：
-${JSON.stringify(candidates)}`, 2200)
+候选 Skill（本地预筛的最接近的候选，请基于语义进一步挑选）：
+${JSON.stringify(candidates)}`, compact ? 1600 : 2200)
   return normalizeRecommendationResult(result, fallback, payload, skills)
 }
 

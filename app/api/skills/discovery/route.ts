@@ -61,15 +61,23 @@ const requiredFields: (keyof DiscoveryRequirements)[] = [
 ]
 
 function llmConfig() {
+  // Ollama 本地模型支持：设置 OLLAMA_BASE_URL（如 http://localhost:11434）即可切换到本地推理
+  const ollamaBase = process.env.OLLAMA_BASE_URL?.replace(/\/+$/, '')
   const explicitBase = process.env.OPENAI_BASE_URL
   const explicitKey = process.env.OPENAI_API_KEY
-  const apiKey = explicitBase ? explicitKey : process.env.TOKENBUY_API_KEY || explicitKey || process.env.ANTHROPIC_API_KEY
-  const baseURL = explicitBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
+  const apiKey = ollamaBase
+    ? (process.env.OLLAMA_API_KEY || 'ollama')
+    : explicitBase ? explicitKey : process.env.TOKENBUY_API_KEY || explicitKey || process.env.ANTHROPIC_API_KEY
+  const baseURL = ollamaBase || explicitBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
   const normalizedBaseURL = baseURL.replace(/\/+$/, '')
+  const isOllama = Boolean(ollamaBase) || normalizedBaseURL.includes('://localhost:11434') || normalizedBaseURL.includes('://127.0.0.1:11434')
   return {
     apiKey,
-    model: process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5',
+    model: ollamaBase
+      ? (process.env.OLLAMA_MODEL || 'qwen2.5:3b')
+      : (process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'),
     chatUrl: normalizedBaseURL.endsWith('/v1') ? `${normalizedBaseURL}/chat/completions` : `${normalizedBaseURL}/v1/chat/completions`,
+    timeoutMs: Number(process.env.LLM_TIMEOUT_MS) || (isOllama ? 300000 : llmTimeoutMs),
   }
 }
 

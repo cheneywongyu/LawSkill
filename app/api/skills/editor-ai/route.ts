@@ -57,7 +57,6 @@ type EditorAiResult = {
 }
 
 const llmTimeoutMs = 45000
-const openAiCompatibleModel = process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'
 
 const pipelineSkillResources = {
   expertise: {
@@ -90,14 +89,23 @@ async function loadPipelineSkillResource(stage: keyof typeof pipelineSkillResour
 }
 
 function llmConfig() {
+  // Ollama 本地模型支持：设置 OLLAMA_BASE_URL（如 http://localhost:11434）即可切换到本地推理
+  const ollamaBase = process.env.OLLAMA_BASE_URL?.replace(/\/+$/, '')
   const explicitOpenAiBase = process.env.OPENAI_BASE_URL
   const explicitOpenAiKey = process.env.OPENAI_API_KEY
-  const apiKey = explicitOpenAiBase ? explicitOpenAiKey : process.env.TOKENBUY_API_KEY || explicitOpenAiKey || process.env.ANTHROPIC_API_KEY
-  const baseURL = explicitOpenAiBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
+  const apiKey = ollamaBase
+    ? (process.env.OLLAMA_API_KEY || 'ollama')
+    : explicitOpenAiBase ? explicitOpenAiKey : process.env.TOKENBUY_API_KEY || explicitOpenAiKey || process.env.ANTHROPIC_API_KEY
+  const baseURL = ollamaBase || explicitOpenAiBase || process.env.TOKENBUY_BASE_URL || process.env.ANTHROPIC_BASE_URL || 'https://api.okrouter.ai/v1'
   const normalizedBaseURL = baseURL.replace(/\/+$/, '')
+  const isOllama = Boolean(ollamaBase) || normalizedBaseURL.includes('://localhost:11434') || normalizedBaseURL.includes('://127.0.0.1:11434')
   return {
     apiKey,
+    model: ollamaBase
+      ? (process.env.OLLAMA_MODEL || 'qwen2.5:3b')
+      : (process.env.OPENAI_MODEL || process.env.TOKENBUY_MODEL || process.env.ANTHROPIC_MODEL || 'gpt-5.5'),
     chatUrl: normalizedBaseURL.endsWith('/v1') ? `${normalizedBaseURL}/chat/completions` : `${normalizedBaseURL}/v1/chat/completions`,
+    timeoutMs: Number(process.env.LLM_TIMEOUT_MS) || (isOllama ? 300000 : llmTimeoutMs),
   }
 }
 
@@ -116,7 +124,7 @@ async function callOpenAiCompatibleJson<T>(prompt: string, maxTokens: number): P
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: openAiCompatibleModel,
+      model: config.model,
       messages: [
         { role: 'system', content: '你只输出合法 JSON，不要输出 Markdown 代码块或解释文字。' },
         { role: 'user', content: prompt },
@@ -125,7 +133,7 @@ async function callOpenAiCompatibleJson<T>(prompt: string, maxTokens: number): P
       max_tokens: maxTokens,
       response_format: { type: 'json_object' },
     }),
-  }))
+  }), config.timeoutMs)
   const text = await response.text()
   if (!response.ok) throw new Error(`${response.status} ${text}`)
   const payload = JSON.parse(text) as { choices?: { message?: { content?: string } }[] }
