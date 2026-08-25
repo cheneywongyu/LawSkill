@@ -34,6 +34,28 @@ cp .env.example .env.local
 
 `.env.local` 会被 Git 忽略，不要提交真实 API Key。
 
+## 本地模型（Ollama，可选）
+
+不想走云端 API 时，可改用本机 Ollama 跑本地大模型推理。模型二进制**不入库**（GitHub 单文件 100MB 上限、LFS 免费额度仅 1GB），仓库只保存"配方"，clone 后一键拉到本机。
+
+```bash
+# 1. 安装 Ollama：https://ollama.com/download
+# 2. 在仓库根目录执行（Windows PowerShell）：
+powershell -ExecutionPolicy Bypass -File scripts/setup-ollama.ps1
+```
+
+脚本会拉取 `qwen2.5:3b` 并构建 `qwen2.5:3b-16k` 变体（16K 上下文，避免长文档被截断）。
+
+然后在 `.env.local` 启用本地推理：
+
+```bash
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=qwen2.5:3b-16k
+```
+
+- 本地推理对所有 7 个 LLM 路由（recommend / run / translate / effect-test / editor-ai / material-classify / discovery）同时生效。
+- 硬件要求：`qwen2.5:3b` 纯 CPU（≥8GB 内存）可跑但较慢（长任务数分钟级）；`qwen3.8`（约 18GB）需 ≥32GB 内存或 ≥24GB 显存，仅适合强机器，在 `scripts/setup-ollama.ps1` 中取消注释即可解锁。
+
 ## 常用脚本
 
 ```bash

@@ -1,0 +1,5 @@
+# LawSkill 本地推理用的 16K 上下文变体
+# 基础模型 qwen2.5:3b 默认 num_ctx 仅 4096，处理长法律文档/多候选 Skill 时会被截断，
+# 这里放大到 16384，避免推荐接口的长 prompt 被截断。
+FROM qwen2.5:3b
+PARAMETER num_ctx 16384
